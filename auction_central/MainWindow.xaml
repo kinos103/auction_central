@@ -1,0 +1,23 @@
+﻿<Window x:Class="auction_central.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:auction_central"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="900" Width="1300"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TextBlock x:Name="header_header" HorizontalAlignment="Left" Margin="447,10,0,0" TextWrapping="Wrap" Text="AUCTION CENTRAL" VerticalAlignment="Top" 
+                   FontSize="70" />
+        <Rectangle x:Name="header_line"  Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="61,105,0,0" Stroke="Black" VerticalAlignment="Top" Width="1180"/>
+        <Button x:Name="header_homeButton" Content="home" HorizontalAlignment="Left" Height="62" Margin="10,35,0,0" VerticalAlignment="Top" Width="74"/>
+        <Button x:Name="header_auctionsButton" Content="auctions" HorizontalAlignment="Left" Height="56" Margin="111,41,0,0" VerticalAlignment="Top" Width="76"/>
+        <Button x:Name="header_loginButton" Content="login" HorizontalAlignment="Left" Height="57" Margin="1193,34,0,0" VerticalAlignment="Top" Width="91"/>
+        <Button x:Name="header_searchButton" Content="🔎" HorizontalAlignment="Left" Height="62" Margin="1088,35,0,0" VerticalAlignment="Top" Width="84"/>
+        <Button x:Name="header_contactButton" Content="contact us" HorizontalAlignment="Left" Height="56" Margin="214,41,0,0" VerticalAlignment="Top" Width="77"/>
+        <Button x:Name="header_donorButton" Content="donors" HorizontalAlignment="Left" Height="64" Margin="320,33,0,0" VerticalAlignment="Top" Width="68"/>
+
+
+    </Grid>
+</Window>
