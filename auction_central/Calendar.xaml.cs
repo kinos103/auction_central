@@ -16,26 +16,15 @@ using System.Windows.Shapes;
 namespace auction_central
 {
     /// <summary>
-    /// Interaction logic for login.xaml
+    /// Interaction logic for Page3.xaml
     /// </summary>
-    public partial class login : Page
+    /// 
+
+    public partial class Page3 : Page
     {
-        public login()
+        public Page3()
         {
             InitializeComponent();
-        }
-
-        private void comboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-            /*
-            if (comboBox.SelectedIndex == 0)
-            {
-                comboBox.Items.Add("Admin");
-                comboBox.Items.Add("Bidder");
-                comboBox.Items.Add("Non-Profit");
-                
-            }
-            */
         }
     }
 }
