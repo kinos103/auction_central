@@ -10,6 +10,5 @@
 	  Background="White" Width="1300" Height="900">
 
 	<Grid Margin="10,10,10.4,0" RenderTransformOrigin="0.503,0.514">
-		<local:NavBar Margin="0,0,-0.4,785" HorizontalAlignment="Center"></local:NavBar>
 	</Grid>
 </Page>
