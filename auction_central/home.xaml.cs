@@ -25,8 +25,8 @@ namespace auction_central
 
         private void header_homeButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
-            
+            Home.Content = null;
+            Home.Content = new home();
         }
 
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)

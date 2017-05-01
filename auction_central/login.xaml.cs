@@ -36,6 +36,20 @@ namespace auction_central
                 
             }
             */
+
+            /* 
+             * Connection string: 
+             * Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba
+             * 
+             * 
+             * MySqlConnection connection;
+               string connectionString = "Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+               connection = new MySqlConnection(connectionString);
+               try
+               {
+                   connection.Open();
+               }
+             */
         }
     }
 }
