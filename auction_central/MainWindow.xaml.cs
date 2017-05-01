@@ -21,8 +21,12 @@ namespace auction_central
     public partial class MainWindow : Window
     {
         public MainWindow()
+        { InitializeComponent(); }
+
+        private void enter_button_Click(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
+            Page page1 = new Page();
+            this.Content = new home();
         }
     }
 }
