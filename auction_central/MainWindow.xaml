@@ -7,17 +7,42 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1300"
         WindowStartupLocation="CenterScreen">
-    <Grid>
-        <TextBlock x:Name="header_header" HorizontalAlignment="Left" Margin="447,10,0,0" TextWrapping="Wrap" Text="AUCTION CENTRAL" VerticalAlignment="Top" 
-                   FontSize="70" />
-        <Rectangle x:Name="header_line"  Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="1" Margin="61,105,0,0" Stroke="Black" VerticalAlignment="Top" Width="1180"/>
-        <Button x:Name="header_homeButton" Content="home" HorizontalAlignment="Left" Height="62" Margin="10,35,0,0" VerticalAlignment="Top" Width="74"/>
-        <Button x:Name="header_auctionsButton" Content="auctions" HorizontalAlignment="Left" Height="56" Margin="111,41,0,0" VerticalAlignment="Top" Width="76"/>
-        <Button x:Name="header_loginButton" Content="login" HorizontalAlignment="Left" Height="57" Margin="1193,34,0,0" VerticalAlignment="Top" Width="91"/>
-        <Button x:Name="header_searchButton" Content="🔎" HorizontalAlignment="Left" Height="62" Margin="1088,35,0,0" VerticalAlignment="Top" Width="84"/>
-        <Button x:Name="header_contactButton" Content="contact us" HorizontalAlignment="Left" Height="56" Margin="214,41,0,0" VerticalAlignment="Top" Width="77"/>
-        <Button x:Name="header_donorButton" Content="donors" HorizontalAlignment="Left" Height="64" Margin="320,33,0,0" VerticalAlignment="Top" Width="68"/>
+
+    <Grid Margin="534,430,505.6,387.4">
+        <Frame x:Name="Main" Margin="-525,-416,-500,-374" HorizontalAlignment="Left" Width="1279"/>
+        <Button x:Name="enter_button" Content="E N T E R" HorizontalAlignment="Left" VerticalAlignment="Top" Width="254" FontSize="40" Click="enter_button_Click" Height="286" Margin="0,-110,0,-123">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+                            <Setter Property ="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
 
 
     </Grid>
+
+
+
 </Window>
