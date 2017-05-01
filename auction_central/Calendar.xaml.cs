@@ -24,7 +24,7 @@ namespace auction_central
     {
         public Page3()
         {
-            InitializeComponent();
+            //InitializeComponent();
         }
     }
 }
