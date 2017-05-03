@@ -18,9 +18,9 @@ namespace auction_central
     /// <summary>
     /// Interaction logic for Page4.xaml
     /// </summary>
-    public partial class Page4 : Page
+    public partial class AuctionRequest : Page
     {
-        public Page4()
+        public AuctionRequest()
         {
             InitializeComponent();
         }

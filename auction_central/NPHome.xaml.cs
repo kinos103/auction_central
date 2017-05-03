@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace auction_central
 {
     /// <summary>
-    /// Interaction logic for Page1.xaml
+    /// Interaction logic for NPHome.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class NPHome : Page
     {
-        public Page1()
+        public NPHome()
         {
             InitializeComponent();
         }
