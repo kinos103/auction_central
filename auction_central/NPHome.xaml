@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:auction_central"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1300" Background="White"
-      Title="NonProfitHome">
+      Title="NonPHome">
 
     <Grid>
         <Button x:Name="button" Content="View Current Events" HorizontalAlignment="Left" Margin="194,197,0,0" VerticalAlignment="Top" Width="337" Height="51" FontSize="26.667"/>
