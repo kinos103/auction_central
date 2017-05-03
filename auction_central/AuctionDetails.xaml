@@ -9,16 +9,18 @@
       Title="AuctionDetails">
 
     <Grid>
-        <Label x:Name="label1_Copy" Content="Charity Name&#xD;&#xA;" HorizontalAlignment="Left" Height="27" Margin="351,242,0,0" VerticalAlignment="Top" Width="118"/>
 
-        <!--AuctionName = CharityName-Month-Day-Year -->
-        <Label x:Name="label1" Content="AuctionName" HorizontalAlignment="Left" Height="46" Margin="351,175,0,0" VerticalAlignment="Top" Width="176" FontSize="16"/>
-        <Label x:Name="label1_Copy1" Content="Date&#xA;" HorizontalAlignment="Left" Height="27" Margin="351,274,0,0" VerticalAlignment="Top" Width="118"/>
-        <Label x:Name="label1_Copy2" Content="Start Time&#xA;" HorizontalAlignment="Left" Height="27" Margin="351,306,0,0" VerticalAlignment="Top" Width="118"/>
-        <Label x:Name="label1_Copy3" Content="End Time&#xA;" HorizontalAlignment="Left" Height="27" Margin="351,338,0,0" VerticalAlignment="Top" Width="118"/>
-        <Label x:Name="label1_Copy4" Content="NonPro Contact&#xA;" HorizontalAlignment="Left" Height="27" Margin="351,370,0,0" VerticalAlignment="Top" Width="118"/>
-        <Label x:Name="label1_Copy5" Content="Phone&#xA;" HorizontalAlignment="Left" Height="27" Margin="351,402,0,0" VerticalAlignment="Top" Width="118"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="41" Margin="557,72,0,0" TextWrapping="Wrap" Text="Auction Details&#xD;&#xA;" VerticalAlignment="Top" Width="158" FontSize="21.333"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="83" Margin="467,65,0,0" TextWrapping="Wrap" Text="Auction Details" VerticalAlignment="Top" Width="435" FontSize="64"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="410" Margin="369,300,0,0" Stroke="Black" VerticalAlignment="Top" Width="602"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="41" Margin="369,229,0,0" TextWrapping="Wrap" Text="AuctionID" VerticalAlignment="Top" Width="246" FontSize="26.667"/>
+        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="28" Margin="403,639,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="28" Margin="403,583,0,0" TextWrapping="Wrap" Text="Phone Number" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Left" Height="28" Margin="403,532,0,0" TextWrapping="Wrap" Text="NonProf Contact" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="textBox_Copy3" HorizontalAlignment="Left" Height="28" Margin="403,481,0,0" TextWrapping="Wrap" Text="End Time" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="textBox_Copy4" HorizontalAlignment="Left" Height="28" Margin="403,432,0,0" TextWrapping="Wrap" Text="Start Time" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="textBox_Copy5" HorizontalAlignment="Left" Height="28" Margin="403,383,0,0" TextWrapping="Wrap" Text="Date" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="textBox_Copy6" HorizontalAlignment="Left" Height="28" Margin="403,333,0,0" TextWrapping="Wrap" Text="Charity Name" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+
 
 
     </Grid>

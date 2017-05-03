@@ -55,9 +55,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AddItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AuctionDetails.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AuctionItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AuctionRequest.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -83,12 +91,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AddItem.xaml.cs">
+      <DependentUpon>AddItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AuctionDetails.xaml.cs">
       <DependentUpon>AuctionDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AuctionItems.xaml.cs">
+      <DependentUpon>AuctionItems.xaml</DependentUpon>
     </Compile>
     <Compile Include="AuctionRequest.xaml.cs">
       <DependentUpon>AuctionRequest.xaml</DependentUpon>

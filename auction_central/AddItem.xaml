@@ -1,0 +1,26 @@
+﻿<Page x:Class="auction_central.AddItem"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:auction_central"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="1300" Background="White"
+      Title="AddItem">
+
+    <Grid>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" Margin="400,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="549" FontSize="64"><Run Text="Add Inventory Item"/><LineBreak/><Run/></TextBlock>
+        <Image x:Name="itemImage" HorizontalAlignment="Left" Height="332" Margin="760,245,0,0" VerticalAlignment="Top" Width="429"/>
+        <TextBox x:Name="auctionID" HorizontalAlignment="Left" Height="34" Margin="158,284,0,0" TextWrapping="Wrap" Text="Auction ID" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="condition" HorizontalAlignment="Left" Height="28" Margin="158,488,0,0" TextWrapping="Wrap" Text="Condition (New/Used/Acceptable)" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="storageLocation" HorizontalAlignment="Left" Height="28" Margin="158,455,0,0" TextWrapping="Wrap" Text="Storage Location" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="size" HorizontalAlignment="Left" Height="28" Margin="158,422,0,0" TextWrapping="Wrap" Text="Size" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="donor" HorizontalAlignment="Left" Height="28" Margin="158,389,0,0" TextWrapping="Wrap" Text="Donor" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="startBid" HorizontalAlignment="Left" Height="28" Margin="158,356,0,0" TextWrapping="Wrap" Text="Min. Starting Bid" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="itemQuantity" HorizontalAlignment="Left" Height="28" Margin="158,323,0,0" TextWrapping="Wrap" Text="Item Quantity" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="itemName" HorizontalAlignment="Left" Height="34" Margin="158,245,0,0" TextWrapping="Wrap" Text="Item Name" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="comments" HorizontalAlignment="Left" Height="113" Margin="158,521,0,0" TextWrapping="Wrap" Text="Additional Comments..." VerticalAlignment="Top" Width="548" FontSize="21.333"/>
+        <Button x:Name="button" Content="Upload Photo" HorizontalAlignment="Left" Height="34" Margin="760,600,0,0" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <Button x:Name="button1" Content="Add Item" HorizontalAlignment="Left" Height="61" Margin="158,663,0,0" VerticalAlignment="Top" Width="246" FontSize="26.667"/>
+    </Grid>
+</Page>
