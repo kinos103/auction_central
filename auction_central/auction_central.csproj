@@ -59,6 +59,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="AuctionRequest.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Calendar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,6 +90,9 @@
     <Compile Include="AuctionDetails.xaml.cs">
       <DependentUpon>AuctionDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AuctionRequest.xaml.cs">
+      <DependentUpon>AuctionRequest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Calendar.xaml.cs">
       <DependentUpon>Calendar.xaml</DependentUpon>
     </Compile>
@@ -106,10 +113,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NPEventDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NPHome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NPNoEvent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Inventory.xaml.cs">
       <DependentUpon>Inventory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPEventDetails.xaml.cs">
+      <DependentUpon>NPEventDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPHome.xaml.cs">
+      <DependentUpon>NPHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NPNoEvent.xaml.cs">
+      <DependentUpon>NPNoEvent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
