@@ -18,9 +18,9 @@ namespace auction_central
     /// <summary>
     /// Interaction logic for Page2.xaml
     /// </summary>
-    public partial class Page2 : Page
+    public partial class NPNoEvent : Page
     {
-        public Page2()
+        public NPNoEvent()
         {
             InitializeComponent();
         }
