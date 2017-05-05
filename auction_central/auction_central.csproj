@@ -71,6 +71,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Auctions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Calendar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -98,14 +102,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Auction.cs" />
     <Compile Include="AuctionDetails.xaml.cs">
       <DependentUpon>AuctionDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AuctionItem.cs" />
     <Compile Include="AuctionItems.xaml.cs">
       <DependentUpon>AuctionItems.xaml</DependentUpon>
     </Compile>
     <Compile Include="AuctionRequest.xaml.cs">
       <DependentUpon>AuctionRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Auctions.xaml.cs">
+      <DependentUpon>Auctions.xaml</DependentUpon>
     </Compile>
     <Compile Include="Calendar.xaml.cs">
       <DependentUpon>Calendar.xaml</DependentUpon>
@@ -178,6 +187,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon-Placeholder.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

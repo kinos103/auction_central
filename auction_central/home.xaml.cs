@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace auction_central
@@ -41,5 +42,9 @@ namespace auction_central
         {
             Home.Content = new login();
         }
-    }
+
+		private void header_auctionsButton_Click(object sender, RoutedEventArgs e) {
+			Home.Content = new Auctions();			
+		}
+	}
 }

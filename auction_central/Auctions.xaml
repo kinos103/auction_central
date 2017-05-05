@@ -1,0 +1,46 @@
+﻿<Page x:Class="auction_central.Auctions"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:auction_central"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="1300" Background="White" 
+      Title="Auctions">
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"></ColumnDefinition>
+			<ColumnDefinition Width="*"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Grid.Resources>
+			<DataTemplate x:Key="auctionTemplate">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition></ColumnDefinition>
+						<ColumnDefinition></ColumnDefinition>
+					</Grid.ColumnDefinitions>
+					<TextBlock Grid.Column="0" Text="{Binding Path=CharityName}" VerticalAlignment="Center"/>
+<!--					<TextBlock Grid.Column="1" Text="Image PlaceHolder"/>-->
+					<Image Grid.Column="1" Margin="10,0,0,0">
+						<Image.Source>
+							<BitmapImage DecodePixelWidth="100" UriSource="Icon-Placeholder.png"></BitmapImage>
+						</Image.Source>
+					</Image>
+				</Grid>
+			</DataTemplate>
+		</Grid.Resources>
+		<ScrollViewer HorizontalAlignment="Left" Height="696" Margin="61,130,0,0" VerticalAlignment="Top" Width="Auto"
+					  Grid.Column="0">
+			<ListBox Height="Auto" Name="listBoxAuctions" ItemsSource="{Binding}"
+					 ItemTemplate="{StaticResource auctionTemplate}" Width="Auto"
+					 MouseDoubleClick="ListBoxAuctions_OnMouseDoubleClick">
+			</ListBox>
+		</ScrollViewer>
+		
+		<Frame Grid.Column="1" Name="DetailFrame">
+			
+		</Frame>
+
+	</Grid>
+</Page>
