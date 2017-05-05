@@ -20,6 +20,7 @@
         <TextBox x:Name="textBox_Copy4" HorizontalAlignment="Left" Height="28" Margin="403,432,0,0" TextWrapping="Wrap" Text="Start Time" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
         <TextBox x:Name="textBox_Copy5" HorizontalAlignment="Left" Height="28" Margin="403,383,0,0" TextWrapping="Wrap" Text="Date" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
         <TextBox x:Name="textBox_Copy6" HorizontalAlignment="Left" Height="28" Margin="403,333,0,0" TextWrapping="Wrap" Text="Charity Name" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <Button x:Name="button" Content="View Items for this Auction" HorizontalAlignment="Left" VerticalAlignment="Top" Width="267" Margin="673,583,0,0" Height="84" FontSize="21.333" Click="button_Click"/>
 
 
 

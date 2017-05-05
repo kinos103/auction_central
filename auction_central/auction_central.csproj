@@ -59,6 +59,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AdminHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AuctionDetails.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,11 +75,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="BidderHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Calendar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="calender.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CurrentBids.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -94,6 +106,9 @@
     <Compile Include="AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AdminHome.xaml.cs">
+      <DependentUpon>AdminHome.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -107,11 +122,17 @@
     <Compile Include="AuctionRequest.xaml.cs">
       <DependentUpon>AuctionRequest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BidderHome.xaml.cs">
+      <DependentUpon>BidderHome.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Calendar.xaml.cs">
       <DependentUpon>Calendar.xaml</DependentUpon>
     </Compile>
     <Compile Include="calender.xaml.cs">
       <DependentUpon>calender.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CurrentBids.xaml.cs">
+      <DependentUpon>CurrentBids.xaml</DependentUpon>
     </Compile>
     <Compile Include="home.xaml.cs">
       <DependentUpon>home.xaml</DependentUpon>

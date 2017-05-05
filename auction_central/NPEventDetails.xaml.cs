@@ -24,5 +24,18 @@ namespace auction_central
         {
             InitializeComponent();
         }
+
+        private void addItemsButton_Click(object sender, RoutedEventArgs e)
+        {
+            /*EventDetails.Content = new AddItem();*/
+            this.NavigationService.Navigate(new Uri("AddItem.xaml", UriKind.Relative));
+
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("AuctionItems.xaml", UriKind.Relative));
+        }
     }
+    
 }

@@ -9,14 +9,24 @@
       Title="Calender">
 
     <Grid>
-        <StackPanel Orientation="Horizontal">
-            <Viewbox Width="1298" Margin="0,0,0,0">
+        <!--<StackPanel Orientation="Horizontal" Margin="0,186,0,0">-->
 
-                <Calendar SelectedDate=" 4/15/2017" DisplayDate="5/15/2017" DisplayDateStart ="1/10/2017" DisplayDateEnd="12/10/2017" Width="188" RenderTransformOrigin="0.493,0.859" Margin="0,81,0,0" Height="164"/>
-                               
-                        
-            </Viewbox>
+        <Viewbox Width="1300" Margin="0,199,0,0">
 
-        </StackPanel>
+            <Calendar SelectedDate= "4/5/2017" DisplayDate="5/15/2017" DisplayDateStart ="1/10/2017" DisplayDateEnd="12/10/2017" Width="200" RenderTransformOrigin="0.493,0.859" Margin="0,8,0,0" Height="160"/>
+
+
+        </Viewbox>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" Margin="452,106,0,0" TextWrapping="Wrap" Text="Event Calendar" VerticalAlignment="Top" Width="430" FontSize="64"/>
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="300" Margin="10,10,0,0" VerticalAlignment="Top" Width="208">
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+        <!-- </StackPanel> -->
     </Grid>
 </Page>

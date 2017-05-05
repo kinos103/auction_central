@@ -8,12 +8,19 @@
       d:DesignHeight="900" d:DesignWidth="1300" Background="White"
       Title="login">
 
+
     <Grid>
+        <Frame x:Name="Login"/>
         <TextBox x:Name="login_email" HorizontalAlignment="Left" Height="23" Margin="478,242,0,0" TextWrapping="Wrap" Text="email" VerticalAlignment="Top" Width="209"/>
         <TextBox x:Name="login_password" HorizontalAlignment="Left" Height="26" Margin="478,290,0,0" TextWrapping="Wrap" Text="password" VerticalAlignment="Top" Width="209"/>
-        <Button x:Name="login_loginButton" Content="LOGIN" HorizontalAlignment="Left" Margin="548,364,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="login_loginButton" Content="LOGIN" HorizontalAlignment="Left" Margin="548,382,0,0" VerticalAlignment="Top" Width="75" Click="login_loginButton_Click"/>
         <TextBlock x:Name="login_haveAccountText" HorizontalAlignment="Left" Margin="518,448,0,0" TextWrapping="Wrap" Text="Dont have an account?" VerticalAlignment="Top"/>
-        <Button x:Name="login_createAccountButton" Content="Create Account" HorizontalAlignment="Left" Height="32" Margin="494,486,0,0" VerticalAlignment="Top" Width="146"/>
+        <Button  x:Name="login_createAccountButton" Content="Create Account" HorizontalAlignment="Left" Height="32" Margin="494,486,0,0" VerticalAlignment="Top" Width="146"/>
+        <ComboBox x:Name="ComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="209" Margin="478,337,0,0" Height="22" Loaded ="comboBox_Loaded" SelectionChanged="comboBox_SelectionChanged">
+            <ComboBoxItem x:Name="Admin" Content="Admin" HorizontalAlignment="Left" Width="206.4"/>
+            <ComboBoxItem x:Name="NP" Content="Non-Profit" HorizontalAlignment="Left" Width="206.4"/>
+            <ComboBoxItem x:Name="Bidder" Content="Bidder" HorizontalAlignment="Left" Width="206.4"/>
+        </ComboBox>
 
     </Grid>
 </Page>

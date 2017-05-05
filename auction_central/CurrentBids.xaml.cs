@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace auction_central
 {
     /// <summary>
-    /// Interaction logic for AuctionDetails.xaml
+    /// Interaction logic for CurrentBids.xaml
     /// </summary>
-    public partial class AuctionDetails : Page
+    public partial class CurrentBids : Page
     {
-        public AuctionDetails()
+        public CurrentBids()
         {
             InitializeComponent();
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("AuctionItems.xaml", UriKind.Relative));
         }
     }
 }

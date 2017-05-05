@@ -20,10 +20,61 @@ namespace auction_central
     /// </summary>
     public partial class login : Page
     {
+
         public login()
         {
             InitializeComponent();
         }
+
+        private void login_loginButton_Click(object sender, RoutedEventArgs e)
+        {
+            var user = (ComboBoxItem)ComboBox.SelectedItem;
+
+            if (user == Admin)
+            {
+                this.NavigationService.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
+            }
+
+            else if (user == NP)
+            {
+                this.NavigationService.Navigate(new Uri("NPHome.xaml", UriKind.Relative));
+            }
+            else if (user == Bidder)
+            {
+                this.NavigationService.Navigate(new Uri("BidderHome.xaml", UriKind.Relative));
+            }
+            else
+            {
+                MessageBox.Show("You Stink :(");
+
+            }
+        }
+
+
+
+
+            /* this.Login.Navigate(typeof(NPHome), null);
+             this.Login.Navigate(typeof(NPHome), null);*/
+            /* if (comboBox_Loaded "Admin")
+             {
+
+             }
+             
+            // ... Get the ComboBox reference.
+            var comboBox = sender as ComboBox;
+
+            if (== "Admin")
+            {
+                this.NavigationService.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
+            }
+
+            else if (value == "Bidder")
+            {
+                this.NavigationService.Navigate(new Uri("BidderHome.xaml", UriKind.Relative));
+            }
+
+            else if (value == "Non-Profit")
+            {*/
 
         private void comboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
@@ -49,7 +100,41 @@ namespace auction_central
                {
                    connection.Open();
                }
-             */
+           */  
+        }
+        
+
+        private void comboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            /*List<string> data = new List<string>();
+
+            Admin = data.Add("Admin");
+            data.Add("Bidder");
+            data.Add("Non-Profit");
+
+            // ... Get the ComboBox reference.
+            var comboBox = sender as ComboBox;
+
+            // ... Assign the ItemsSource to the List.
+            comboBox.ItemsSource = data;
+
+            /*... Make the first item selected.
+            comboBox.SelectedIndex = 0;
+
+            */
+        }
+
+        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            /* // ... Get the ComboBox.
+             var comboBox = sender as ComboBox;
+
+             // ... Set SelectedItem as Window Title.
+             string value = comboBox.SelectedItem as string;
+             this.Title = "Selected: " + value;
+          */
         }
     }
 }
+ 
+

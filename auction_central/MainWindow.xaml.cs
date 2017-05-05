@@ -27,6 +27,7 @@ namespace auction_central
         {
             Page page1 = new Page();
             this.Content = new home();
+           
         }
     }
 }

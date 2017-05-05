@@ -26,9 +26,7 @@
         </Style>
     </Page.Resources>
 
-    
-
-
+   
 
     <Grid>
         <TextBox x:Name="searchBox" Text="search ..." FontStyle="Italic"

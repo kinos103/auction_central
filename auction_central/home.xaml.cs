@@ -40,6 +40,7 @@ namespace auction_central
         private void header_loginButton_Click(object sender, RoutedEventArgs e)
         {
             Home.Content = new login();
+
         }
     }
 }
