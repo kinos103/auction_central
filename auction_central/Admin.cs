@@ -8,8 +8,15 @@ namespace auction_central
 {
     public class Admin : Person
     {
-        public Admin(UserTypeEnum usertype, int userid, string email) : base(usertype, userid, email)
+        protected string FirstName { get; set; }
+        protected string LastName { get; set; }
+        protected int PhoneNumber { get; set; }
+       
+        public Admin(UserTypeEnum usertype, int userid, string email, string firstname, string lastname, int phonenumber) : base(usertype, userid, email)
         {
+            this.FirstName = firstname;
+            this.LastName = lastname;
+            this.PhoneNumber = phonenumber;
         }
     }
 }
