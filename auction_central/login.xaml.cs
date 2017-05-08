@@ -30,18 +30,21 @@ namespace auction_central
         {
             var user = (ComboBoxItem)ComboBox.SelectedItem;
 
-            if (user == Admin)
+            if (Equals(user, Admin))
             {
-                this.NavigationService.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
+                var navigationService = this.NavigationService;
+                navigationService?.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
             }
 
-            else if (user == NP)
+            else if (Equals(user, NP))
             {
-                this.NavigationService.Navigate(new Uri("NPHome.xaml", UriKind.Relative));
+                var navigationService = this.NavigationService;
+                navigationService?.Navigate(new Uri("NPHome.xaml", UriKind.Relative));
             }
-            else if (user == Bidder)
+            else if (Equals(user, Bidder))
             {
-                this.NavigationService.Navigate(new Uri("BidderHome.xaml", UriKind.Relative));
+                var navigationService = this.NavigationService;
+                navigationService?.Navigate(new Uri("BidderHome.xaml", UriKind.Relative));
             }
             else
             {
