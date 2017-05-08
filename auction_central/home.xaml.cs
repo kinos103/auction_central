@@ -24,10 +24,9 @@ namespace auction_central
             tb.Foreground = black;
         }
 
-        private void header_homeButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void header_homeButton_Click(object sender, RoutedEventArgs e)
         {
-            Home.Content = null;
-            Home.Content = new home();
+            this.NavigationService.Navigate(new Uri("home.xaml", UriKind.Relative));
         }
 
         private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -35,7 +34,8 @@ namespace auction_central
 
         private void header_searchButton_Click(object sender, RoutedEventArgs e)
         {
-            searchBox.Visibility = System.Windows.Visibility.Visible;
+            Home.Content = null;
+            Home.Content = new home();
         }
 
         private void header_loginButton_Click(object sender, RoutedEventArgs e)
