@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
 
 namespace auction_central
 {
@@ -60,16 +61,19 @@ namespace auction_central
             string email = LoginEmail.Text.Normalize().Trim();
             string password = LoginPassword.Text.Normalize().Trim();
             var navigationService = this.NavigationService;
-            string connectionString =
-                "Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand(
-                    "SELECT COUNT(*) FROM login WHERE type = " + type + "AND emailAddress = " + email + " AND password = " + password, connection))
-                {
+                using (MySqlCommand command = new MySqlCommand(
+                    "SELECT COUNT(*) FROM login WHERE type=@type AND emailAddress=@email AND password=@pass", connection)) {
+                    command.Parameters.AddWithValue("@type", type);
+                    command.Parameters.AddWithValue("@email", email);
+                    command.Parameters.AddWithValue("@pass", password);
+
                     connection.Open();
-                    string result = (string)command.ExecuteScalar();
-                    if (result.Equals("0"))
+                    string result = (string)command.ExecuteScalar().ToString();
+//	                int result = (int) command.ExecuteScalar();
+                    if (result == "0")
                     {
                         MessageBox.Show("Error Logging In");
                     }
