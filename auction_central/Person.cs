@@ -16,12 +16,20 @@ namespace auction_central {
 
         protected UserTypeEnum UserType { get; set; }
 		protected int UserId { get; set; }
-		protected string Email { get; set; }
+		protected string FirstName { get; set; }
+        protected string LastName { get; set; }
+        protected string Email { get; set; }
 
-        public Person(UserTypeEnum usertype, int userid, string email)
+        public Person()
+        {
+        }
+
+        public Person(UserTypeEnum usertype, int userid, string firstname, string lastname, string email)
         {
             this.UserType = usertype;
             this.UserId = userid;
+            this.FirstName = firstname;
+            this.LastName = lastname;
             this.Email = email;
         }
     }

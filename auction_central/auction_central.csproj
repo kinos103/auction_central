@@ -144,6 +144,7 @@
     <Compile Include="AuctionRequest.xaml.cs">
       <DependentUpon>AuctionRequest.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Bidder.cs" />
     <Compile Include="BidderHome.xaml.cs">
       <DependentUpon>BidderHome.xaml</DependentUpon>
     </Compile>
@@ -198,6 +199,7 @@
     <Compile Include="NavBar.xaml.cs">
       <DependentUpon>NavBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NonProfit.cs" />
     <Compile Include="NPEventDetails.xaml.cs">
       <DependentUpon>NPEventDetails.xaml</DependentUpon>
     </Compile>
