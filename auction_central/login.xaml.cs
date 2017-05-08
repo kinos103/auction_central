@@ -76,9 +76,17 @@ namespace auction_central
                     if (result == "0") {
                         MessageBox.Show("Error Logging In");
                     }
-                    else
+                    else if (type.Equals("admin"))
                     {
                         navigationService?.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
+                    }
+                    else if (type.Equals("non-profit"))
+                    {
+                        navigationService?.Navigate(new Uri("NPHome.xaml", UriKind.Relative));
+                    }
+                    else if (type.Equals("bidder"))
+                    {
+                        navigationService?.Navigate(new Uri("BidderHome.xaml", UriKind.Relative));
                     }
                 }
             }
