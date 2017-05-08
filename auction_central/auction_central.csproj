@@ -158,6 +158,7 @@
     <Compile Include="CurrentBids.xaml.cs">
       <DependentUpon>CurrentBids.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DbWrap.cs" />
     <Compile Include="home.xaml.cs">
       <DependentUpon>home.xaml</DependentUpon>
     </Compile>
