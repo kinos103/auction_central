@@ -11,9 +11,9 @@
     <Grid>
 
 		
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="83" Margin="150,100,0,0" TextWrapping="Wrap" Text="Auction Details" VerticalAlignment="Top" Width="435" FontSize="64"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="83" Margin="467,85,0,0" TextWrapping="Wrap" Text="Auction Details" VerticalAlignment="Top" Width="435" FontSize="64"/>
 		
-		<Grid Background="#FFF4F4F5" Height="410" Width="602" Margin="20,200,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+		<Grid Background="#FFF4F4F5" Height="410" Width="602" Margin="152,269,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition/>
 				<ColumnDefinition/>

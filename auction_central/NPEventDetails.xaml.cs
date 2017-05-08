@@ -32,10 +32,11 @@ namespace auction_central
 
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void ViewItemsButton_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new Uri("AuctionItems.xaml", UriKind.Relative));
         }
+
     }
     
 }

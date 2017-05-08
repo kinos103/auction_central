@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace auction_central
     public partial class login : Page
     {
 
+
         public login()
         {
             InitializeComponent();
@@ -29,110 +31,62 @@ namespace auction_central
         private void login_loginButton_Click(object sender, RoutedEventArgs e)
         {
             var user = (ComboBoxItem)ComboBox.SelectedItem;
-
-            if (user == Admin)
+            
+            if (Equals(user, Admin))
             {
-                this.NavigationService.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
+                login_now("admin");
+                
             }
-
-            else if (user == NP)
+            else if (Equals(user, NP))
             {
-                this.NavigationService.Navigate(new Uri("NPHome.xaml", UriKind.Relative));
+                login_now("non-profit");
             }
-            else if (user == Bidder)
+            else if (Equals(user, Bidder))
             {
-                this.NavigationService.Navigate(new Uri("BidderHome.xaml", UriKind.Relative));
+                login_now("bidder");
             }
             else
             {
-                MessageBox.Show("You Stink :(");
+                MessageBox.Show("Please Select a User Type");
 
             }
         }
 
 
-
-
-            /* this.Login.Navigate(typeof(NPHome), null);
-             this.Login.Navigate(typeof(NPHome), null);*/
-            /* if (comboBox_Loaded "Admin")
-             {
-
-             }
-             
-            // ... Get the ComboBox reference.
-            var comboBox = sender as ComboBox;
-
-            if (== "Admin")
-            {
-                this.NavigationService.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
-            }
-
-            else if (value == "Bidder")
-            {
-                this.NavigationService.Navigate(new Uri("BidderHome.xaml", UriKind.Relative));
-            }
-
-            else if (value == "Non-Profit")
-            {*/
-
-        private void comboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        //This should work but haven't been able to test
+        //TODO check connection string, error
+        private void login_now(string type)
         {
-            /*
-            if (comboBox.SelectedIndex == 0)
+            string email = LoginEmail.Text.Normalize().Trim();
+            string password = LoginPassword.Text.Normalize().Trim();
+            var navigationService = this.NavigationService;
+            string connectionString =
+                "Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                comboBox.Items.Add("Admin");
-                comboBox.Items.Add("Bidder");
-                comboBox.Items.Add("Non-Profit");
-                
+                using (SqlCommand command = new SqlCommand(
+                    "SELECT COUNT(*) FROM login WHERE type = " + type + "AND emailAddress = " + email + " AND password = " + password, connection))
+                {
+                    connection.Open();
+                    string result = (string)command.ExecuteScalar();
+                    if (result.Equals("0"))
+                    {
+                        MessageBox.Show("Error Logging In");
+                    }
+                    else
+                    {
+                        navigationService?.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
+                    }
+                }
             }
-            */
-
-            /* 
-             * Connection string: 
-             * Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba
-             * 
-             * 
-             * MySqlConnection connection;
-               string connectionString = "Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
-               connection = new MySqlConnection(connectionString);
-               try
-               {
-                   connection.Open();
-               }
-           */  
-        }
-        
-
-        private void comboBox_Loaded(object sender, RoutedEventArgs e)
-        {
-            /*List<string> data = new List<string>();
-
-            Admin = data.Add("Admin");
-            data.Add("Bidder");
-            data.Add("Non-Profit");
-
-            // ... Get the ComboBox reference.
-            var comboBox = sender as ComboBox;
-
-            // ... Assign the ItemsSource to the List.
-            comboBox.ItemsSource = data;
-
-            /*... Make the first item selected.
-            comboBox.SelectedIndex = 0;
-
-            */
         }
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //click textbox and remvoe text before typing
+        public void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            /* // ... Get the ComboBox.
-             var comboBox = sender as ComboBox;
-
-             // ... Set SelectedItem as Window Title.
-             string value = comboBox.SelectedItem as string;
-             this.Title = "Selected: " + value;
-          */
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= TextBox_GotFocus;
         }
     }
 }

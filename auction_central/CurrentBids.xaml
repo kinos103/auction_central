@@ -10,6 +10,8 @@
 
     <Grid>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="83" Margin="491,65,0,0" TextWrapping="Wrap" Text="Current Bids" VerticalAlignment="Top" Width="349" FontSize="64"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="164" Margin="120,242,0,0" Stroke="Black" VerticalAlignment="Top" Width="1101"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="164" Margin="120,490,0,0" Stroke="Black" VerticalAlignment="Top" Width="1101"/>
 
     </Grid>
 </Page>

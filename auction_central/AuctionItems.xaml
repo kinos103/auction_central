@@ -17,15 +17,15 @@
         <Button x:Name="button_Copy3" Content="Item 2" HorizontalAlignment="Left" Height="50" Margin="244,245,0,0" VerticalAlignment="Top" Width="171" FontSize="21.333"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="528" Margin="570,158,0,0" Stroke="Black" VerticalAlignment="Top" Width="648"/>
         <Image x:Name="itemImage" HorizontalAlignment="Left" Height="281" Margin="611,212,0,0" VerticalAlignment="Top" Width="280"/>
-        <TextBox x:Name="auctionID" HorizontalAlignment="Left" Height="28" Margin="913,273,0,0" TextWrapping="Wrap" Text="Auction ID" VerticalAlignment="Top" Width="246" FontSize="16"/>
-        <TextBox x:Name="condition" HorizontalAlignment="Left" Height="28" Margin="913,471,0,0" TextWrapping="Wrap" Text="Condition (New/Used/Acceptable)" VerticalAlignment="Top" Width="246" FontSize="16"/>
-        <TextBox x:Name="storageLocation" HorizontalAlignment="Left" Height="28" Margin="913,438,0,0" TextWrapping="Wrap" Text="Storage Location" VerticalAlignment="Top" Width="246" FontSize="16"/>
-        <TextBox x:Name="size" HorizontalAlignment="Left" Height="28" Margin="913,405,0,0" TextWrapping="Wrap" Text="Size" VerticalAlignment="Top" Width="246" FontSize="16"/>
-        <TextBox x:Name="donor" HorizontalAlignment="Left" Height="28" Margin="913,372,0,0" TextWrapping="Wrap" Text="Donor" VerticalAlignment="Top" Width="246" FontSize="16"/>
-        <TextBox x:Name="startBid" HorizontalAlignment="Left" Height="28" Margin="913,339,0,0" TextWrapping="Wrap" Text="Min. Starting Bid" VerticalAlignment="Top" Width="246" FontSize="16"/>
-        <TextBox x:Name="itemQuantity" HorizontalAlignment="Left" Height="28" Margin="913,306,0,0" TextWrapping="Wrap" Text="Item Quantity" VerticalAlignment="Top" Width="246" FontSize="16"/>
-        <TextBox x:Name="itemName" HorizontalAlignment="Left" Height="56" Margin="913,212,0,0" TextWrapping="Wrap" Text="Item Name" VerticalAlignment="Top" Width="246" FontSize="29.333"/>
-        <TextBox x:Name="comments" HorizontalAlignment="Left" Height="113" Margin="611,534,0,0" TextWrapping="Wrap" Text="Additional Comments..." VerticalAlignment="Top" Width="548"/>
+        <TextBlock x:Name="auctionID" HorizontalAlignment="Left" Height="28" Margin="913,273,0,0" TextWrapping="Wrap" Text="Auction ID" VerticalAlignment="Top" Width="246" FontSize="16"/>
+        <TextBlock x:Name="condition" HorizontalAlignment="Left" Height="28" Margin="913,471,0,0" TextWrapping="Wrap" Text="Condition (New/Used/Acceptable)" VerticalAlignment="Top" Width="246" FontSize="16"/>
+        <TextBlock x:Name="storageLocation" HorizontalAlignment="Left" Height="28" Margin="913,438,0,0" TextWrapping="Wrap" Text="Storage Location" VerticalAlignment="Top" Width="246" FontSize="16"/>
+        <TextBlock x:Name="size" HorizontalAlignment="Left" Height="28" Margin="913,405,0,0" TextWrapping="Wrap" Text="Size" VerticalAlignment="Top" Width="246" FontSize="16"/>
+        <TextBlock x:Name="donor" HorizontalAlignment="Left" Height="28" Margin="913,372,0,0" TextWrapping="Wrap" Text="Donor" VerticalAlignment="Top" Width="246" FontSize="16"/>
+        <TextBlock x:Name="startBid" HorizontalAlignment="Left" Height="28" Margin="913,339,0,0" TextWrapping="Wrap" Text="Min. Starting Bid" VerticalAlignment="Top" Width="246" FontSize="16"/>
+        <TextBlock x:Name="itemQuantity" HorizontalAlignment="Left" Height="28" Margin="913,306,0,0" TextWrapping="Wrap" Text="Item Quantity" VerticalAlignment="Top" Width="246" FontSize="16"/>
+        <TextBlock x:Name="itemName" HorizontalAlignment="Left" Height="56" Margin="913,212,0,0" TextWrapping="Wrap" Text="Item Name" VerticalAlignment="Top" Width="246" FontSize="29.333"/>
+        <TextBlock x:Name="comments" HorizontalAlignment="Left" Height="113" Margin="611,534,0,0" TextWrapping="Wrap" Text="Additional Comments..." VerticalAlignment="Top" Width="548"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="26" Margin="611,503,0,0" TextWrapping="Wrap" Text="Additional Comments..." VerticalAlignment="Top" Width="229" FontSize="16"/>
 
     </Grid>
