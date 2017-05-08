@@ -10,16 +10,16 @@
 
     <Grid>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" Margin="342,65,0,0" TextWrapping="Wrap" Text="Auction Request Form" VerticalAlignment="Top" Width="629" FontSize="64"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="51" Margin="179,213,0,0" TextWrapping="Wrap" Text="Charity Name" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="51" Margin="179,269,0,0" TextWrapping="Wrap" Text="First Name" VerticalAlignment="Top" Width="164" FontSize="21.333"/>
-        <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="51" Margin="179,325,0,0" TextWrapping="Wrap" Text="Phone Number" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Left" Height="51" Margin="179,381,0,0" TextWrapping="Wrap" Text="Auction Date" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <TextBox x:Name="textBox_Copy3" HorizontalAlignment="Left" Height="51" Margin="179,437,0,0" TextWrapping="Wrap" Text="Start Time" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <TextBox x:Name="textBox_Copy4" HorizontalAlignment="Left" Height="51" Margin="179,493,0,0" TextWrapping="Wrap" Text="End Time" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <TextBox x:Name="textBox_Copy5" HorizontalAlignment="Left" Height="51" Margin="179,549,0,0" TextWrapping="Wrap" Text="Anticipated # of Items" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <TextBox x:Name="textBox_Copy6" HorizontalAlignment="Left" Height="51" Margin="445,269,0,0" TextWrapping="Wrap" Text="Last Name" VerticalAlignment="Top" Width="164" FontSize="21.333"/>
-        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="177" Margin="179,605,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1011" Text="Additional Comments..." FontSize="21.333"/>
-        <Button x:Name="button" Content="Place Request" HorizontalAlignment="Left" Height="56" Margin="179,805,0,0" VerticalAlignment="Top" Width="229" FontSize="24"/>
+        <TextBox x:Name="charityName" HorizontalAlignment="Left" Height="51" Margin="179,213,0,0" TextWrapping="Wrap" Text="Charity Name" VerticalAlignment="Top" Width="430" FontSize="21.333" GotFocus="TextBox_Focus"/>
+        <TextBox x:Name="firstName" HorizontalAlignment="Left" Height="51" Margin="179,269,0,0" TextWrapping="Wrap" Text="First Name" VerticalAlignment="Top" Width="164" FontSize="21.333" GotFocus="TextBox_Focus"/>
+        <TextBox x:Name="lastName" HorizontalAlignment="Left" Height="51" Margin="445,269,0,0" TextWrapping="Wrap" Text="Last Name" VerticalAlignment="Top" Width="164" FontSize="21.333" GotFocus="TextBox_Focus"/>
+        <TextBox x:Name="phoneNumber" HorizontalAlignment="Left" Height="51" Margin="179,325,0,0" TextWrapping="Wrap" Text="Phone Number" VerticalAlignment="Top" Width="430" FontSize="21.333" GotFocus="TextBox_Focus"/>
+        <TextBox x:Name="auctionDate" HorizontalAlignment="Left" Height="51" Margin="179,381,0,0" TextWrapping="Wrap" Text="Auction Date" VerticalAlignment="Top" Width="430" FontSize="21.333" GotFocus="TextBox_Focus"/>
+        <TextBox x:Name="startTime" HorizontalAlignment="Left" Height="51" Margin="179,437,0,0" TextWrapping="Wrap" Text="Start Time" VerticalAlignment="Top" Width="430" FontSize="21.333" GotFocus="TextBox_Focus"/>
+        <TextBox x:Name="endTime" HorizontalAlignment="Left" Height="51" Margin="179,493,0,0" TextWrapping="Wrap" Text="End Time" VerticalAlignment="Top" Width="430" FontSize="21.333" GotFocus="TextBox_Focus"/>
+        <TextBox x:Name="numOfItems" HorizontalAlignment="Left" Height="51" Margin="179,549,0,0" TextWrapping="Wrap" Text="Anticipated # of Items" VerticalAlignment="Top" Width="430" FontSize="21.333" GotFocus="TextBox_Focus"/>
+        <TextBox x:Name="additionalComments" HorizontalAlignment="Left" Height="177" Margin="179,605,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1011" Text="Additional Comments..." FontSize="21.333" GotFocus="TextBox_Focus"/>
+        <Button x:Name="placeRequest" Content="Place Request" HorizontalAlignment="Left" Height="56" Margin="179,805,0,0" VerticalAlignment="Top" Width="229" FontSize="24"/>
 
     </Grid>
 </Page>

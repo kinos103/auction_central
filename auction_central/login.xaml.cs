@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MaterialDesignThemes.Wpf;
+using MySql.Data.MySqlClient;
 
 namespace auction_central
 {
@@ -21,6 +24,7 @@ namespace auction_central
     public partial class login : Page
     {
 
+
         public login()
         {
             InitializeComponent();
@@ -29,110 +33,72 @@ namespace auction_central
         private void login_loginButton_Click(object sender, RoutedEventArgs e)
         {
             var user = (ComboBoxItem)ComboBox.SelectedItem;
-
-            if (user == Admin)
+            
+            if (Equals(user, Admin))
             {
-                this.NavigationService.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
+                login_now("admin");
+                
             }
-
-            else if (user == NP)
+            else if (Equals(user, NP))
             {
-                this.NavigationService.Navigate(new Uri("NPHome.xaml", UriKind.Relative));
+                login_now("non-profit");
             }
-            else if (user == Bidder)
+            else if (Equals(user, Bidder))
             {
-                this.NavigationService.Navigate(new Uri("BidderHome.xaml", UriKind.Relative));
+                login_now("bidder");
             }
             else
             {
-                MessageBox.Show("You Stink :(");
+                MessageBox.Show("Please Select a User Type");
 
             }
         }
 
 
-
-
-            /* this.Login.Navigate(typeof(NPHome), null);
-             this.Login.Navigate(typeof(NPHome), null);*/
-            /* if (comboBox_Loaded "Admin")
-             {
-
-             }
-             
-            // ... Get the ComboBox reference.
-            var comboBox = sender as ComboBox;
-
-            if (== "Admin")
-            {
-                this.NavigationService.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
-            }
-
-            else if (value == "Bidder")
-            {
-                this.NavigationService.Navigate(new Uri("BidderHome.xaml", UriKind.Relative));
-            }
-
-            else if (value == "Non-Profit")
-            {*/
-
-        private void comboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        //This should work but haven't been able to test
+        //TODO check connection string, error
+        private void login_now(string type)
         {
-            /*
-            if (comboBox.SelectedIndex == 0)
+            string email = LoginEmail.Text.Normalize().Trim();
+            string password = LoginPassword.Text.Normalize().Trim();
+            var navigationService = this.NavigationService;
+            string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                comboBox.Items.Add("Admin");
-                comboBox.Items.Add("Bidder");
-                comboBox.Items.Add("Non-Profit");
-                
+                using (MySqlCommand command = new MySqlCommand(
+                    "SELECT COUNT(*) FROM login WHERE type=@type AND emailAddress=@email AND password=@pass", connection)) {
+                    command.Parameters.AddWithValue("@type", type);
+                    command.Parameters.AddWithValue("@email", email);
+                    command.Parameters.AddWithValue("@pass", password);
+
+                    connection.Open();
+                    string result = command.ExecuteScalar().ToString();
+                    if (result == "0") {
+                        MessageBox.Show("Error Logging In");
+                    }
+                    else if (type.Equals("admin"))
+                    {
+                        navigationService?.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
+                    }
+                    else if (type.Equals("non-profit"))
+                    {
+                        navigationService?.Navigate(new Uri("NPHome.xaml", UriKind.Relative));
+                    }
+                    else if (type.Equals("bidder"))
+                    {
+                        navigationService?.Navigate(new Uri("BidderHome.xaml", UriKind.Relative));
+                    }
+                }
             }
-            */
-
-            /* 
-             * Connection string: 
-             * Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba
-             * 
-             * 
-             * MySqlConnection connection;
-               string connectionString = "Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
-               connection = new MySqlConnection(connectionString);
-               try
-               {
-                   connection.Open();
-               }
-           */  
-        }
-        
-
-        private void comboBox_Loaded(object sender, RoutedEventArgs e)
-        {
-            /*List<string> data = new List<string>();
-
-            Admin = data.Add("Admin");
-            data.Add("Bidder");
-            data.Add("Non-Profit");
-
-            // ... Get the ComboBox reference.
-            var comboBox = sender as ComboBox;
-
-            // ... Assign the ItemsSource to the List.
-            comboBox.ItemsSource = data;
-
-            /*... Make the first item selected.
-            comboBox.SelectedIndex = 0;
-
-            */
         }
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            /* // ... Get the ComboBox.
-             var comboBox = sender as ComboBox;
+        //click textbox and remvoe text before typing
 
-             // ... Set SelectedItem as Window Title.
-             string value = comboBox.SelectedItem as string;
-             this.Title = "Selected: " + value;
-          */
+        public void TextBox_Focus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= TextBox_Focus;
         }
     }
 }

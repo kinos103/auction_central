@@ -4,13 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:auction_central"
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1300"
         WindowStartupLocation="CenterScreen" WindowState="Maximized">
 
-    <Grid Margin="534,430,505.6,387.4">
-        <Frame x:Name="Main" Margin="-525,-416,-500,-374" HorizontalAlignment="Left" Width="1279"/>
-        <Button x:Name="enter_button" Content="E N T E R" HorizontalAlignment="Left" VerticalAlignment="Top" Width="254" FontSize="40" Click="enter_button_Click" Height="286" Margin="0,-110,0,-123">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <local:NavBar Visibility="Hidden" x:Name="HeaderNavBar" Grid.Row="0"/>
+        <ScrollViewer Grid.Row="1">
+            <Frame x:Name="MainContent"/>
+        </ScrollViewer>
+        <Button x:Name="enter_button" Grid.Row="1" Content="E N T E R" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" Click="enter_button_Click" Height="Auto">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="Transparent"/>
@@ -38,8 +53,5 @@
                 </Style>
             </Button.Style>
         </Button>
-
-
-
     </Grid>
 </Window>
