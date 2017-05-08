@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MaterialDesignThemes.Wpf;
 using MySql.Data.MySqlClient;
 
 namespace auction_central
@@ -71,10 +72,8 @@ namespace auction_central
                     command.Parameters.AddWithValue("@pass", password);
 
                     connection.Open();
-                    string result = (string)command.ExecuteScalar().ToString();
-//	                int result = (int) command.ExecuteScalar();
-                    if (result == "0")
-                    {
+                    string result = command.ExecuteScalar().ToString();
+                    if (result == "0") {
                         MessageBox.Show("Error Logging In");
                     }
                     else
