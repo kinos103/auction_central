@@ -18,16 +18,18 @@ namespace auction_central
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        { InitializeComponent(); }
+    public partial class MainWindow : Window {
+        private NavBar navBar;
+
+        public MainWindow() {
+            InitializeComponent();
+        }
 
         private void enter_button_Click(object sender, RoutedEventArgs e)
         {
-            Page page1 = new Page();
-            this.Content = new home();
-           
+            HeaderNavBar.Visibility = Visibility.Visible;
+            MainContent.NavigationService.Navigate(new home());
+            enter_button.Visibility = Visibility.Collapsed;
         }
     }
 }

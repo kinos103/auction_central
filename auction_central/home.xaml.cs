@@ -24,7 +24,7 @@ namespace auction_central
             tb.Foreground = black;
         }
 
-        private void header_homeButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        /*private void header_homeButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             Home.Content = null;
             Home.Content = new home();
@@ -46,6 +46,6 @@ namespace auction_central
 
 		private void header_auctionsButton_Click(object sender, RoutedEventArgs e) {
 			Home.Content = new Auctions();			
-		}
+		}*/
 	}
 }
