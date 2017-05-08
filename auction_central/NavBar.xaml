@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="auction_central.NavBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:auction_central"
+			 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="1340">
+	<materialDesign:ColorZone Mode="PrimaryLight">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+
+			<Button x:Name="header_homeButton" Content="Home" Height="31" Margin="8 0 8 15" VerticalAlignment="Bottom"  Click="header_homeButton_Click" Grid.Column="0"/>
+			<Button x:Name="header_auctionsButton" Content="Auctions" Height="31" Margin="8 0 8 15" VerticalAlignment="Bottom"  Click="header_auctionsButton_Click" Grid.Column="1"/>
+			<Button x:Name="header_contactButton" Content="Contact" Height="31" Margin="8 0 8 15" VerticalAlignment="Bottom"  Grid.Column="2"/>
+			<Button x:Name="header_donorButton" Content="Donors" Height="31" Margin="8 0 8 15" VerticalAlignment="Bottom"  Grid.Column="3"/>
+			<TextBlock x:Name="header_header" TextWrapping="Wrap" Text="AUCTION CENTRAL" Margin="8 0 8 0" VerticalAlignment="Bottom" FontSize="70" Grid.Column="4"/>
+			<Button x:Name="header_loginButton" Content="Login" Height="31" Margin="8 0 8 15" VerticalAlignment="Bottom"  Click="header_loginButton_Click" Grid.Column="5"/>
+
+			<materialDesign:ColorZone Mode="Light" Grid.Column="6" VerticalAlignment="Bottom" Margin="8 0 8 15">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<Button Style="{DynamicResource MaterialDesignToolButton}">
+						<materialDesign:PackIcon Kind="Magnify" Opacity=".56" />
+					</Button>
+					<TextBox Grid.Column="1" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Search"
+					         materialDesign:TextFieldAssist.DecorationVisibility="Hidden" BorderThickness="0"
+					         MinWidth="200" VerticalAlignment="Center" />
+				</Grid>
+			</materialDesign:ColorZone>
+
+		</Grid>
+	</materialDesign:ColorZone>
+</UserControl>

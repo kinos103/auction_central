@@ -23,29 +23,5 @@ namespace auction_central
             tb.GotFocus -= TextBox_GotFocus;
             tb.Foreground = black;
         }
-
-        private void header_homeButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            Home.Content = null;
-            Home.Content = new home();
-        }
-
-        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
-        { }
-
-        private void header_searchButton_Click(object sender, RoutedEventArgs e)
-        {
-            searchBox.Visibility = System.Windows.Visibility.Visible;
-        }
-
-        private void header_loginButton_Click(object sender, RoutedEventArgs e)
-        {
-            Home.Content = new login();
-
-        }
-
-		private void header_auctionsButton_Click(object sender, RoutedEventArgs e) {
-			Home.Content = new Auctions();			
-		}
 	}
 }
