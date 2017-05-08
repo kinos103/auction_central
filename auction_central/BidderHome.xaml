@@ -1,0 +1,25 @@
+﻿<Page x:Class="auction_central.BidderHome"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:auction_central"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="1300" Background="White"
+      Title="BidderHome">
+
+    <Grid>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" Margin="545,65,0,0" TextWrapping="Wrap" Text="Bidder" VerticalAlignment="Top" Width="193" FontSize="64"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="34" Margin="284,197,0,0" TextWrapping="Wrap" Text="Upcoming Auctions" VerticalAlignment="Top" Width="192" FontSize="21.333"/>
+       <!--buttons for show, can delete when we bind to dataset-->
+        <Button x:Name="button" Content="Auction 1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="192" Margin="284,267,0,0" Height="34" FontSize="21.333" Click="button_Click"/>
+        <Button x:Name="button_Copy" Content="Auction 7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="192" Margin="284,501,0,0" Height="34" FontSize="21.333" Click="button_Copy_Click"/>
+        <Button x:Name="button_Copy1" Content="Auction 6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="192" Margin="284,462,0,0" Height="34" FontSize="21.333" Click="button_Copy1_Click"/>
+        <Button x:Name="button_Copy2" Content="Auction 5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="192" Margin="284,423,0,0" Height="34" FontSize="21.333" Click="button_Copy2_Click"/>
+        <Button x:Name="button_Copy3" Content="Auction 4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="192" Margin="284,384,0,0" Height="34" FontSize="21.333" Click="button_Copy3_Click"/>
+        <Button x:Name="button_Copy4" Content="Auction 3" HorizontalAlignment="Left" VerticalAlignment="Top" Width="192" Margin="284,345,0,0" Height="34" FontSize="21.333" Click="button_Copy4_Click"/>
+        <Button x:Name="button_Copy5" Content="Auction 2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="192" Margin="284,306,0,0" Height="34" FontSize="21.333" Click="button_Copy5_Click"/>
+        <Button x:Name="currentBids_button" Content="Current Bids" HorizontalAlignment="Left" Height="50" Margin="945,84,0,0" VerticalAlignment="Top" Width="207" FontSize="21.333" Click="currentBids_button_Click"/>
+
+    </Grid>
+</Page>

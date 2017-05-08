@@ -18,11 +18,34 @@ namespace auction_central
     /// <summary>
     /// Interaction logic for AuctionDetails.xaml
     /// </summary>
-    public partial class AuctionDetails : Page
-    {
+    public partial class AuctionDetails : Page {
+	    private Auction auction;
+
         public AuctionDetails()
         {
             InitializeComponent();
+		}
+
+		public AuctionDetails(Auction _auction) {
+			InitializeComponent();
+			auction = _auction;
+			fillFields();
+		}
+
+		public void fillFields() {
+			lbAuctionId.Text = auction.AuctionId.ToString();
+			lbCharity.Text = auction.CharityName;
+			lbDate.Text = auction.StartTime.Date.ToLongDateString();
+			lbStart.Text= auction.StartTime.ToString("hh:mm tt");
+			lbEnd.Text = auction.EndTime.ToString("hh:mm tt");
+			lbNpContact.Text = auction.Contact;
+			lbPhoneNumber.Text = auction.PhoneNumber;
+
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("AuctionItems.xaml", UriKind.Relative));
         }
     }
 }

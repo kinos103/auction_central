@@ -16,13 +16,13 @@ using System.Windows.Shapes;
 namespace auction_central
 {
     /// <summary>
-    /// Interaction logic for Page3.xaml
+    /// Interaction logic for Calendar.xaml
     /// </summary>
     /// 
 
-    public partial class Page3 : Page
+    public partial class Calendar : Page
     {
-        public Page3()
+        public Calendar()
         {
             //InitializeComponent();
         }

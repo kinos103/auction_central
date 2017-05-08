@@ -16,24 +16,18 @@ using System.Windows.Shapes;
 namespace auction_central
 {
     /// <summary>
-    /// Interaction logic for NPHome.xaml
+    /// Interaction logic for AdminHome.xaml
     /// </summary>
-    public partial class NPHome : Page
+    public partial class AdminHome : Page
     {
-        public NPHome()
+        public AdminHome()
         {
             InitializeComponent();
         }
 
-        private void eventDetails_button_Click(object sender, RoutedEventArgs e)
+        private void viewCalendar_button_Click(object sender, RoutedEventArgs e)
         {
-            /*npHome.Content = new NPEventDetails();*/
-            this.NavigationService.Navigate(new Uri("NPEventDetails.xaml", UriKind.Relative));
-        }
-
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("AuctionRequest.xaml", UriKind.Relative));
+            this.NavigationService.Navigate(new Uri("Calendar.xaml", UriKind.Relative));
         }
     }
 }

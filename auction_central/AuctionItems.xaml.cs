@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace auction_central
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AuctionItems.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AuctionItems : Page
     {
-        public MainWindow()
-        { InitializeComponent(); }
-
-        private void enter_button_Click(object sender, RoutedEventArgs e)
+        public AuctionItems()
         {
-            Page page1 = new Page();
-            this.Content = new home();
-           
+            InitializeComponent();
         }
     }
 }

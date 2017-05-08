@@ -9,13 +9,14 @@
       Title="NPEventDetails">
 
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" Margin="380,65,0,0" TextWrapping="Wrap" Text="Non-Profit Member" VerticalAlignment="Top" Width="564" FontSize="64"/>
+        <Frame x:Name="EventDetails"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" Margin="442,65,0,0" TextWrapping="Wrap" Text="My Event Details" VerticalAlignment="Top" Width="473" FontSize="64"/>
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="51" Margin="179,240,0,0" TextWrapping="Wrap" Text="Auction ID (Charity-Month-Day-Year" VerticalAlignment="Top" Width="430" FontSize="21.333" />
         <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="51" Margin="179,393,0,0" TextWrapping="Wrap" Text="Charity Name" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
         <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="51" Margin="179,342,0,0" TextWrapping="Wrap" Text="Auction Date" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
         <TextBox x:Name="textBox_Copy2" HorizontalAlignment="Left" Height="51" Margin="179,291,0,0" TextWrapping="Wrap" Text="Start Time" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
         <TextBox x:Name="textBox_Copy3" HorizontalAlignment="Left" Height="51" Margin="179,444,0,0" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <Button x:Name="button" Content="View Auction Items" HorizontalAlignment="Left" Height="56" Margin="179,552,0,0" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <Button x:Name="button1" Content="Add Auction Items" HorizontalAlignment="Left" Height="56" Margin="179,652,0,0" VerticalAlignment="Top" Width="430" RenderTransformOrigin="-0.834,3.079" FontSize="21.333"/>
+        <Button x:Name="button" Content="View Auction Items" HorizontalAlignment="Left" Height="56" Margin="179,552,0,0" VerticalAlignment="Top" Width="430" FontSize="21.333" Click="button_Click"/>
+        <Button x:Name="addItemsButton" Content="Add Item" HorizontalAlignment="Left" Height="56" Margin="179,652,0,0" VerticalAlignment="Top" Width="430" RenderTransformOrigin="-0.834,3.079" FontSize="21.333" Click="addItemsButton_Click"/>
     </Grid>
 </Page>

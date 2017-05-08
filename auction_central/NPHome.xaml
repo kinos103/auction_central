@@ -9,8 +9,9 @@
       Title="NonPHome">
 
     <Grid>
-        <Button x:Name="button" Content="View Current Events" HorizontalAlignment="Left" Margin="194,197,0,0" VerticalAlignment="Top" Width="337" Height="51" FontSize="26.667"/>
-        <Button x:Name="button1" Content="Make Event Request" HorizontalAlignment="Left" Margin="732,197,0,0" VerticalAlignment="Top" Width="337" Height="51" FontSize="26.667"/>
+        <Frame x:Name="npHome"/>
+        <Button x:Name="eventDetails_button" Content="View Current Events" HorizontalAlignment="Left" Margin="194,197,0,0" VerticalAlignment="Top" Width="337" Height="51" FontSize="26.667" Click="eventDetails_button_Click"/>
+        <Button x:Name="button1" Content="Make Event Request" HorizontalAlignment="Left" Margin="732,197,0,0" VerticalAlignment="Top" Width="337" Height="51" FontSize="26.667" Click="button1_Click"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" Margin="380,65,0,0" TextWrapping="Wrap" Text="Non-Profit Member" VerticalAlignment="Top" Width="564" FontSize="64"/>
 
     </Grid>
