@@ -60,7 +60,7 @@ namespace auction_central
         private void login_now(string type)
         {
             string email = LoginEmail.Text.Normalize().Trim();
-            string password = LoginPassword.Text.Normalize().Trim();
+            string password = LoginPassword.Password.Normalize().Trim();
             var navigationService = this.NavigationService;
             string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -70,8 +70,8 @@ namespace auction_central
                     command.Parameters.AddWithValue("@type", type);
                     command.Parameters.AddWithValue("@email", email);
                     command.Parameters.AddWithValue("@pass", password);
-
                     connection.Open();
+
                     string result = command.ExecuteScalar().ToString();
                     if (result == "0") {
                         MessageBox.Show("Error Logging In");
