@@ -134,6 +134,14 @@ namespace auction_central
              this.Title = "Selected: " + value;
           */
         }
+
+        //click textbox and remvoe text before typing
+        public void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = string.Empty;
+            tb.GotFocus -= TextBox_GotFocus;
+        }
     }
 }
  
