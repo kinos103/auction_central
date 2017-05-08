@@ -12,7 +12,17 @@
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="83" Margin="491,65,0,0" TextWrapping="Wrap" Text="Current Bids" VerticalAlignment="Top" Width="349" FontSize="64"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="164" Margin="120,242,0,0" Stroke="Black" VerticalAlignment="Top" Width="1101"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="164" Margin="120,490,0,0" Stroke="Black" VerticalAlignment="Top" Width="1101"/>
-        <TextBlock x:Name="item" HorizontalAlignment="Left" Height="39" Margin="293,198,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="170" FontSize="21.333"/>
+        <TextBlock x:Name="item" HorizontalAlignment="Left" Height="39" Margin="260,185,0,0" TextWrapping="Wrap" Text="Item Name" VerticalAlignment="Top" Width="170" FontSize="21.333"/>
+        <TextBlock x:Name="item_Copy" HorizontalAlignment="Left" Height="39" Margin="576,198,0,0" TextWrapping="Wrap" Text="Auction ID" VerticalAlignment="Top" Width="170" FontSize="21.333"/>
+        <TextBlock x:Name="item_Copy1" HorizontalAlignment="Left" Height="39" Margin="835,198,0,0" TextWrapping="Wrap" Text="Bid Placed" VerticalAlignment="Top" Width="170" FontSize="21.333"/>
+        <TextBlock x:Name="item_Copy2" HorizontalAlignment="Left" Height="39" Margin="260,303,0,0" TextWrapping="Wrap" Text="Item Name" VerticalAlignment="Top" Width="170" FontSize="21.333"/>
+        <TextBlock x:Name="item_Copy3" HorizontalAlignment="Left" Height="39" Margin="230,552,0,0" TextWrapping="Wrap" Text="Item Name" VerticalAlignment="Top" Width="170" FontSize="21.333"/>
+        <TextBlock x:Name="item_Copy4" HorizontalAlignment="Left" Height="39" Margin="576,303,0,0" TextWrapping="Wrap" Text="Auction ID" VerticalAlignment="Top" Width="170" FontSize="21.333"/>
+        <TextBlock x:Name="item_Copy5" HorizontalAlignment="Left" Height="39" Margin="576,552,0,0" TextWrapping="Wrap" Text="Auction ID" VerticalAlignment="Top" Width="170" FontSize="21.333"/>
+        <TextBlock x:Name="item_Copy6" HorizontalAlignment="Left" Height="39" Margin="835,552,0,0" TextWrapping="Wrap" Text="Bid Placed" VerticalAlignment="Top" Width="170" FontSize="21.333"/>
+        <TextBlock x:Name="item_Copy7" HorizontalAlignment="Left" Height="39" Margin="835,303,0,0" TextWrapping="Wrap" Text="Bid Placed" VerticalAlignment="Top" Width="170" FontSize="21.333"/>
+        <TextBlock x:Name="item_Copy8" HorizontalAlignment="Left" Height="39" Margin="745,708,0,0" TextWrapping="Wrap" Text="Total:&#x9;" VerticalAlignment="Top" Width="51" FontSize="21.333"/>
+        <TextBlock x:Name="item_Copy9" HorizontalAlignment="Left" Height="39" Margin="835,708,0,0" TextWrapping="Wrap" Text="Sum of Bid Placed" VerticalAlignment="Top" Width="170" FontSize="21.333"/>
 
     </Grid>
 </Page>
