@@ -139,11 +139,12 @@ namespace auction_central
         }
 
         //click textbox and remvoe text before typing
-        public void TextBox_GotFocus(object sender, RoutedEventArgs e)
+
+        public void TextBox_Focus(object sender, RoutedEventArgs e)
         {
             TextBox tb = (TextBox)sender;
             tb.Text = string.Empty;
-            tb.GotFocus -= TextBox_GotFocus;
+            tb.GotFocus -= TextBox_Focus;
         }
     }
 }
