@@ -206,6 +206,7 @@
     <Compile Include="NPNoEvent.xaml.cs">
       <DependentUpon>NPNoEvent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
