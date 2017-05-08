@@ -125,6 +125,7 @@
     <Compile Include="AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Admin.cs" />
     <Compile Include="AdminHome.xaml.cs">
       <DependentUpon>AdminHome.xaml</DependentUpon>
     </Compile>
