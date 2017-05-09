@@ -13,11 +13,11 @@
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" Margin="442,65,0,0" TextWrapping="Wrap" Text="My Event Details" VerticalAlignment="Top" Width="473" FontSize="64"/>
         <TextBlock x:Name="AuctionID" HorizontalAlignment="Left" Height="51" Margin="179,240,0,0" TextWrapping="Wrap" Text="Auction ID (Charity-Month-Day-Year" VerticalAlignment="Top" Width="430" FontSize="21.333" />
         <TextBlock x:Name="CharityName" HorizontalAlignment="Left" Height="51" Margin="179,296,0,0" TextWrapping="Wrap" Text="Charity Name" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <TextBlock x:Name="AuctionDate" HorizontalAlignment="Left" Height="51" Margin="179,352,0,0" TextWrapping="Wrap" Text="Auction Date" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <TextBlock x:Name="StartTime" HorizontalAlignment="Left" Height="51" Margin="179,403,0,0" TextWrapping="Wrap" Text="Start Time" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <TextBlock x:Name="Location" HorizontalAlignment="Left" Height="51" Margin="814,481,0,0" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <Button x:Name="ViewItemsButton" Content="View Auction Items" HorizontalAlignment="Left" Height="56" Margin="179,552,0,0" VerticalAlignment="Top" Width="430" FontSize="21.333" Click="ViewItemsButton_Click"/>
-        <Button x:Name="addItemsButton" Content="Add Item" HorizontalAlignment="Left" Height="56" Margin="179,652,0,0" VerticalAlignment="Top" Width="430" RenderTransformOrigin="-0.834,3.079" FontSize="21.333" Click="addItemsButton_Click"/>
-        <TextBlock x:Name="EndTime" HorizontalAlignment="Left" Height="51" Margin="870,629,0,0" TextWrapping="Wrap" Text="End time" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
+        <TextBlock x:Name="AuctionDate" HorizontalAlignment="Left" Height="51" Margin="179,405,0,0" TextWrapping="Wrap" Text="Auction Date" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
+        <TextBlock x:Name="StartTime" HorizontalAlignment="Left" Height="51" Margin="179,461,0,0" TextWrapping="Wrap" Text="Start Time" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
+        <TextBlock x:Name="Location" HorizontalAlignment="Left" Height="51" Margin="179,349,0,0" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
+        <Button x:Name="ViewItemsButton" Content="View Auction Items" HorizontalAlignment="Left" Height="56" Margin="179,615,0,0" VerticalAlignment="Top" Width="430" FontSize="21.333" Click="ViewItemsButton_Click"/>
+        <Button x:Name="addItemsButton" Content="Add Item" HorizontalAlignment="Left" Height="56" Margin="179,713,0,0" VerticalAlignment="Top" Width="430" RenderTransformOrigin="-0.834,3.079" FontSize="21.333" Click="addItemsButton_Click"/>
+        <TextBlock x:Name="EndTime" HorizontalAlignment="Left" Height="51" Margin="179,517,0,0" TextWrapping="Wrap" Text="End time" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
     </Grid>
 </Page>
