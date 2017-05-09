@@ -62,17 +62,23 @@ namespace auction_central
             var navigationService = this.NavigationService;
             string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
 
-            switch (type)
+            /*
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                case "bidder":
-                    break;
-                case "admin":
-                    break;
-                case "non-profit":
-                    break;
-            }
-
-
+                switch (type)
+                {
+                    
+                    case "admin": //usertype, int userid, string firstname, string lastname, string email
+                        break;
+                    case "bidder": //usertype, int userid, string firstname, string lastname, string email, int cardnumber, string address, int phonenumber
+                        break;
+                    case "non-profit": //usertype, int userid, string firstname, string lastname, string email, int phonenumber, string orgname
+                        break;
+                }
+            } */
+            
+            
+            
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 using (MySqlCommand command = new MySqlCommand(
@@ -99,7 +105,7 @@ namespace auction_central
                         navigationService?.Navigate(new Uri("BidderHome.xaml", UriKind.Relative));
                     }
                 }
-            }
+            } 
         }
 
         //click textbox and remvoe text before typing

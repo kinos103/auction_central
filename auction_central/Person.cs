@@ -19,17 +19,19 @@ namespace auction_central {
 		protected string FirstName { get; set; }
         protected string LastName { get; set; }
         protected string Email { get; set; }
+        protected string PhoneNumber { get; set; }
 
         public Person()
         {
         }
 
-        public Person(UserTypeEnum usertype, int userid, string firstname, string lastname, string email)
+        public Person(UserTypeEnum usertype, int userid, string firstname, string lastname, string phonenumber, string email)
         {
             this.UserType = usertype;
             this.UserId = userid;
             this.FirstName = firstname;
             this.LastName = lastname;
+            this.PhoneNumber = phonenumber;
             this.Email = email;
         }
     }

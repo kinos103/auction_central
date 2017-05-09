@@ -10,9 +10,9 @@ namespace auction_central
     {
         protected int PhoneNumber { get; set; }
         protected string OrgName { get; set; }
-        public NonProfit(UserTypeEnum usertype, int userid, string firstname, string lastname, string email, int phonenumber, string orgname) : base(usertype, userid, firstname, lastname, email)
+        public NonProfit(UserTypeEnum usertype, int userid, string firstname, string lastname, string email, string phonenumber, string orgname) : base(usertype, userid, firstname, lastname, phonenumber, email)
         {
-            this.PhoneNumber = phonenumber;
+            
             this.OrgName = orgname;
         }
     }

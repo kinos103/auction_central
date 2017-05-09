@@ -8,7 +8,7 @@ namespace auction_central
 {
     public class Admin : Person
     {
-        public Admin(UserTypeEnum usertype, int userid, string firstname, string lastname, string email) : base(usertype, userid, firstname, lastname, email)
+        public Admin(UserTypeEnum usertype, int userid, string firstname, string lastname, string phonenumber, string email) : base(usertype, userid, firstname, lastname, phonenumber, email)
         {
         }
     }
