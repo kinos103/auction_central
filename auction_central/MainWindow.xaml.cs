@@ -30,7 +30,8 @@ namespace auction_central
         private void enter_button_Click(object sender, RoutedEventArgs e)
         {
             HeaderNavBar.Visibility = Visibility.Visible;
-            MainContent.NavigationService.Navigate(new home());
+//            MainContent.NavigationService.Navigate(new home());
+            MainContent.NavigationService.Navigate(new Calendar());
             enter_button.Visibility = Visibility.Collapsed;
         }
     }
