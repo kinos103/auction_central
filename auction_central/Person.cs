@@ -9,17 +9,17 @@ namespace auction_central {
     {
 		public enum UserTypeEnum
         {
-			Admin,
-			Bidder,
-			Nonprofit
+	        Bidder = 1,
+	        Admin = 2,
+	        Nonprofit = 3
 		}
 
-        protected UserTypeEnum UserType { get; set; }
-		protected int UserId { get; set; }
-		protected string FirstName { get; set; }
-        protected string LastName { get; set; }
-        protected string Email { get; set; }
-        protected string PhoneNumber { get; set; }
+        public UserTypeEnum UserType { get; set; }
+		public int UserId { get; set; }
+		public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
 
         public Person()
         {

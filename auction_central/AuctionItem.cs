@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace auction_central {
-	class AuctionItem {
+	public class AuctionItem {
 		public string Name { get; set; }
 		public int Quantity { get; set; }
 		public double StartingBid { get; set; }

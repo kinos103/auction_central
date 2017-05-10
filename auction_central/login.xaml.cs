@@ -36,16 +36,16 @@ namespace auction_central
             
             if (Equals(user, Admin))
             {
-                login_now("admin");
+                login_now(Person.UserTypeEnum.Admin);
                 
             }
             else if (Equals(user, NP))
             {
-                login_now("non-profit");
+                login_now(Person.UserTypeEnum.Nonprofit);
             }
             else if (Equals(user, Bidder))
             {
-                login_now("bidder");
+                login_now(Person.UserTypeEnum.Bidder);
             }
             else
             {
@@ -55,57 +55,34 @@ namespace auction_central
         }
 
         //TODO check connection string, error
-        private void login_now(string type)
+        private void login_now(Person.UserTypeEnum type)
         {
             string email = LoginEmail.Text.Normalize().Trim();
             string password = LoginPassword.Password.Normalize().Trim();
             var navigationService = this.NavigationService;
-            string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
 
-            /*
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            DbWrap dbWrap = new DbWrap();
+            Person returned = dbWrap.LoginExists(email, password, type);
+            if (returned == null)
             {
-                switch (type)
-                {
-                    
-                    case "admin": //usertype, int userid, string firstname, string lastname, string email
-                        break;
-                    case "bidder": //usertype, int userid, string firstname, string lastname, string email, int cardnumber, string address, int phonenumber
-                        break;
-                    case "non-profit": //usertype, int userid, string firstname, string lastname, string email, int phonenumber, string orgname
-                        break;
-                }
-            } */
-            
-            
-            
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                using (MySqlCommand command = new MySqlCommand(
-                    "SELECT COUNT(*) FROM login WHERE type=@type AND emailAddress=@email AND password=@pass", connection)) {
-                    command.Parameters.AddWithValue("@type", type);
-                    command.Parameters.AddWithValue("@email", email);
-                    command.Parameters.AddWithValue("@pass", password);
-                    connection.Open();
+                MessageBox.Show("Error Logging In");
+                return;
+            }
+            // everything should happen in the MainWindow so this should be safe
+            (Window.GetWindow(this) as MainWindow).User = returned;
 
-                    string result = command.ExecuteScalar().ToString();
-                    if (result == "0") {
-                        MessageBox.Show("Error Logging In");
-                    }
-                    else if (type.Equals("admin"))
-                    {
-                        navigationService?.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
-                    }
-                    else if (type.Equals("non-profit"))
-                    {
-                        navigationService?.Navigate(new Uri("NPHome.xaml", UriKind.Relative));
-                    }
-                    else if (type.Equals("bidder"))
-                    {
-                        navigationService?.Navigate(new Uri("BidderHome.xaml", UriKind.Relative));
-                    }
-                }
-            } 
+            switch (type)
+            {
+                case Person.UserTypeEnum.Admin:
+                    navigationService?.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
+                    break;
+                case Person.UserTypeEnum.Bidder:
+                    navigationService?.Navigate(new Uri("BidderHome.xaml", UriKind.Relative));
+                    break;
+                case Person.UserTypeEnum.Nonprofit:
+                    navigationService?.Navigate(new Uri("NPHome.xaml", UriKind.Relative));
+                    break;
+            }
         }
 
         //click textbox and remvoe text before typing

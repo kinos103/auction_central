@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace auction_central
 {
-    class Bidder : Person
+    public class Bidder : Person
     {
-        protected int CardNumber { get; set; }
-        protected string Address { get; set; }
-        protected int PhoneNumber { get; set; }
-        public Bidder(UserTypeEnum usertype, int userid, string firstname, string lastname, string email, int cardnumber, string address, int phonenumber) : base(usertype, userid, firstname, lastname, email)
+        public string CardNumber { get; set; }
+        public string Address { get; set; }
+        public Bidder(UserTypeEnum usertype, int userid, string firstname, string lastname, string email, string cardnumber, string address, string phonenumber) : base(usertype, userid, firstname, lastname, phonenumber, email)
         {
             this.CardNumber = cardnumber;
             this.Address = address;
-            this.PhoneNumber = phonenumber;
         }
     }
 }

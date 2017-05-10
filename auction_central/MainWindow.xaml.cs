@@ -20,9 +20,11 @@ namespace auction_central
     /// </summary>
     public partial class MainWindow : Window {
         private NavBar navBar;
+        public Person User { get; set; }
 
         public MainWindow() {
             InitializeComponent();
+            User = null;
         }
 
         private void enter_button_Click(object sender, RoutedEventArgs e)
