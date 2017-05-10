@@ -25,15 +25,6 @@ namespace auction_central
             InitializeComponent();
         }
 
-
-       // click textbox and remvoe text before typing
-        public void TextBox_Focus(object sender, RoutedEventArgs e)
-        {
-            TextBox tb = (TextBox)sender;
-            tb.Text = string.Empty;
-            tb.GotFocus -= TextBox_Focus;
-        }
-
         private void addItemButton_Click(object sender, RoutedEventArgs e)
         {
             string itemName = this.itemName.Text;

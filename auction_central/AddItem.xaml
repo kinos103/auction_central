@@ -12,33 +12,33 @@
     <Grid x:Name="addItemGrid">
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" Margin="400,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="549" FontSize="64"><Run Text="Add Inventory Item"/><LineBreak/><Run/></TextBlock>
         <Image x:Name="itemImage" HorizontalAlignment="Left" Height="393" Margin="760,184,0,0" VerticalAlignment="Top" Width="429"/>
-        <TextBox x:Name="itemName" HorizontalAlignment="Left" Height="34" Margin="158,184,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Item Name" VerticalAlignment="Top" Width="246" FontSize="21.333" GotFocus="TextBox_Focus" />
-        <TextBox x:Name="auctionID" HorizontalAlignment="Left" Height="34" Margin="158,223,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Auction ID" VerticalAlignment="Top" Width="246" FontSize="21.333" GotFocus="TextBox_Focus"/>
-        <TextBox x:Name="itemQuantity" HorizontalAlignment="Left" Height="34" Margin="158,262,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Item Quantity" VerticalAlignment="Top" Width="246" FontSize="21.333" GotFocus="TextBox_Focus"/>
-        <TextBox x:Name="startBid" HorizontalAlignment="Left" Height="34" Margin="158,301,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Min. Starting Bid" VerticalAlignment="Top" Width="246" FontSize="21.333" GotFocus="TextBox_Focus" />
-        <TextBox x:Name="donor" HorizontalAlignment="Left" Height="34" Margin="158,340,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Donor" VerticalAlignment="Top" Width="246" FontSize="21.333" GotFocus="TextBox_Focus" />
-        <TextBox x:Name="height" HorizontalAlignment="Left" Height="34" Margin="158,379,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Height" VerticalAlignment="Top" Width="70" FontSize="21.333" GotFocus="TextBox_Focus"/>
-        <TextBox x:Name="storageLocation" HorizontalAlignment="Left" Height="34" Margin="158,457,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Storage Location" VerticalAlignment="Top" Width="246" FontSize="21.333" GotFocus="TextBox_Focus"/>
-        <TextBox x:Name="comments" HorizontalAlignment="Left" Height="74" Margin="158,560,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Additional Comments..." VerticalAlignment="Top" Width="548" FontSize="21.333"  GotFocus="TextBox_Focus"/>
+        <TextBox x:Name="itemName" HorizontalAlignment="Left" Height="34" Margin="158,184,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Item Name" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="auctionID" HorizontalAlignment="Left" Height="34" Margin="158,223,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Auction ID" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="itemQuantity" HorizontalAlignment="Left" Height="34" Margin="158,262,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Item Quantity" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="startBid" HorizontalAlignment="Left" Height="34" Margin="158,301,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Min. Starting Bid" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="donor" HorizontalAlignment="Left" Height="34" Margin="158,340,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Donor" VerticalAlignment="Top" Width="246" FontSize="21.333" />
+        <TextBox x:Name="height" HorizontalAlignment="Left" Height="34" Margin="158,379,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Height" VerticalAlignment="Top" Width="70" FontSize="21.333"/>
+        <TextBox x:Name="storageLocation" HorizontalAlignment="Left" Height="34" Margin="158,457,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Storage Location" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
+        <TextBox x:Name="comments" HorizontalAlignment="Left" Height="74" Margin="158,560,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Additional Comments..." VerticalAlignment="Top" Width="548" FontSize="21.333"/>
         <Button x:Name="uploadPhoto" Content="Upload Photo" HorizontalAlignment="Left" Height="34" Margin="760,600,0,0" VerticalAlignment="Top" Width="246" FontSize="21.333"/>
         <Button x:Name="addItemButton" Content="Add Item" HorizontalAlignment="Left" Height="61" Margin="158,663,0,0" VerticalAlignment="Top" Width="246" FontSize="26.667" Click="addItemButton_Click"/>
-        <TextBox x:Name="length" HorizontalAlignment="Left" Height="34" Margin="251,379,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="length" VerticalAlignment="Top" Width="66" FontSize="21.333" GotFocus="TextBox_Focus"/>
-        <TextBox x:Name="width" HorizontalAlignment="Left" Height="34" Margin="338,379,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="width" VerticalAlignment="Top" Width="66" FontSize="21.333" GotFocus="TextBox_Focus"/>
+        <TextBox x:Name="length" HorizontalAlignment="Left" Height="34" Margin="251,379,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="length" VerticalAlignment="Top" Width="66" FontSize="21.333"/>
+        <TextBox x:Name="width" HorizontalAlignment="Left" Height="34" Margin="338,379,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="width" VerticalAlignment="Top" Width="66" FontSize="21.333"/>
         <TextBlock x:Name="x_textBlock1" HorizontalAlignment="Left" Margin="233,390,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" FontSize="15" Foreground="Gray"/>
         <TextBlock x:Name="x_textBlock2" HorizontalAlignment="Left" Height="23" Margin="320,390,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="18" FontSize="15" Foreground="Gray"/>
-        
-        <ComboBox x:Name="ComboBox_units" Margin="424,385,835,487" Height="28" SelectedIndex="0" Foreground="Gray">
+
+        <ComboBox x:Name="ComboBox_units" Margin="429,379,830,487" Height="34" SelectedIndex="0" Foreground="Gray" FontSize="21.333">
             <ComboBoxItem x:Name="meters_val" Content="m" Width="206.4" Foreground="Gray"/>
             <ComboBoxItem x:Name="feet_val" Content="ft" Width="206.4" Foreground="Gray"/>
             <ComboBoxItem x:Name="cm_val" Content="cm" Width="206.4" Foreground="Gray"/>
         </ComboBox>
-        <ComboBox x:Name="ComboBox_small_item" Margin="158,426,1019,448" Height="26" SelectedIndex="0" Foreground="Gray">
+        <ComboBox x:Name="ComboBox_small_item" Margin="158,418,896,446" Height="36" SelectedIndex="0" Foreground="Gray" FontSize="21.333">
             <ComboBoxItem x:Name="question" Content="Is this a small item?" Width="206.4"/>
             <ComboBoxItem x:Name="yes" Content="Yes" Width="206.4"/>
             <ComboBoxItem x:Name="no" Content="No" Width="206.4"/>
         </ComboBox>
 
-        <ComboBox x:Name="ComboBox_condition" Margin="158,506,1019,368" Height="26" SelectedIndex="0" Foreground="Gray">
+        <ComboBox x:Name="ComboBox_condition" Margin="158,496,896,368" Height="36" SelectedIndex="0" Foreground="Gray" FontSize="21.333">
             <ComboBoxItem x:Name="Item_Condition" Content="Item Condition" Width="206.4"/>
             <ComboBoxItem x:Name="New" Content="New" Width="206.4"/>
             <ComboBoxItem x:Name="Used" Content="Used" Width="206.4"/>
