@@ -109,6 +109,54 @@ namespace auction_central
             NonProfit adminObj = new NonProfit(Person.UserTypeEnum.Nonprofit, nonprofitID, firstname, lastname, email, phonenumber, org);
             return adminObj;
         }
+
+        public Bidder BidderObjCreation(int bidderID, string emailEntered)
+        {
+            int bidderid = 0;
+            string firstname = "";
+            string lastname = "";
+            string phoneIDNum = "";
+            string phonenumber = "";
+            string email = emailEntered;
+            string org = "";
+
+            MySqlConnection connection;
+            string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+            connection = new MySqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                string npQueryString = "SELECT(*) FROM bidder WHERE contactID = @bidderID";
+                MySqlCommand npQueryCommand = new MySqlCommand(npQueryString, connection);
+                npQueryCommand.Parameters.AddWithValue("@emailID", bidderID);
+                MySqlDataReader reader = npQueryCommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        bidderid = reader.GetInt32(0);
+                        firstname = reader.GetString(1);
+                        lastname = reader.GetString(2);
+                        phoneIDNum = reader.GetInt32(3).ToString();
+                        org = reader.GetString(5);
+
+                    }
+
+                    string phoneNumSearch = "SELECT phoneNumber FROM phonenumbers WHERE phoneID=@phoneid";
+                    MySqlCommand phoneNumSearchQuery = new MySqlCommand(phoneNumSearch, connection);
+                    phoneNumSearchQuery.Parameters.AddWithValue("@phoneid", phoneIDNum);
+                    MySqlDataReader phoneReader = phoneNumSearchQuery.ExecuteReader();
+                    if (phoneReader.HasRows)
+                        while (phoneReader.Read())
+                            phonenumber = reader.GetString(0);
+                }
+
+            }
+            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
+            finally { connection.Close(); }
+            Bidder adminObj = new Bidder(Person.UserTypeEnum.Nonprofit, nonprofitID, firstname, lastname, email, phonenumber, org);
+            return adminObj;
+        }
     }
 
 
