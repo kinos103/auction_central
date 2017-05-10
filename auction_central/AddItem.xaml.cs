@@ -34,6 +34,10 @@ namespace auction_central
             tb.GotFocus -= TextBox_Focus;
         }
 
+        private void addItemButton_Click(object sender, RoutedEventArgs e)
+        {
+            //string itemName = this.itemName.Text;
+        }
     }
 
 }

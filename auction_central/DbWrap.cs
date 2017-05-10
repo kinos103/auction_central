@@ -96,7 +96,7 @@ namespace auction_central
                                             WHERE admin.emailID = @adminEmailId";
                 MySqlCommand adminQueryCommand = new MySqlCommand(adminQueryString, connection);
                 adminQueryCommand.Parameters.AddWithValue("@adminEmailId", adminEmailID);
-                MySqlDataReader reader = adminQueryCommand.ExecuteReader();
+                MySqlDataReader reader = adminQueryCommand.ExecuteReader(); 
                 if (reader.HasRows)
                 {
                     while (reader.Read())
