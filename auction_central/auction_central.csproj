@@ -106,6 +106,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Donors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -154,6 +158,9 @@
       <DependentUpon>CurrentBids.xaml</DependentUpon>
     </Compile>
     <Compile Include="DbWrap.cs" />
+    <Compile Include="Donors.xaml.cs">
+      <DependentUpon>Donors.xaml</DependentUpon>
+    </Compile>
     <Compile Include="home.xaml.cs">
       <DependentUpon>home.xaml</DependentUpon>
     </Compile>
