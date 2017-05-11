@@ -23,9 +23,11 @@ namespace auction_central {
 
 		// nameof(ItemUnit) may have to be replaced with Enum.GetName(typeof(ItemUnitEnum)
 		public string Size {
-			get { return Height + "x" + Length + "x" +Width + nameof(ItemUnit) + "(HxLxW)" ; }
-			set { Size = value; }
+			get { return Height + "x" + Length + "x" + Width + nameof(ItemUnit) + "(HxLxW)" ; }
+			set { _size= value; }
 		}
+
+		private string _size;
 
 		public double Height { get; set; }
 		public double Width { get; set; }
@@ -33,7 +35,9 @@ namespace auction_central {
 		public ItemUnitEnum ItemUnit { get; set; }
 
 		public string StorageLocation { get; set; }
-		public string Condition { get; set; }
+		public int Condition { get; set; }
 		public string Comments { get; set; }
+		public string ImageUrl { get; set; }
+		public bool IsSmall { get; set; }
 	}
 }

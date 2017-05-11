@@ -9,6 +9,14 @@
       d:DesignHeight="900" d:DesignWidth="1300" Background="White"
       Title="AddItem">
 
+    <Page.Resources>
+         <ResourceDictionary>
+             <ResourceDictionary.MergedDictionaries>
+                  <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
+             </ResourceDictionary.MergedDictionaries>
+         </ResourceDictionary>
+    </Page.Resources>
+
     <Grid x:Name="addItemGrid" HorizontalAlignment="Left">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -57,7 +65,8 @@
                  DataObject.Pasting="TextBoxPasting"/>
         <TextBox x:Name="startBid" HorizontalAlignment="Center" TextWrapping="Wrap"
                  materialDesign:HintAssist.Hint="Min. Starting Bid" VerticalAlignment="Top" Width="246"
-                 FontSize="21.333"
+                 FontSize="21.333" PreviewTextInput="NumberValidationTextBox"
+                 DataObject.Pasting="TextBoxPasting"
                  Grid.Column="0" Grid.Row="4"
                  Margin="20 0 20 0"/>
         <TextBox x:Name="donor" HorizontalAlignment="Center" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Donor"
@@ -106,17 +115,19 @@
              <ComboBoxItem x:Name="no" Content="No" Width="Auto" />
          </ComboBox>
 
-         <ComboBox x:Name="ComboBox_condition" Width="Auto"
-                   Foreground="Gray" FontSize="21.333" materialDesign:HintAssist.Hint="Item Condition"
-                   Grid.Column="0" Grid.Row="9"
-                   HorizontalAlignment="Center" VerticalAlignment="Top"
-                   Margin="20 0 20 0">
-             <ComboBoxItem x:Name="New" Content="New" Width="Auto" />
-             <ComboBoxItem x:Name="Used" Content="Used" Width="Auto" />
-         </ComboBox>
+             <StackPanel Orientation="Horizontal"
+                         HorizontalAlignment="Center" VerticalAlignment="Top"
+                         Margin="20 0 20 10"
+                         Grid.Column="0" Grid.Row="9">
+                      <TextBlock VerticalAlignment="Center">Very Used</TextBlock>
+                      <Slider x:Name="conditionSlider"
+                              Minimum="1" Maximum="10" Style="{StaticResource MaterialDesignDiscreteSlider}"
+                              Width="200" Height="Auto" VerticalAlignment="Top"/>
+                      <TextBlock VerticalAlignment="Center">New</TextBlock>
+             </StackPanel>
 
 
-        <TextBox x:Name="comments" HorizontalAlignment="Center" TextWrapping="Wrap"
+             <TextBox x:Name="comments" HorizontalAlignment="Center" TextWrapping="Wrap"
                  materialDesign:HintAssist.Hint="Additional Comments..." VerticalAlignment="Top" Width="246"
                  FontSize="21.333" MaxLines="5"
                  Grid.Column="0" Grid.Row="10"
@@ -124,11 +135,13 @@
         <Button x:Name="uploadPhoto" Content="Upload Photo" HorizontalAlignment="Center" VerticalAlignment="Center"
                 Width="246" FontSize="21.333" Height="Auto"
                 Grid.Column="1" Grid.Row="10"
-                Margin="20 0 20 0"/>
+                Margin="20 0 20 0"
+                Click="UploadPhoto_OnClick"/>
 
         <Button x:Name="addItemButton" Content="Add Item" HorizontalAlignment="Center" VerticalAlignment="Top"
                 Width="246" FontSize="26.667" Height="Auto" Click="addItemButton_Click"
-                Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="2"/>
+                Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="2"
+                Margin="0 20 0 50"/>
 
     </Grid>
 </Page>
