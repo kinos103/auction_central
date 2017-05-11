@@ -31,7 +31,6 @@ namespace auction_central
         {
             HeaderNavBar.Visibility = Visibility.Visible;
             MainContent.NavigationService.Navigate(new home());
-//            MainContent.NavigationService.Navigate(new Calendar());
             enter_button.Visibility = Visibility.Collapsed;
         }
     }

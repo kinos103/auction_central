@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MaterialDesignThemes.Wpf;
 
 namespace auction_central
 {
@@ -31,14 +32,21 @@ namespace auction_central
             auctions = new Dictionary<DateTime, List<Auction>>();
 
             DbWrap dbWrap = new DbWrap();
-            // get list of auctions from dbWrap
-            List<Auction> tempAuctionList = new List<Auction>();
 
+            // TODO get list of auctions from dbWrap instead of temp data
+            List<Auction> tempAuctionList = new List<Auction>();
             for (int i = 0; i < 5; ++i) {
                 Auction temp = new Auction();
 	            temp.StartTime = DateTime.Now.AddDays(i + 1);
                 tempAuctionList.Add(temp);
             }
+            Auction temp2 = new Auction();
+            temp2.StartTime = DateTime.Now.AddDays(1);
+            tempAuctionList.Add(temp2);
+
+
+
+
 
             auctions = ConvertListToDict(tempAuctionList);
 
@@ -89,9 +97,9 @@ namespace auction_central
             }
 
             CalendarSingleMonth.DisplayDate = date;
-            CalendarThreeMonthFirst.DisplayDate = date;
+            CalendarThreeMonthFirst.DisplayDate = date.AddMonths(-1);
             CalendarThreeMonthSecond.DisplayDate = date;
-            CalendarThreeMonthThird.DisplayDate = date;
+            CalendarThreeMonthThird.DisplayDate = date.AddMonths(1);
 
         }
 
@@ -141,19 +149,24 @@ namespace auction_central
             DateTime selected = calendarSent.SelectedDate.Value;
 	        Console.WriteLine(selected);
             calendarSent.SelectedDates.Remove(calendarSent.DisplayDate);
-
+            calendarSent.SelectedDatesChanged -= OnDisplayDateChange;
             AddAuctionsToCalendars(calendarSent);
+            calendarSent.SelectedDatesChanged += OnDisplayDateChange;
 
-            if (auctions.ContainsKey(selected.Date)) {
-                
-                string concat = "";
-                foreach (var auction in auctions[selected.Date]) {
-                    concat += auction.ToString();
-                    concat += "\n";
-                }
-                MessageBox.Show(concat);
+            if (auctions.ContainsKey(selected.Date))
+            {
+                ListBoxDialog.ItemsSource = auctions[selected];
+                CalendarDialogBox.IsOpen = true;
+
+                CalendarDialogBox.ShowDialog(null);
+
             }
         }
 
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e) {
+            ScrollViewer scv = (ScrollViewer)sender;
+            scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
+            e.Handled = true;
+        }
     }
 }
