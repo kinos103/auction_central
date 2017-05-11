@@ -106,7 +106,9 @@
 							Width="Auto"
 							Name="ListBoxDialog"
 							ItemsSource="{Binding}"
-							ItemTemplate="{StaticResource AuctionCardTemplate}">
+							ItemTemplate="{StaticResource AuctionCardTemplate}"
+							MouseUp="ListBoxDialog_OnMouseUp"
+							SelectionMode="Single">
 						</ListBox>
 						<Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
 						        HorizontalAlignment="Center"

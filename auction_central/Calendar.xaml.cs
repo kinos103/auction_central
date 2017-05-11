@@ -92,10 +92,6 @@ namespace auction_central
         private void SetCalendarDates() {
             DateTime date = DateTime.Now;
 
-            foreach (var selectedDate in CalendarSingleMonth.SelectedDates) {
-                Console.WriteLine(selectedDate);
-            }
-
             CalendarSingleMonth.DisplayDate = date;
             CalendarThreeMonthFirst.DisplayDate = date.AddMonths(-1);
             CalendarThreeMonthSecond.DisplayDate = date;
@@ -107,7 +103,6 @@ namespace auction_central
 
         private void CalendarThreeMonthFirst_OnSelectedDatesChanged(object sender, CalendarDateChangedEventArgs calendarDateChangedEventArgs) {
             if (Equals(sender, CalendarThreeMonthFirst)) {
-                Console.WriteLine("First");
                 CalendarThreeMonthSecond.DisplayDateChanged -= CalendarThreeMonthFirst_OnSelectedDatesChanged;
                 CalendarThreeMonthThird.DisplayDateChanged -= CalendarThreeMonthFirst_OnSelectedDatesChanged;
 
@@ -119,7 +114,6 @@ namespace auction_central
 
             }
             else if (Equals(sender, CalendarThreeMonthSecond)) {
-                Console.WriteLine("Second");
                 CalendarThreeMonthFirst.DisplayDateChanged -= CalendarThreeMonthFirst_OnSelectedDatesChanged;
                 CalendarThreeMonthThird.DisplayDateChanged -= CalendarThreeMonthFirst_OnSelectedDatesChanged;
 
@@ -131,7 +125,6 @@ namespace auction_central
                 CalendarThreeMonthThird.DisplayDateChanged += CalendarThreeMonthFirst_OnSelectedDatesChanged;
             }
             else if (Equals(sender, CalendarThreeMonthThird)) {
-                Console.WriteLine("Third");
                 CalendarThreeMonthFirst.DisplayDateChanged -= CalendarThreeMonthFirst_OnSelectedDatesChanged;
                 CalendarThreeMonthSecond.DisplayDateChanged -= CalendarThreeMonthFirst_OnSelectedDatesChanged;
 
@@ -145,9 +138,7 @@ namespace auction_central
 
         private void OnDisplayDateChange(object sender, SelectionChangedEventArgs selectionChangedEventArgs) {
             System.Windows.Controls.Calendar calendarSent = sender as System.Windows.Controls.Calendar;
-            Console.WriteLine(calendarSent.Name);
             DateTime selected = calendarSent.SelectedDate.Value;
-	        Console.WriteLine(selected);
             calendarSent.SelectedDates.Remove(calendarSent.DisplayDate);
             calendarSent.SelectedDatesChanged -= OnDisplayDateChange;
             AddAuctionsToCalendars(calendarSent);
@@ -167,6 +158,14 @@ namespace auction_central
             ScrollViewer scv = (ScrollViewer)sender;
             scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
             e.Handled = true;
+        }
+
+        private void ListBoxDialog_OnMouseUp(object sender, MouseButtonEventArgs e) {
+            Auction selected = ListBoxDialog.SelectedValue as Auction;
+
+            // TODO Navigate to the proper page, US 39 says to view inventory after clicking
+            (Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new AuctionDetails(selected));
+
         }
     }
 }
