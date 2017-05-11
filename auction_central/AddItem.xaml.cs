@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,8 +26,15 @@ namespace auction_central
             InitializeComponent();
         }
 
+        private bool Validate() {
+            //TODO Add validate logic. ex numbers should parse, textBoxes are filled in
+
+            return true;
+        }
+
         private void addItemButton_Click(object sender, RoutedEventArgs e)
         {
+
             string itemName = this.itemName.Text;
             int auctionID = Int32.Parse(this.auctionID.Text);
             int itemQuantity = Int32.Parse(this.itemQuantity.Text);
@@ -59,7 +67,6 @@ namespace auction_central
             else
             {
                 MessageBox.Show("Please Select a unit Type");
-
             }
 
             //string size = this.size.Text; will be is small ComboBox_small_item
@@ -100,5 +107,30 @@ namespace auction_central
 
         }
 
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e) {
+            e.Handled = !IsTextAllowed(e.Text);
+        }
+
+
+        private static bool IsTextAllowed(string text)
+        {
+            Regex regex = new Regex(@"[^0-9.]+"); //regex that matches disallowed text
+            return !regex.IsMatch(text);
+        }
+
+        private void TextBoxPasting(object sender, DataObjectPastingEventArgs e) {
+            if (e.DataObject.GetDataPresent(typeof(String)))
+            {
+                String text = (String)e.DataObject.GetData(typeof(String));
+                if (!IsTextAllowed(text))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
     }
 }
