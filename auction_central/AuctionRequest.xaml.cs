@@ -25,12 +25,30 @@ namespace auction_central
             InitializeComponent();
         }
 
-        // click textbox and remvoe text before typing
-        public void TextBox_Focus(object sender, RoutedEventArgs e)
+        //must make sure that request is assigned to nonprofitID
+
+        private void placeRequest_Click(object sender, RoutedEventArgs e)
         {
-            TextBox tb = (TextBox)sender;
-            tb.Text = string.Empty;
-            tb.GotFocus -= TextBox_Focus;
+            string charityName = this.charityName.Text;
+
+            //contactID
+            string firstName = this.firstName.Text;
+            string lastName = this.lastName.Text;
+
+            int phoneNumber = Int32.Parse(this.phoneNumber.Text);
+            string location = this.location.Text;
+
+            //dateTimeID
+            //should auction date be string? ex: May 10, 2017. See what works best with calendar
+            int auctionDate = Int32.Parse(this.auctionDate.Text);
+            string startTime = this.startTime.Text;
+            string endTime = this.endTime.Text;
+
+            //check if numOfItems and additionalComments are on auctioninfo table
+            int numOfItems = Int32.Parse(this.numOfItems.Text);
+            string additionalComments = this.additionalComments.Text;
+
+
         }
     }
 }
