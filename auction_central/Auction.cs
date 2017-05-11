@@ -29,5 +29,10 @@ namespace auction_central {
 			Contact = "Mr. Smith";
 			PhoneNumber = "123-354-6577";
 		}
+
+
+		public override string ToString() {
+			return String.Join(",", AuctionId, CharityName, StartTime.Date.ToLongDateString(), StartTime.ToString("h:mm:ss tt zz"), EndTime.ToString("h:mm:ss tt zz"), Contact, PhoneNumber);
+		}
 	}
 }

@@ -17,7 +17,8 @@
 		<TabControl Grid.Row="1">
 			<TabItem Header="Single Month">
 				<Viewbox HorizontalAlignment="Center" VerticalAlignment="Center" Height="600">
-					<Calendar x:Name="CalendarSingleMonth"/>
+					<Calendar x:Name="CalendarSingleMonth"
+					          SelectionMode="MultipleRange"/>
 				</Viewbox>
 			</TabItem>
 			<TabItem Header="Three Month View">
@@ -28,13 +29,17 @@
 						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
 					<Viewbox Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top">
-						<Calendar x:Name="CalendarThreeMonthFirst" DisplayDateChanged="CalendarThreeMonthFirst_OnSelectedDatesChanged"/>
+						<Calendar x:Name="CalendarThreeMonthFirst"
+						          SelectionMode="MultipleRange"/>
 					</Viewbox>
 					<Viewbox Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top">
-						<Calendar x:Name="CalendarThreeMonthSecond" DisplayDateChanged="CalendarThreeMonthFirst_OnSelectedDatesChanged"/>
+						<Calendar x:Name="CalendarThreeMonthSecond"
+						          SelectionMode="MultipleRange">
+						</Calendar>
 					</Viewbox>
 					<Viewbox Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top">
-						<Calendar x:Name="CalendarThreeMonthThird" DisplayDateChanged="CalendarThreeMonthFirst_OnSelectedDatesChanged"/>
+						<Calendar x:Name="CalendarThreeMonthThird"
+						          SelectionMode="MultipleRange"/>
 					</Viewbox>
 				</Grid>
 			</TabItem>

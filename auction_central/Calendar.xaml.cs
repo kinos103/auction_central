@@ -20,26 +20,79 @@ namespace auction_central
     /// </summary>
     /// 
 
-    public partial class Calendar : Page
-    {
-        public Calendar()
-        {
+    public partial class Calendar : Page {
+
+        private Dictionary<DateTime, List<Auction>> auctions;
+
+        public Calendar() {
             InitializeComponent();
             SetCalendarDates();
+
+            auctions = new Dictionary<DateTime, List<Auction>>();
+
+            DbWrap dbWrap = new DbWrap();
+            // get list of auctions from dbWrap
+            List<Auction> tempAuctionList = new List<Auction>();
+
+            for (int i = 0; i < 5; ++i) {
+                Auction temp = new Auction();
+	            temp.StartTime = DateTime.Now.AddDays(i + 1);
+                tempAuctionList.Add(temp);
+            }
+
+            auctions = ConvertListToDict(tempAuctionList);
+
+            AddAuctionsToCalendars(CalendarSingleMonth, CalendarThreeMonthFirst, CalendarThreeMonthSecond, CalendarThreeMonthThird);
+
+            CalendarSingleMonth.SelectedDatesChanged += OnDisplayDateChange;
+            CalendarThreeMonthFirst.SelectedDatesChanged += OnDisplayDateChange;
+            CalendarThreeMonthSecond.SelectedDatesChanged += OnDisplayDateChange;
+            CalendarThreeMonthThird.SelectedDatesChanged += OnDisplayDateChange;
+
+            CalendarSingleMonth.DisplayDateChanged += CalendarThreeMonthFirst_OnSelectedDatesChanged;
+            CalendarThreeMonthFirst.DisplayDateChanged += CalendarThreeMonthFirst_OnSelectedDatesChanged;
+            CalendarThreeMonthSecond.DisplayDateChanged += CalendarThreeMonthFirst_OnSelectedDatesChanged;
+            CalendarThreeMonthThird.DisplayDateChanged += CalendarThreeMonthFirst_OnSelectedDatesChanged;
+
+
+        }
+
+        private void AddAuctionsToCalendars(params System.Windows.Controls.Calendar[] calendarsToUpdate) {
+            foreach (KeyValuePair<DateTime, List<Auction>> auction in auctions) {
+                Console.WriteLine(String.Join("\n\t", auctions[auction.Key]));
+                foreach (System.Windows.Controls.Calendar calendar in calendarsToUpdate) {
+                    calendar.SelectedDates.Add(auction.Key);
+                }
+            }
+        }
+
+        private Dictionary<DateTime, List<Auction>> ConvertListToDict(List<Auction> auctionList) {
+            Dictionary<DateTime, List<Auction>> toReturn = new Dictionary<DateTime, List<Auction>>();
+            foreach (var auction in auctionList) {
+                if (toReturn.ContainsKey(auction.StartTime.Date)) {
+                    toReturn[auction.StartTime.Date].Add(auction);
+                }
+                else {
+                    List<Auction> newList = new List<Auction> {auction};
+                    toReturn.Add(auction.StartTime.Date, newList);
+                }
+            }
+
+            return toReturn;
         }
 
         private void SetCalendarDates() {
             DateTime date = DateTime.Now;
+
+            foreach (var selectedDate in CalendarSingleMonth.SelectedDates) {
+                Console.WriteLine(selectedDate);
+            }
 
             CalendarSingleMonth.DisplayDate = date;
             CalendarThreeMonthFirst.DisplayDate = date;
             CalendarThreeMonthSecond.DisplayDate = date;
             CalendarThreeMonthThird.DisplayDate = date;
 
-            CalendarSingleMonth.SelectedDate = date;
-            CalendarThreeMonthFirst.SelectedDate = date.AddMonths(-1);
-            CalendarThreeMonthSecond.SelectedDate = date;
-            CalendarThreeMonthThird.SelectedDate = date.AddMonths(1);
         }
 
 
@@ -81,5 +134,26 @@ namespace auction_central
                 CalendarThreeMonthSecond.DisplayDateChanged += CalendarThreeMonthFirst_OnSelectedDatesChanged;
             }
         }
+
+        private void OnDisplayDateChange(object sender, SelectionChangedEventArgs selectionChangedEventArgs) {
+            System.Windows.Controls.Calendar calendarSent = sender as System.Windows.Controls.Calendar;
+            Console.WriteLine(calendarSent.Name);
+            DateTime selected = calendarSent.SelectedDate.Value;
+	        Console.WriteLine(selected);
+            calendarSent.SelectedDates.Remove(calendarSent.DisplayDate);
+
+            AddAuctionsToCalendars(calendarSent);
+
+            if (auctions.ContainsKey(selected.Date)) {
+                
+                string concat = "";
+                foreach (var auction in auctions[selected.Date]) {
+                    concat += auction.ToString();
+                    concat += "\n";
+                }
+                MessageBox.Show(concat);
+            }
+        }
+
     }
 }
