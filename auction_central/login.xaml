@@ -27,8 +27,8 @@
             <ComboBoxItem x:Name="Bidder" Content="Bidder" Width="206.4"/>
         </ComboBox>
         <Button x:Name="LoginLoginButton" Margin="0 8 0 8" Grid.Row="3" Content="LOGIN"  Width="75" Click="login_loginButton_Click"/>
-        <TextBlock x:Name="LoginHaveAccountText" Margin="0 8 0 4" Grid.Row="4" TextWrapping="Wrap" Text="Dont have an account?" />
-        <Button  x:Name="LoginCreateAccountButton" Margin="0 4 0 8" Grid.Row="5" Content="Create Account" Height="32"  Width="150"/>
+        <TextBlock x:Name="LoginHaveAccountText" Margin="45 8 0 4" Grid.Row="4" TextWrapping="Wrap" Text="Don't have an account?" />
+        <Button  x:Name="LoginCreateAccountButton" Margin="0 4 0 8" Grid.Row="5" Content="Create Account" Height="32"  Width="150" Click="LoginCreateAccountButton_OnClick"/>
 
     </Grid>
 </Page>
