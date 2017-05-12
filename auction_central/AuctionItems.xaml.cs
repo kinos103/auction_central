@@ -23,21 +23,23 @@ namespace auction_central
         public AuctionItems()
         {
             InitializeComponent();
-            AddItems(0);
+            //TODO shouldn't be hard coded, probably will create a new Constructor to do it though
+            AddItems(1);
         }
 
         public void AddItems(int auctionIdToQuery) {
-            //TODO Get list of items from db
+            // temp data if db is wonky
             /*items = new List<AuctionItem>();
             for (int i = 0; i < 20; i++) {
                 AuctionItem temp = new AuctionItem();
                 temp.Name = temp.Name + i;
                 items.Add(temp);
             }*/
-            items = new DbWrap().AuctionItemsObjList();
+            items = new DbWrap().AuctionItemsObjList(auctionIdToQuery);
             ListBoxAuctionItems.ItemsSource = items;
         }
 
+        // on item select, display the auction item details
         private void ListBoxAuctionItems_OnSelected(object sender, RoutedEventArgs e) {
             ListBox sentListBox = sender as ListBox;
 
