@@ -83,6 +83,7 @@ namespace auction_central
                     navigationService?.Navigate(new Uri("NPHome.xaml", UriKind.Relative));
                     break;
             }
+            (Window.GetWindow(this) as MainWindow).HeaderNavBar.Visibility = Visibility.Visible;
         }
 
         //click textbox and remvoe text before typing

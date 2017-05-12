@@ -29,8 +29,31 @@ namespace auction_central
 
         private void enter_button_Click(object sender, RoutedEventArgs e)
         {
-            HeaderNavBar.Visibility = Visibility.Visible;
-            MainContent.NavigationService.Navigate(new home());
+            if (User == null)
+            {
+                HeaderNavBar.Visibility = Visibility.Hidden;
+                MainContent.NavigationService.Navigate(new login());
+            }
+            else
+            {
+                HeaderNavBar.Visibility = Visibility.Visible;
+                switch (User.UserType)
+                {
+                    case Person.UserTypeEnum.Admin:
+                        MainContent.NavigationService.Navigate(new AdminHome());
+                        break;
+                    case Person.UserTypeEnum.Bidder:
+                        MainContent.NavigationService.Navigate(new BidderHome());
+                        break;
+                    case Person.UserTypeEnum.Nonprofit:
+                        MainContent.NavigationService.Navigate(new NPHome());
+                        break;
+                    default:
+                        MainContent.NavigationService.Navigate(new home());
+                        break;
+                }
+            }
+            
             enter_button.Visibility = Visibility.Collapsed;
         }
     }
