@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,19 +34,48 @@ namespace auction_central
         private void SignUpButton_OnClick(object sender, RoutedEventArgs e)
         {
             var userType = (ComboBoxItem)ComboBox.SelectedItem;
+            signUp(userType);
+        }
 
-            if (Equals(userType, Admin))
-            {
-                signUp(Person.UserTypeEnum.Admin);
+        private void signUp(ComboBoxItem item)
+        {
+            String firstName = SignUpFirstName.Text;
+            String lastName = SignUpLastName.Text;
+            String email = SignUpEmail.Text;
+            String password = SignUpPassword.Password;
+            String passwordConfirm = SignUpPasswordConfirm.Password;
 
-            }
-            else if (Equals(userType, NP))
+
+            if (firstName == "" || lastName == "")
             {
-                signUp(Person.UserTypeEnum.Nonprofit);
+                MessageBox.Show("Error creating account");
+                return;
             }
-            else if (Equals(userType, Bidder))
+
+            if (!IsValidEmailAddress(email))
             {
-                signUp(Person.UserTypeEnum.Bidder);
+                MessageBox.Show("Error creating account");
+                return;
+            }
+
+            if (!IsValidPassword(password, passwordConfirm))
+            {
+                MessageBox.Show("Error creating account");
+                return;
+            }
+
+
+            if (Equals(item, Admin))
+            {
+                MessageBox.Show("USER TYPE WORKS: Admin");
+            }
+            else if (Equals(item, NP))
+            {
+                MessageBox.Show("USER TYPE WORKS: NP");
+            }
+            else if (Equals(item, Bidder))
+            {
+                MessageBox.Show("USER TYPE WORKS: Bidder");
             }
             else
             {
@@ -53,9 +83,38 @@ namespace auction_central
             }
         }
 
-        private void signUp(Person.UserTypeEnum type)
+        public static bool IsValidEmailAddress(string emailaddress)
         {
-            MessageBox.Show("USER TYPE WORKS");
+            try
+            {
+                Regex rx = new Regex(
+                    @"^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z{|}~])*@[a-zA-Z](-?[a-zA-Z0-9])*(\.[a-zA-Z](-?[a-zA-Z0-9])*)+$");
+                return rx.IsMatch(emailaddress);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
         }
+
+        public bool IsValidPassword(string password, string passwordConfirm)
+        {
+            if (password.Length >= 8)
+            {
+                if (password == passwordConfirm)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }
