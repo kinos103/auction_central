@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -246,10 +247,73 @@ namespace auction_central
             Bidder bidderObj = new Bidder(Person.UserTypeEnum.Bidder, bidderid, firstname, lastname, email, cardNumber, concatAddress, phonenumber);
             return bidderObj;
         }
+
+        private void AddItems()
+        {
+        }
+
+        private List<Auction> AuctionObjList()
+        {
+            //string charityName, DateTime startTime, DateTime endTime, string contact, string phoneNumber
+            List<Auction> auctions = new List<Auction>();
+            //string charityName = "";
+            string firstName = "";
+            string lastName = "";
+            //DateTime startTime;
+            //DateTime endTime;
+            string startTime_str;
+            string endTime_str;
+            string contact = ""; // full name
+            string phoneNumber = "";
+
+            MySqlConnection connection;
+            string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+            connection = new MySqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                string auctionQueryString = @"SELECT N.orgName, N.firstname, N.lastName,
+                                    A.enddate, A.starttime, A.enddate, P.phoneNumber
+                                    FROM nonprofit N
+                                    LEFT JOIN auctioninfo A
+                                    ON N.nonprofitID = A.nonprofitID
+                                    LEFT JOIN phonenumbers P
+                                    ON N.phoneID = P.phoneID;";
+                MySqlCommand auctionQueryCommand = new MySqlCommand(auctionQueryString, connection);
+                MySqlDataReader reader = auctionQueryCommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string charityName = reader.GetString(0);
+                        firstName = reader.GetString(1);
+                        lastName = reader.GetString(2);
+                        contact = firstName + " " + lastName; // full name 
+                        startTime_str = reader.GetString(3);
+                        endTime_str = reader.GetString(4);
+                        phoneNumber = reader.GetString(5);
+                        DateTime startTime = Convert.ToDateTime(startTime_str);
+                        DateTime endTime = Convert.ToDateTime(endTime_str);
+                        Auction curAuction = new Auction(charityName, startTime, endTime, contact, phoneNumber);
+                        auctions.Add(curAuction);
+                    }
+
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
+            finally { connection.Close(); }
+            return auctions;
+        }
     }
-
-
 }
+
+
+
 
 //usertype, int userid, string firstname, string lastname, string email, int cardnumber, string address, int phonenumber
 //usertype, int userid, string firstname, string lastname, string email, int phonenumber, string orgname
