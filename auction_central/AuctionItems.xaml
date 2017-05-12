@@ -60,6 +60,7 @@
                  ItemTemplate="{StaticResource AuctionItemCardTemplate}"
                  VerticalAlignment="Top"
                  Width="Auto"
+                 Height="700"
                  Margin="5 0 5 0"
                  MouseUp="ListBoxAuctionItems_OnSelected">
         </ListBox>
@@ -107,7 +108,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal"
                                 Grid.Row="1">
-                        <TextBlock Text="Condition (Very Used to New): "  FontSize="16"/>
+                        <TextBlock Text="Condition: "  FontSize="16"/>
                         <TextBlock x:Name="Condition" Text=""  FontSize="16"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal"

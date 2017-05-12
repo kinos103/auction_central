@@ -34,7 +34,7 @@ namespace auction_central
             DbWrap dbWrap = new DbWrap();
 
             // TODO get list of auctions from dbWrap instead of temp data
-            List<Auction> tempAuctionList = new List<Auction>();
+            /*List<Auction> tempAuctionList = new List<Auction>();
             for (int i = 0; i < 5; ++i) {
                 Auction temp = new Auction();
 	            temp.StartTime = DateTime.Now.AddDays(i + 1);
@@ -43,7 +43,11 @@ namespace auction_central
             Auction temp2 = new Auction();
             temp2.StartTime = DateTime.Now.AddDays(1);
             tempAuctionList.Add(temp2);
+            temp2 = new Auction();
+            temp2.StartTime = DateTime.Now.AddMonths(1);
+            tempAuctionList.Add(temp2);*/
 
+            List<Auction> tempAuctionList = dbWrap.AuctionObjList();
 
 
 
@@ -66,9 +70,11 @@ namespace auction_central
         }
 
         private void AddAuctionsToCalendars(params System.Windows.Controls.Calendar[] calendarsToUpdate) {
-            foreach (KeyValuePair<DateTime, List<Auction>> auction in auctions) {
-                Console.WriteLine(String.Join("\n\t", auctions[auction.Key]));
-                foreach (System.Windows.Controls.Calendar calendar in calendarsToUpdate) {
+
+            foreach (System.Windows.Controls.Calendar calendar in calendarsToUpdate) {
+                calendar.SelectedDates.Add(DateTime.Now);
+                foreach (KeyValuePair<DateTime, List<Auction>> auction in auctions) {
+                    Console.WriteLine(String.Join("\n\t", auctions[auction.Key]));
                     calendar.SelectedDates.Add(auction.Key);
                 }
             }
@@ -102,6 +108,7 @@ namespace auction_central
 
 
         private void CalendarThreeMonthFirst_OnSelectedDatesChanged(object sender, CalendarDateChangedEventArgs calendarDateChangedEventArgs) {
+//            AddAuctionsToCalendars(CalendarSingleMonth,CalendarThreeMonthFirst, CalendarThreeMonthSecond, CalendarThreeMonthThird);
             if (Equals(sender, CalendarThreeMonthFirst)) {
                 CalendarThreeMonthSecond.DisplayDateChanged -= CalendarThreeMonthFirst_OnSelectedDatesChanged;
                 CalendarThreeMonthThird.DisplayDateChanged -= CalendarThreeMonthFirst_OnSelectedDatesChanged;
@@ -138,8 +145,11 @@ namespace auction_central
 
         private void OnDisplayDateChange(object sender, SelectionChangedEventArgs selectionChangedEventArgs) {
             System.Windows.Controls.Calendar calendarSent = sender as System.Windows.Controls.Calendar;
-            DateTime selected = calendarSent.SelectedDate.Value;
-            calendarSent.SelectedDates.Remove(calendarSent.DisplayDate);
+            Console.WriteLine(calendarSent);
+//            DateTime selected = calendarSent.SelectedDate.Value;
+            DateTime selected;
+	        DateTime.TryParse(calendarSent.ToString(), out selected);
+            calendarSent.SelectedDates.Remove(selected);
             calendarSent.SelectedDatesChanged -= OnDisplayDateChange;
             AddAuctionsToCalendars(calendarSent);
             calendarSent.SelectedDatesChanged += OnDisplayDateChange;
