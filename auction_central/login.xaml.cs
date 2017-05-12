@@ -50,7 +50,6 @@ namespace auction_central
             else
             {
                 MessageBox.Show("Please Select a User Type");
-
             }
         }
 
@@ -93,6 +92,13 @@ namespace auction_central
             TextBox tb = (TextBox)sender;
             tb.Text = string.Empty;
             tb.GotFocus -= TextBox_Focus;
+        }
+
+        private void LoginCreateAccountButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame mainWindow = (Window.GetWindow(this) as MainWindow).MainContent;
+            mainWindow.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+            mainWindow.NavigationService.Navigate(new SignUp());
         }
     }
 }
