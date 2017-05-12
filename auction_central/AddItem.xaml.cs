@@ -106,7 +106,22 @@ namespace auction_central
 
             string storageLocationText = storageLocation.Text;
 
-            int condition = (int) conditionSlider.Value;
+//            int condition = (int) conditionSlider.Value;
+            AuctionItem.ItemConditionEnum condition = AuctionItem.ItemConditionEnum.Used;
+
+            ComboBoxItem conditionItem = ComboBoxCondition.SelectionBoxItem as ComboBoxItem;
+
+            if (Equals(conditionItem, Used)) {
+                condition = AuctionItem.ItemConditionEnum.Used;
+            }
+            else if (Equals(conditionItem, New)) {
+                condition = AuctionItem.ItemConditionEnum.New;
+            }
+            else {
+                MessageBox.Show("Is the item new or used?");
+                hadError = true;
+            }
+
 
             if (hadError) {
                 return;
@@ -120,7 +135,7 @@ namespace auction_central
             currItem.Length = length;
             currItem.StartingBid = startBid;
             currItem.IsSmall = isSmallToStore;
-            currItem.Condition = condition;
+            currItem.ItemCondition = condition;
             currItem.Comments = comments.Text;
             currItem.ItemUnit = itemUnitToStore;
             //TODO Set donor?

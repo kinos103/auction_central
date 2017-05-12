@@ -106,16 +106,25 @@
                  Grid.Column="0" Grid.Row="7"
                  Margin="20 0 20 0"/>
 
-         <ComboBox x:Name="ComboBox_small_item" Width="Auto"
+        <ComboBox x:Name="ComboBox_small_item" Width="Auto"
+                  Foreground="Gray" FontSize="21.333"
+                  HorizontalAlignment="Center" VerticalAlignment="Top"
+                  materialDesign:HintAssist.Hint="Small Item?"
+                  Grid.Column="0" Grid.Row="8">
+            <ComboBoxItem x:Name="yes" Content="Yes" Width="Auto" />
+            <ComboBoxItem x:Name="no" Content="No" Width="Auto" />
+        </ComboBox>
+
+         <ComboBox x:Name="ComboBoxCondition"
                    Foreground="Gray" FontSize="21.333"
                    HorizontalAlignment="Center" VerticalAlignment="Top"
-                   materialDesign:HintAssist.Hint="Small Item?"
-                   Grid.Column="0" Grid.Row="8">
-             <ComboBoxItem x:Name="yes" Content="Yes" Width="Auto" />
-             <ComboBoxItem x:Name="no" Content="No" Width="Auto" />
+                   Margin="20 0 20 10"
+                   Grid.Column="0" Grid.Row="9"
+                   materialDesign:HintAssist.Hint="Item Condition">
+             <ComboBoxItem x:Name="Used" Content="Used"/>
+             <ComboBoxItem x:Name="New" Content="New"/>
          </ComboBox>
-
-             <StackPanel Orientation="Horizontal"
+             <!--<StackPanel Orientation="Horizontal"
                          HorizontalAlignment="Center" VerticalAlignment="Top"
                          Margin="20 0 20 10"
                          Grid.Column="0" Grid.Row="9">
@@ -124,7 +133,7 @@
                               Minimum="1" Maximum="10" Style="{StaticResource MaterialDesignDiscreteSlider}"
                               Width="200" Height="Auto" VerticalAlignment="Top"/>
                       <TextBlock VerticalAlignment="Center">New</TextBlock>
-             </StackPanel>
+             </StackPanel>-->
 
 
              <TextBox x:Name="comments" HorizontalAlignment="Center" TextWrapping="Wrap"

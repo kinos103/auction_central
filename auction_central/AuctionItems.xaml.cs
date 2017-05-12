@@ -28,12 +28,13 @@ namespace auction_central
 
         public void AddItems(int auctionIdToQuery) {
             //TODO Get list of items from db
-            items = new List<AuctionItem>();
+            /*items = new List<AuctionItem>();
             for (int i = 0; i < 20; i++) {
                 AuctionItem temp = new AuctionItem();
                 temp.Name = temp.Name + i;
                 items.Add(temp);
-            }
+            }*/
+            items = new DbWrap().AuctionItemsObjList();
             ListBoxAuctionItems.ItemsSource = items;
         }
 
@@ -42,7 +43,7 @@ namespace auction_central
 
             AuctionItem currItem = items[sentListBox.SelectedIndex];
             AuctionID.Text = currItem.AuctionItemId.ToString();
-            Condition.Text = currItem.Condition.ToString();
+            Condition.Text = Enum.GetName(typeof(AuctionItem.ItemConditionEnum), currItem.ItemCondition);
             StorageLocation.Text = currItem.StorageLocation;
             Size.Text = currItem.Size;
             Donor.Text = currItem.Donor;
