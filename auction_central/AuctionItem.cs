@@ -20,10 +20,11 @@ namespace auction_central {
 		public int Quantity { get; set; }
 		public double StartingBid { get; set; }
 		public string Donor { get; set; }
+		public int AuctionItemId { get; set; }
 
-		// nameof(ItemUnit) may have to be replaced with Enum.GetName(typeof(ItemUnitEnum)
+		// nameof(ItemUnit) may have to be replaced with Enum.GetName(typeof(ItemUnitEnum))
 		public string Size {
-			get { return Height + "x" + Length + "x" + Width + nameof(ItemUnit) + "(HxLxW)" ; }
+			get { return Height + "x" + Length + "x" + Width + Enum.GetName(typeof(ItemUnitEnum), ItemUnit) + "(HxLxW)" ; }
 			set { _size= value; }
 		}
 
@@ -39,5 +40,40 @@ namespace auction_central {
 		public string Comments { get; set; }
 		public string ImageUrl { get; set; }
 		public bool IsSmall { get; set; }
+
+
+		public AuctionItem(string name, int quantity, double startingBid, string donor, int auctionItemId, double height, double width, double length, ItemUnitEnum itemUnit, string storageLocation, int condition, string comments, string imageUrl, bool isSmall) {
+			Name = name;
+			Quantity = quantity;
+			StartingBid = startingBid;
+			Donor = donor;
+			AuctionItemId = auctionItemId;
+			Height = height;
+			Width = width;
+			Length = length;
+			ItemUnit = itemUnit;
+			StorageLocation = storageLocation;
+			Condition = condition;
+			Comments = comments;
+			ImageUrl = imageUrl;
+			IsSmall = isSmall;
+		}
+
+		public AuctionItem() {
+			Name = "Unset Name";
+			Quantity = -1;
+			StartingBid = -1;
+			Donor = "Unset Donor";
+			AuctionItemId = -1;
+			Height = -1;
+			Width = -1;
+			Length = -1;
+			ItemUnit = ItemUnitEnum.Feet;
+			StorageLocation = "Unset Location";
+			Condition = 1;
+			Comments = "This is an unset additional comments string you should really set it";
+			ImageUrl = "";
+			IsSmall = false;
+		}
 	}
 }
