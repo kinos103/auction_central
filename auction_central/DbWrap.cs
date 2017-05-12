@@ -252,7 +252,7 @@ namespace auction_central
         {
         }
 
-        private List<Auction> AuctionObjList()
+        public List<Auction> AuctionObjList()
         {
             //string charityName, DateTime startTime, DateTime endTime, string contact, string phoneNumber
             List<Auction> auctions = new List<Auction>();
@@ -309,6 +309,9 @@ namespace auction_central
             finally { connection.Close(); }
             return auctions;
         }
+
+        //public List<>
+        // string name, int quantity, double startingBid, string donor, int auctionItemId, double height, double width, double length, ItemUnitEnum itemUnit, string storageLocation, int condition, string comments, string imageUrl, bool isSmall) {
     }
 }
 
