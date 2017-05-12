@@ -18,11 +18,39 @@ namespace auction_central
     /// <summary>
     /// Interaction logic for AuctionItems.xaml
     /// </summary>
-    public partial class AuctionItems : Page
-    {
+    public partial class AuctionItems : Page {
+        private List<AuctionItem> items;
         public AuctionItems()
         {
             InitializeComponent();
+            AddItems(0);
+        }
+
+        public void AddItems(int auctionIdToQuery) {
+            //TODO Get list of items from db
+            items = new List<AuctionItem>();
+            for (int i = 0; i < 5; i++) {
+                AuctionItem temp = new AuctionItem();
+                temp.Name = temp.Name + i;
+                items.Add(temp);
+            }
+            ListBoxAuctionItems.ItemsSource = items;
+        }
+
+        private void ListBoxAuctionItems_OnSelected(object sender, RoutedEventArgs e) {
+            ListBox sentListBox = sender as ListBox;
+
+            AuctionItem currItem = items[sentListBox.SelectedIndex];
+            AuctionID.Text = currItem.AuctionItemId.ToString();
+            Condition.Text = currItem.Condition.ToString();
+            StorageLocation.Text = currItem.StorageLocation;
+            Size.Text = currItem.Size;
+            Donor.Text = currItem.Donor;
+            StartingBid.Text = currItem.StartingBid.ToString();
+            Quantity.Text = currItem.Quantity.ToString();
+
+            Comments.Text = currItem.Comments;
+            ItemName.Text = currItem.Name;
         }
     }
 }
