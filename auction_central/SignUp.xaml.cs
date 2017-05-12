@@ -32,7 +32,30 @@ namespace auction_central
 
         private void SignUpButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var userType = (ComboBoxItem)ComboBox.SelectedItem;
+
+            if (Equals(userType, Admin))
+            {
+                signUp(Person.UserTypeEnum.Admin);
+
+            }
+            else if (Equals(userType, NP))
+            {
+                signUp(Person.UserTypeEnum.Nonprofit);
+            }
+            else if (Equals(userType, Bidder))
+            {
+                signUp(Person.UserTypeEnum.Bidder);
+            }
+            else
+            {
+                MessageBox.Show("Please Select a User Type");
+            }
+        }
+
+        private void signUp(Person.UserTypeEnum type)
+        {
+            MessageBox.Show("USER TYPE WORKS");
         }
     }
 }
