@@ -34,7 +34,7 @@ namespace auction_central
             DbWrap dbWrap = new DbWrap();
 
             // TODO get list of auctions from dbWrap instead of temp data
-            List<Auction> tempAuctionList = new List<Auction>();
+            /*List<Auction> tempAuctionList = new List<Auction>();
             for (int i = 0; i < 5; ++i) {
                 Auction temp = new Auction();
 	            temp.StartTime = DateTime.Now.AddDays(i + 1);
@@ -42,8 +42,9 @@ namespace auction_central
             }
             Auction temp2 = new Auction();
             temp2.StartTime = DateTime.Now.AddDays(1);
-            tempAuctionList.Add(temp2);
+            tempAuctionList.Add(temp2);*/
 
+            List<Auction> tempAuctionList = dbWrap.AuctionObjList();
 
 
 
