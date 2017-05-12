@@ -15,10 +15,16 @@ namespace auction_central {
 			Yards=6
 		}
 
+	    public enum ItemConditionEnum
+	    {
+	        New=1,
+            Used=2
+	    }
 
 		public string Name { get; set; }
 		public int Quantity { get; set; }
 		public double StartingBid { get; set; }
+        public double CurrentBid { get; set; }
 		public string Donor { get; set; }
 		public int AuctionItemId { get; set; }
 
@@ -34,18 +40,20 @@ namespace auction_central {
 		public double Width { get; set; }
 		public double Length { get; set; }
 		public ItemUnitEnum ItemUnit { get; set; }
+        public ItemConditionEnum ItemCondition { get; set; }
 
 		public string StorageLocation { get; set; }
-		public int Condition { get; set; }
+		//public int Condition { get; set; }
 		public string Comments { get; set; }
 		public string ImageUrl { get; set; }
 		public bool IsSmall { get; set; }
 
 
-		public AuctionItem(string name, int quantity, double startingBid, string donor, int auctionItemId, double height, double width, double length, ItemUnitEnum itemUnit, string storageLocation, int condition, string comments, string imageUrl, bool isSmall) {
+		public AuctionItem(string name, int quantity, double startingBid, double currentBid, string donor, int auctionItemId, double height, double width, double length, ItemUnitEnum itemUnit, string storageLocation, ItemConditionEnum condition, string comments, string imageUrl, bool isSmall) {
 			Name = name;
 			Quantity = quantity;
 			StartingBid = startingBid;
+		    CurrentBid = currentBid;
 			Donor = donor;
 			AuctionItemId = auctionItemId;
 			Height = height;
@@ -53,7 +61,7 @@ namespace auction_central {
 			Length = length;
 			ItemUnit = itemUnit;
 			StorageLocation = storageLocation;
-			Condition = condition;
+			ItemCondition = condition;
 			Comments = comments;
 			ImageUrl = imageUrl;
 			IsSmall = isSmall;
@@ -70,7 +78,7 @@ namespace auction_central {
 			Length = -1;
 			ItemUnit = ItemUnitEnum.Feet;
 			StorageLocation = "Unset Location";
-			Condition = 1;
+			ItemCondition = ItemConditionEnum.New;
 			Comments = "This is an unset additional comments string you should really set it";
 			ImageUrl = "";
 			IsSmall = false;

@@ -297,11 +297,11 @@ namespace auction_central
                         DateTime startTime;
                         DateTime endTime;
                         // Parse date with no style flags.
-                        if (DateTime.TryParseExact(startTime_str, "g", enUS, DateTimeStyles.None, out startTime))
+                        if (DateTime.TryParse(startTime_str, out startTime))
                             Console.WriteLine("Converted '{0}' to {1} ({2}).", startTime_str, startTime,
                                 startTime.Kind);
                         // Parse date with no style flags.
-                        if (DateTime.TryParseExact(endTime_str, "g", enUS, DateTimeStyles.None, out endTime))
+                        if (DateTime.TryParse(endTime_str, out endTime))
                             Console.WriteLine("Converted '{0}' to {1} ({2}).", endTime_str, endTime,
                                 endTime.Kind);
                         Auction curAuction = new Auction(charityName, startTime, endTime, contact, phoneNumber);
@@ -322,20 +322,22 @@ namespace auction_central
 
         public List<AuctionItem> AuctionItemsObjList()
         {
-            string name;
-            int quantity;
-            double startingBid;
-            string donor;
-            int auctionItemId;
-            double height;
-            double width;
-            double length;
-            AuctionItem.ItemUnitEnum itemUnit;
-            string storageLocation;
-            int condition;
-            string comments;
-            string imageUrl;
-            bool isSmall;
+            List<AuctionItem> auctionItems = new List<AuctionItem>();
+            string name; //
+            int quantity; //
+            double startingBid; //
+            double currentBid;
+            string donor; //
+            int auctionItemId; //
+            double height; //
+            double width; //
+            double length; //
+            AuctionItem.ItemUnitEnum itemUnit; //
+            string storageLocation; //
+            AuctionItem.ItemConditionEnum itemCondition; //
+            string comments; //
+            string imageUrl; //
+            bool isSmall; // 
 
             MySqlConnection connection;
             string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
@@ -343,30 +345,43 @@ namespace auction_central
             try
             {
                 connection.Open();
-                string auctionQueryString = @"SELECT N.orgName, N.firstname, N.lastName,
-                                    A.enddate, A.starttime, A.enddate, P.phoneNumber
-                                    FROM nonprofit N
-                                    LEFT JOIN auctioninfo A
-                                    ON N.nonprofitID = A.nonprofitID
-                                    LEFT JOIN phonenumbers P
-                                    ON N.phoneID = P.phoneID;";
+                string auctionQueryString = @"SELECT A.itemName, A.AuctionItemID,
+                                              A.location, N.orgName, A.conditionRate, A.isSmall, A.comments, A.quantity,
+                                              A.originalprice,A.currentprice, I.height, I.width, I.length, I.itemunit
+                                            FROM auctionitem A
+                                            LEFT JOIN itemdimensions I
+                                            ON A.itemdimensions = I.dimensionID
+                                            LEFT JOIN nonprofit N
+                                            ON A.donorID = N.nonprofitID;";
                 MySqlCommand auctionQueryCommand = new MySqlCommand(auctionQueryString, connection);
                 MySqlDataReader reader = auctionQueryCommand.ExecuteReader();
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
-                        string charityName = reader.GetString(0);
-                        firstName = reader.GetString(1);
-                        lastName = reader.GetString(2);
-                        contact = firstName + " " + lastName; // full name 
-                        startTime_str = reader.GetString(3);
-                        endTime_str = reader.GetString(4);
-                        phoneNumber = reader.GetString(5);
-                        DateTime startTime = Convert.ToDateTime(startTime_str);
-                        DateTime endTime = Convert.ToDateTime(endTime_str);
-                        Auction curAuction = new Auction(charityName, startTime, endTime, contact, phoneNumber);
-                        auctions.Add(curAuction);
+                        name = reader.GetString(0);
+                        auctionItemId = reader.GetInt32(1);
+                        storageLocation = reader.GetString(2);
+                        donor = reader.GetString(3);
+                        int itemCondition_int = reader.GetInt32(4);
+                        itemCondition = (AuctionItem.ItemConditionEnum) Enum.ToObject(typeof(AuctionItem.ItemConditionEnum),
+                                itemCondition_int);
+                        isSmall = reader.GetBoolean(5);
+                        comments = reader.GetString(6);
+                        quantity = reader.GetInt32(7);
+                        startingBid = reader.GetInt32(8);
+                        currentBid = reader.GetInt32(9);
+                        height = reader.GetInt32(10);
+                        width = reader.GetInt32(11);
+                        length = reader.GetInt32(12);
+                        int itemUnit_int = reader.GetInt32(13);
+                        itemUnit = (AuctionItem.ItemUnitEnum) Enum.ToObject(typeof(AuctionItem.ItemUnitEnum), itemUnit_int);
+                        //string name, int quantity, double startingBid, double currentBid, string donor, int auctionItemId, double height, double width, double length,
+                        //ItemUnitEnum itemUnit, string storageLocation, ItemConditionEnum condition, string comments, string imageUrl, bool isSmall
+                        AuctionItem curAuctionItem = new AuctionItem(name, quantity, startingBid, currentBid, donor,
+                            auctionItemId, height, width, length, itemUnit, storageLocation, itemCondition, comments,
+                            "", isSmall);
+                        auctionItems.Add(curAuctionItem);
                     }
 
                 }
@@ -378,7 +393,7 @@ namespace auction_central
             }
             catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
             finally { connection.Close(); }
-            return auctions;
+            return auctionItems;
         }
 
     }
