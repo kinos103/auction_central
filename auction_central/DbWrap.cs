@@ -275,12 +275,13 @@ namespace auction_central
             {
                 connection.Open();
                 string auctionQueryString = @"SELECT N.orgName, N.firstname, N.lastName,
-                                    A.enddate, A.starttime, A.enddate, P.phoneNumber
-                                    FROM nonprofit N
-                                    LEFT JOIN auctioninfo A
-                                    ON N.nonprofitID = A.nonprofitID
-                                    LEFT JOIN phonenumbers P
-                                    ON N.phoneID = P.phoneID;";
+                                              A.enddate, A.starttime, A.enddate, P.phoneNumber
+                                            FROM nonprofit N
+                                            RIGHT JOIN auctioninfo A
+                                            ON N.nonprofitID = A.nonprofitID
+                                            LEFT JOIN phonenumbers P
+                                            ON N.phoneID = P.phoneID;
+                                            ";
                 MySqlCommand auctionQueryCommand = new MySqlCommand(auctionQueryString, connection);
                 MySqlDataReader reader = auctionQueryCommand.ExecuteReader();
                 if (reader.HasRows)
@@ -415,6 +416,7 @@ namespace auction_central
                 if (reader.HasRows)
                 */
 
+            /*
         public Admin PersonObjCreation_InsertPerson(string firstname, string lastname, string email, string password,
             Person.UserTypeEnum type)
         {
@@ -436,14 +438,14 @@ namespace auction_central
                 {   //TODO FINISH --------------------------------
                     string loginInsertString = @"";
                     MySqlCommand loginInsertCommand = new MySqlCommand(loginInsertString, connection);
-                    loginInsertCommand.Parameters.AddWithValue("@", );
+                    //loginInsertCommand.Parameters.AddWithValue("@", );
                 }
 
             }
             catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
             finally { connection.Close(); }
             //return ....;
-        }
+        } */
 
     }
 }
