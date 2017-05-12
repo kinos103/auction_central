@@ -34,17 +34,54 @@ namespace auction_central {
 
 		}
 
-		private void header_loginButton_Click(object sender, RoutedEventArgs e) {
-			(Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new login());
-		}
-
 		private void header_auctionsButton_Click(object sender, RoutedEventArgs e) {
 			(Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new Auctions());
 
 		}
 
 		private void header_homeButton_Click(object sender, RoutedEventArgs e) {
-			(Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new home());
+
+		    switch ((Window.GetWindow(this) as MainWindow).User.UserType)
+		    {
+                case Person.UserTypeEnum.Admin:
+                    (Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new AdminHome());
+		            (Window.GetWindow(this) as MainWindow).MainContent.NavigationUIVisibility = NavigationUIVisibility.Visible;
+                    break;
+		        case Person.UserTypeEnum.Nonprofit:
+                    (Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new NPHome());
+		            (Window.GetWindow(this) as MainWindow).MainContent.NavigationUIVisibility = NavigationUIVisibility.Visible;
+                    break;
+                case Person.UserTypeEnum.Bidder:
+                    (Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new BidderHome());
+		            (Window.GetWindow(this) as MainWindow).MainContent.NavigationUIVisibility = NavigationUIVisibility.Visible;
+                    break;
+		        default:
+		            (Window.GetWindow(this) as MainWindow).MainContent.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+                    (Window.GetWindow(this) as MainWindow).HeaderNavBar.Visibility = Visibility.Hidden;
+                    (Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new login());
+		            break;
+		    }
 		}
+
+	    private void header_signOutButton_Click(object sender, RoutedEventArgs e)
+	    {
+	        
+
+	        var confirmResult = MessageBox.Show("Are you sure you want to sign out?",
+	            "Sign Out",
+	            MessageBoxButton.YesNo);
+	        if (confirmResult == MessageBoxResult.Yes)
+	        {
+	            (Window.GetWindow(this) as MainWindow).User = null;
+	            (Window.GetWindow(this) as MainWindow).MainContent.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+	            (Window.GetWindow(this) as MainWindow).HeaderNavBar.Visibility = Visibility.Hidden;
+	            (Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new login());
+            }
+	        else
+	        {
+	            // do nothing, don't want to sign out
+	        }
+
+        }
 	}
 }
