@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -254,6 +255,7 @@ namespace auction_central
 
         public List<Auction> AuctionObjList()
         {
+            CultureInfo enUS = new CultureInfo("en-US");
             //string charityName, DateTime startTime, DateTime endTime, string contact, string phoneNumber
             List<Auction> auctions = new List<Auction>();
             //string charityName = "";
@@ -265,6 +267,75 @@ namespace auction_central
             string endTime_str;
             string contact = ""; // full name
             string phoneNumber = "";
+
+            MySqlConnection connection;
+            string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+            connection = new MySqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                string auctionQueryString = @"SELECT N.orgName, N.firstname, N.lastName,
+                                    A.enddate, A.starttime, A.enddate, P.phoneNumber
+                                    FROM nonprofit N
+                                    LEFT JOIN auctioninfo A
+                                    ON N.nonprofitID = A.nonprofitID
+                                    LEFT JOIN phonenumbers P
+                                    ON N.phoneID = P.phoneID;";
+                MySqlCommand auctionQueryCommand = new MySqlCommand(auctionQueryString, connection);
+                MySqlDataReader reader = auctionQueryCommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string charityName = reader.GetString(0);
+                        firstName = reader.GetString(1);
+                        lastName = reader.GetString(2);
+                        contact = firstName + " " + lastName; // full name 
+                        startTime_str = reader.GetString(3);
+                        endTime_str = reader.GetString(4);
+                        phoneNumber = reader.GetString(5);
+                        DateTime startTime;
+                        DateTime endTime;
+                        // Parse date with no style flags.
+                        if (DateTime.TryParseExact(startTime_str, "g", enUS, DateTimeStyles.None, out startTime))
+                            Console.WriteLine("Converted '{0}' to {1} ({2}).", startTime_str, startTime,
+                                startTime.Kind);
+                        // Parse date with no style flags.
+                        if (DateTime.TryParseExact(endTime_str, "g", enUS, DateTimeStyles.None, out endTime))
+                            Console.WriteLine("Converted '{0}' to {1} ({2}).", endTime_str, endTime,
+                                endTime.Kind);
+                        Auction curAuction = new Auction(charityName, startTime, endTime, contact, phoneNumber);
+                       auctions.Add(curAuction);
+                    }
+
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
+            finally { connection.Close(); }
+            return auctions;
+        }
+
+        public List<AuctionItem> AuctionItemsObjList()
+        {
+            string name;
+            int quantity;
+            double startingBid;
+            string donor;
+            int auctionItemId;
+            double height;
+            double width;
+            double length;
+            AuctionItem.ItemUnitEnum itemUnit;
+            string storageLocation;
+            int condition;
+            string comments;
+            string imageUrl;
+            bool isSmall;
 
             MySqlConnection connection;
             string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
@@ -310,8 +381,6 @@ namespace auction_central
             return auctions;
         }
 
-        //public List<>
-        // string name, int quantity, double startingBid, string donor, int auctionItemId, double height, double width, double length, ItemUnitEnum itemUnit, string storageLocation, int condition, string comments, string imageUrl, bool isSmall) {
     }
 }
 
