@@ -25,44 +25,14 @@ namespace auction_central
             InitializeComponent();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("AuctionDetails.xaml", UriKind.Relative));
-        }
-
-        private void button_Copy5_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("AuctionDetails.xaml", UriKind.Relative));
-        }
-
-        private void button_Copy4_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("AuctionDetails.xaml", UriKind.Relative));
-        }
-
-        private void button_Copy3_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("AuctionDetails.xaml", UriKind.Relative));
-        }
-
-        private void button_Copy2_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("AuctionDetails.xaml", UriKind.Relative));
-        }
-
-        private void button_Copy1_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("AuctionDetails.xaml", UriKind.Relative));
-        }
-
-        private void button_Copy_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("AuctionDetails.xaml", UriKind.Relative));
-        }
-
         private void currentBids_button_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new Uri("CurrentBids.xaml", UriKind.Relative));
+        }
+
+        private void auction_List_button_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("Auctions.xaml", UriKind.Relative));
         }
     }
 }

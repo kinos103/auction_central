@@ -275,12 +275,13 @@ namespace auction_central
             {
                 connection.Open();
                 string auctionQueryString = @"SELECT N.orgName, N.firstname, N.lastName,
-                                    A.enddate, A.starttime, A.enddate, P.phoneNumber
-                                    FROM nonprofit N
-                                    LEFT JOIN auctioninfo A
-                                    ON N.nonprofitID = A.nonprofitID
-                                    LEFT JOIN phonenumbers P
-                                    ON N.phoneID = P.phoneID;";
+                                              A.enddate, A.starttime, A.enddate, P.phoneNumber
+                                            FROM nonprofit N
+                                            RIGHT JOIN auctioninfo A
+                                            ON N.nonprofitID = A.nonprofitID
+                                            LEFT JOIN phonenumbers P
+                                            ON N.phoneID = P.phoneID;
+                                            ";
                 MySqlCommand auctionQueryCommand = new MySqlCommand(auctionQueryString, connection);
                 MySqlDataReader reader = auctionQueryCommand.ExecuteReader();
                 if (reader.HasRows)
@@ -320,7 +321,7 @@ namespace auction_central
             return auctions;
         }
 
-        public List<AuctionItem> AuctionItemsObjList()
+        public List<AuctionItem> AuctionItemsObjList(int auctionid)
         {
             List<AuctionItem> auctionItems = new List<AuctionItem>();
             string name; //
@@ -352,8 +353,10 @@ namespace auction_central
                                             LEFT JOIN itemdimensions I
                                             ON A.itemdimensions = I.dimensionID
                                             LEFT JOIN nonprofit N
-                                            ON A.donorID = N.nonprofitID;";
+                                            ON A.donorID = N.nonprofitID
+                                            WHERE A.auctionID=@aucttionid;";
                 MySqlCommand auctionQueryCommand = new MySqlCommand(auctionQueryString, connection);
+                auctionQueryCommand.Parameters.AddWithValue("@auctionid", auctionid);
                 MySqlDataReader reader = auctionQueryCommand.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -395,6 +398,54 @@ namespace auction_central
             finally { connection.Close(); }
             return auctionItems;
         }
+
+
+        /*  @"SELECT
+                                              employeeID,
+                                              firstName,
+                                              lastName,
+                                              emailAddress,
+                                              phoneNumber
+                                            FROM admin
+                                              JOIN phonenumbers ON admin.phoneID = phonenumbers.phoneID
+                                              JOIN login ON admin.emailID = login.emailID
+                                            WHERE admin.emailID = @adminEmailId";
+                MySqlCommand adminQueryCommand = new MySqlCommand(adminQueryString, connection);
+                adminQueryCommand.Parameters.AddWithValue("@adminEmailId", adminEmailID);
+                MySqlDataReader reader = adminQueryCommand.ExecuteReader(); 
+                if (reader.HasRows)
+                */
+
+            /*
+        public Admin PersonObjCreation_InsertPerson(string firstname, string lastname, string email, string password,
+            Person.UserTypeEnum type)
+        {
+            MySqlConnection connection;
+            string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+            connection = new MySqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                string loginQueryString = @"SELECT * FROM login WHERE login.emailAddress=@emailaddress;";
+                MySqlCommand loginQueryCommand = new MySqlCommand(loginQueryString, connection);
+                loginQueryCommand.Parameters.AddWithValue("@emailaddress", email);
+                MySqlDataReader reader = loginQueryCommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    return null; //error message here
+                }
+                else
+                {   //TODO FINISH --------------------------------
+                    string loginInsertString = @"";
+                    MySqlCommand loginInsertCommand = new MySqlCommand(loginInsertString, connection);
+                    //loginInsertCommand.Parameters.AddWithValue("@", );
+                }
+
+            }
+            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
+            finally { connection.Close(); }
+            //return ....;
+        } */
 
     }
 }
