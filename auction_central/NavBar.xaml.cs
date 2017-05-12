@@ -65,10 +65,23 @@ namespace auction_central {
 
 	    private void header_signOutButton_Click(object sender, RoutedEventArgs e)
 	    {
-	        (Window.GetWindow(this) as MainWindow).User = null;
-            (Window.GetWindow(this) as MainWindow).MainContent.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-            (Window.GetWindow(this) as MainWindow).HeaderNavBar.Visibility = Visibility.Hidden;
-            (Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new login());
+	        
+
+	        var confirmResult = MessageBox.Show("Are you sure you want to sign out?",
+	            "Sign Out",
+	            MessageBoxButton.YesNo);
+	        if (confirmResult == MessageBoxResult.Yes)
+	        {
+	            (Window.GetWindow(this) as MainWindow).User = null;
+	            (Window.GetWindow(this) as MainWindow).MainContent.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+	            (Window.GetWindow(this) as MainWindow).HeaderNavBar.Visibility = Visibility.Hidden;
+	            (Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new login());
+            }
+	        else
+	        {
+	            // do nothing, don't want to sign out
+	        }
+
         }
 	}
 }
