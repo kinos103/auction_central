@@ -54,7 +54,6 @@ namespace auction_central
             }
         }
 
-        //TODO check connection string, error
         private void login_now(Person.UserTypeEnum type)
         {
             string email = LoginEmail.Text.Normalize().Trim();
@@ -84,6 +83,7 @@ namespace auction_central
                     break;
             }
             (Window.GetWindow(this) as MainWindow).HeaderNavBar.Visibility = Visibility.Visible;
+            (Window.GetWindow(this) as MainWindow).MainContent.NavigationUIVisibility = NavigationUIVisibility.Visible;
         }
 
         //click textbox and remvoe text before typing
