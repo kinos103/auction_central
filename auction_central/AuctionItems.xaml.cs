@@ -29,7 +29,7 @@ namespace auction_central
         public void AddItems(int auctionIdToQuery) {
             //TODO Get list of items from db
             items = new List<AuctionItem>();
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 20; i++) {
                 AuctionItem temp = new AuctionItem();
                 temp.Name = temp.Name + i;
                 items.Add(temp);
