@@ -354,7 +354,7 @@ namespace auction_central
                                             ON A.itemdimensions = I.dimensionID
                                             LEFT JOIN nonprofit N
                                             ON A.donorID = N.nonprofitID
-                                            WHERE A.auctionID=@aucttionid;";
+                                            WHERE A.auctionID=@auctionid;";
                 MySqlCommand auctionQueryCommand = new MySqlCommand(auctionQueryString, connection);
                 auctionQueryCommand.Parameters.AddWithValue("@auctionid", auctionid);
                 MySqlDataReader reader = auctionQueryCommand.ExecuteReader();
