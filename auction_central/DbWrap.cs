@@ -308,7 +308,7 @@ namespace auction_central
                 }
                 else
                 {
-                    return null;
+                    return auctions;
                 }
 
             }
@@ -389,7 +389,7 @@ namespace auction_central
                 }
                 else
                 {
-                    return null;
+                    return auctionItems;
                 }
 
             }
