@@ -111,7 +111,32 @@ namespace auction_central
             }
             else if (Equals(item, Bidder))
             {
-                MessageBox.Show("USER TYPE WORKS: Bidder");
+                string streetAddress = SignUpAddress.Text;
+                string city = SignUpCity.Text;
+                int zipcode = Int32.Parse(SignUpZipcode.Text);
+                string state = SignUpState.Text;
+                string creditCardNum = SignUpCreditCard.Text;
+                int cvv = Int32.Parse(SignUpCVV.Text);
+                string exp = SignUpCreditCardExpDate.Text;
+                
+
+                Address address = new Address(streetAddress, city, state, zipcode);
+                CreditCard creditCard = new CreditCard(creditCardNum, cvv, firstName + " " + lastName, exp);
+                auction_central.Bidder bidder = new Bidder(Person.UserTypeEnum.Bidder, 0, firstName, lastName, email, "", "", phone.ToString());
+
+                dbWrap.InsertBidder(bidder, Person.UserTypeEnum.Bidder, password, creditCard, address);
+
+                Person returned = dbWrap.LoginExists(email, password, Person.UserTypeEnum.Bidder);
+                if (returned == null)
+                {
+                    MessageBox.Show("Error");
+                    return;
+                }
+                // everything should happen in the MainWindow so this should be safe
+                (Window.GetWindow(this) as MainWindow).User = returned;
+                navigationService?.Navigate(new Uri("BidderHome.xaml", UriKind.Relative));
+                (Window.GetWindow(this) as MainWindow).HeaderNavBar.Visibility = Visibility.Visible;
+                (Window.GetWindow(this) as MainWindow).MainContent.NavigationUIVisibility = NavigationUIVisibility.Visible;
             }
             else
             {
@@ -156,6 +181,13 @@ namespace auction_central
         private void ComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             OrgNames.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, NP) ? Visibility.Visible : Visibility.Collapsed;
+            SignUpCreditCard.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, Bidder) ? Visibility.Visible : Visibility.Collapsed;
+            SignUpCVV.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, Bidder) ? Visibility.Visible : Visibility.Collapsed;
+            SignUpAddress.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, Bidder) ? Visibility.Visible : Visibility.Collapsed;
+            SignUpCity.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, Bidder) ? Visibility.Visible : Visibility.Collapsed;
+            SignUpCreditCardExpDate.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, Bidder) ? Visibility.Visible : Visibility.Collapsed;
+            SignUpState.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, Bidder) ? Visibility.Visible : Visibility.Collapsed;
+            SignUpZipcode.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, Bidder) ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }
