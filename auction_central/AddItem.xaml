@@ -53,13 +53,10 @@
                  materialDesign:HintAssist.Hint="Item Name" VerticalAlignment="Top" Width="246" FontSize="21.333"
                  Grid.Column="0" Grid.Row="1"
                  Margin="20 0 20 0"/>
-        <TextBox x:Name="auctionID" HorizontalAlignment="Center" TextWrapping="Wrap"
-                 materialDesign:HintAssist.Hint="Auction ID" VerticalAlignment="Top" Width="246" FontSize="21.333"
-                 Grid.Column="0" Grid.Row="2"
-                 Margin="20 0 20 0"/>
+
         <TextBox x:Name="itemQuantity" HorizontalAlignment="Center" TextWrapping="Wrap"
                  materialDesign:HintAssist.Hint="Item Quantity" VerticalAlignment="Top" Width="246" FontSize="21.333"
-                 Grid.Column="0" Grid.Row="3"
+                 Grid.Column="0" Grid.Row="2"
                  Margin="20 0 20 0"
                  PreviewTextInput="NumberValidationTextBox"
                  DataObject.Pasting="TextBoxPasting"/>
@@ -67,15 +64,15 @@
                  materialDesign:HintAssist.Hint="Min. Starting Bid" VerticalAlignment="Top" Width="246"
                  FontSize="21.333" PreviewTextInput="NumberValidationTextBox"
                  DataObject.Pasting="TextBoxPasting"
-                 Grid.Column="0" Grid.Row="4"
+                 Grid.Column="0" Grid.Row="3"
                  Margin="20 0 20 0"/>
         <TextBox x:Name="donor" HorizontalAlignment="Center" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Donor"
                  VerticalAlignment="Top" Width="246" FontSize="21.333"
-                 Grid.Column="0" Grid.Row="5"
+                 Grid.Column="0" Grid.Row="4"
                  Margin="20 0 20 0"/>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center" VerticalAlignment="Top"
-                    Grid.Column="0" Grid.Row="6"
+                    Grid.Column="0" Grid.Row="5"
                     Margin="20 0 20 0">
                  <TextBox x:Name="height" HorizontalAlignment="Left" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Height"
                           VerticalAlignment="Center" Width="70" FontSize="21.333"
@@ -103,14 +100,14 @@
         <TextBox x:Name="storageLocation" HorizontalAlignment="Center" TextWrapping="Wrap"
                  materialDesign:HintAssist.Hint="Storage Location" VerticalAlignment="Top" Width="246"
                  FontSize="21.333"
-                 Grid.Column="0" Grid.Row="7"
+                 Grid.Column="0" Grid.Row="6"
                  Margin="20 0 20 0"/>
 
         <ComboBox x:Name="ComboBox_small_item" Width="Auto"
                   Foreground="Gray" FontSize="21.333"
                   HorizontalAlignment="Center" VerticalAlignment="Top"
                   materialDesign:HintAssist.Hint="Small Item?"
-                  Grid.Column="0" Grid.Row="8">
+                  Grid.Column="0" Grid.Row="7">
             <ComboBoxItem x:Name="yes" Content="Yes" Width="Auto" />
             <ComboBoxItem x:Name="no" Content="No" Width="Auto" />
         </ComboBox>
@@ -119,7 +116,7 @@
                    Foreground="Gray" FontSize="21.333"
                    HorizontalAlignment="Center" VerticalAlignment="Top"
                    Margin="20 0 20 10"
-                   Grid.Column="0" Grid.Row="9"
+                   Grid.Column="0" Grid.Row="8"
                    materialDesign:HintAssist.Hint="Item Condition">
              <ComboBoxItem x:Name="Used" Content="Used"/>
              <ComboBoxItem x:Name="New" Content="New"/>
@@ -139,11 +136,11 @@
              <TextBox x:Name="comments" HorizontalAlignment="Center" TextWrapping="Wrap"
                  materialDesign:HintAssist.Hint="Additional Comments..." VerticalAlignment="Top" Width="246"
                  FontSize="21.333" MaxLines="5"
-                 Grid.Column="0" Grid.Row="10"
+                 Grid.Column="0" Grid.Row="9"
                  Margin="20 0 20 10"/>
         <Button x:Name="uploadPhoto" Content="Upload Photo" HorizontalAlignment="Center" VerticalAlignment="Center"
                 Width="246" FontSize="21.333" Height="Auto"
-                Grid.Column="1" Grid.Row="10"
+                Grid.Column="1" Grid.Row="9"
                 Margin="20 0 20 0"
                 Click="UploadPhoto_OnClick"/>
 
