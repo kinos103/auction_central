@@ -10,118 +10,94 @@
       Title="AddItem">
 
     <Page.Resources>
-         <ResourceDictionary>
-             <ResourceDictionary.MergedDictionaries>
-                  <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
-             </ResourceDictionary.MergedDictionaries>
-         </ResourceDictionary>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Slider.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Page.Resources>
 
-    <Grid x:Name="addItemGrid" HorizontalAlignment="Left">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top"
-                   Width="549" FontSize="64"
-                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+    <Grid x:Name="addItemGrid" HorizontalAlignment="Left" Margin="10,10,0,-10" Width="1280">
+
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" 
+                   Width="549" FontSize="64" FontFamily="Segoe UI Light" TextAlignment="Left"
+                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="106" Margin="320,70,146.2,0" Grid.RowSpan="2">
             <Run Text="Add Inventory Item" /><LineBreak /><Run />
         </TextBlock>
-        <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="7" BorderThickness="3" BorderBrush="Black"
-                Margin="0 0 20 0">
-                 <Image x:Name="itemImage" HorizontalAlignment="Center" VerticalAlignment="Top" Width="429"
-                         Margin="10"
-                         Source="Icon-Placeholder.png"/>
-        </Border>
 
         <TextBox x:Name="itemName" HorizontalAlignment="Center" TextWrapping="Wrap"
                  materialDesign:HintAssist.Hint="Item Name" VerticalAlignment="Top" Width="246" FontSize="21.333"
-                 Grid.Column="0" Grid.Row="1"
-                 Margin="20 0 20 0"/>
+                 Grid.Column="0"
+                 Margin="453,200,581,0"/>
 
         <TextBox x:Name="itemQuantity" HorizontalAlignment="Center" TextWrapping="Wrap"
                  materialDesign:HintAssist.Hint="Item Quantity" VerticalAlignment="Top" Width="246" FontSize="21.333"
-                 Grid.Column="0" Grid.Row="2"
-                 Margin="20 0 20 0"
+                 Grid.Column="0"
+                 Margin="453,287,581,0"
                  PreviewTextInput="NumberValidationTextBox"
                  DataObject.Pasting="TextBoxPasting"/>
         <TextBox x:Name="startBid" HorizontalAlignment="Center" TextWrapping="Wrap"
                  materialDesign:HintAssist.Hint="Min. Starting Bid" VerticalAlignment="Top" Width="246"
                  FontSize="21.333" PreviewTextInput="NumberValidationTextBox"
                  DataObject.Pasting="TextBoxPasting"
-                 Grid.Column="0" Grid.Row="3"
-                 Margin="20 0 20 0"/>
+                 Grid.Column="0"
+                 Margin="453,468,581,0"/>
         <TextBox x:Name="donor" HorizontalAlignment="Center" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Donor"
                  VerticalAlignment="Top" Width="246" FontSize="21.333"
-                 Grid.Column="0" Grid.Row="4"
-                 Margin="20 0 20 0"/>
+                 Grid.Column="0"
+                 Margin="452,329,582,0"/>
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center" VerticalAlignment="Top"
-                    Grid.Column="0" Grid.Row="5"
-                    Margin="20 0 20 0">
-                 <TextBox x:Name="height" HorizontalAlignment="Left" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Height"
+                    Grid.Column="0"
+                    Margin="452,242,516,0">
+            <TextBox x:Name="height" HorizontalAlignment="Left" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Height"
                           VerticalAlignment="Center" Width="70" FontSize="21.333"
                           PreviewTextInput="NumberValidationTextBox"
                           DataObject.Pasting="TextBoxPasting"/>
-                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="X"
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="X"
                             VerticalAlignment="Center" Width="18" FontSize="15" Foreground="Gray" />
-                 <TextBox x:Name="length" HorizontalAlignment="Left" TextWrapping="Wrap" materialDesign:HintAssist.Hint="length"
+            <TextBox x:Name="length" HorizontalAlignment="Left" TextWrapping="Wrap" materialDesign:HintAssist.Hint="length"
                           VerticalAlignment="Center" Width="66" FontSize="21.333"
                           PreviewTextInput="NumberValidationTextBox"
                           DataObject.Pasting="TextBoxPasting" />
-                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="X"
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="X"
                             VerticalAlignment="Center" Width="18" FontSize="15" Foreground="Gray" />
-                 <TextBox x:Name="width" HorizontalAlignment="Left" TextWrapping="Wrap" materialDesign:HintAssist.Hint="width"
+            <TextBox x:Name="width" HorizontalAlignment="Left" TextWrapping="Wrap" materialDesign:HintAssist.Hint="width"
                           VerticalAlignment="Center" Width="66" FontSize="21.333"
                           PreviewTextInput="NumberValidationTextBox"
                           DataObject.Pasting="TextBoxPasting"/>
-                 <ComboBox x:Name="ComboBox_units" SelectedIndex="0" Foreground="Gray" FontSize="21.333"
+            <ComboBox x:Name="ComboBox_units" SelectedIndex="0" Foreground="Gray" FontSize="21.333"
                            VerticalAlignment="Center" Margin="20 0 20 0">
-                          <ComboBoxItem x:Name="meters_val" Content="m" Foreground="Gray"/>
-                          <ComboBoxItem x:Name="feet_val" Content="ft" Foreground="Gray"/>
-                          <ComboBoxItem x:Name="cm_val" Content="cm" Foreground="Gray"/>
-                 </ComboBox>
+                <ComboBoxItem x:Name="meters_val" Content="m" Foreground="Gray"/>
+                <ComboBoxItem x:Name="feet_val" Content="ft" Foreground="Gray"/>
+                <ComboBoxItem x:Name="cm_val" Content="cm" Foreground="Gray"/>
+            </ComboBox>
         </StackPanel>
         <TextBox x:Name="storageLocation" HorizontalAlignment="Center" TextWrapping="Wrap"
                  materialDesign:HintAssist.Hint="Storage Location" VerticalAlignment="Top" Width="246"
                  FontSize="21.333"
-                 Grid.Column="0" Grid.Row="6"
-                 Margin="20 0 20 0"/>
+                 Grid.Column="0"
+                 Margin="453,426,581,0"/>
 
         <ComboBox x:Name="ComboBox_small_item" Width="Auto"
                   Foreground="Gray" FontSize="21.333"
                   HorizontalAlignment="Center" VerticalAlignment="Top"
                   materialDesign:HintAssist.Hint="Small Item?"
-                  Grid.Column="0" Grid.Row="7">
+                  Grid.Column="0" Margin="452,510,702,0">
             <ComboBoxItem x:Name="yes" Content="Yes" Width="Auto" />
             <ComboBoxItem x:Name="no" Content="No" Width="Auto" />
         </ComboBox>
 
-         <ComboBox x:Name="ComboBoxCondition"
+        <ComboBox x:Name="ComboBoxCondition"
                    Foreground="Gray" FontSize="21.333"
                    HorizontalAlignment="Center" VerticalAlignment="Top"
-                   Margin="20 0 20 10"
-                   Grid.Column="0" Grid.Row="8"
+                   Margin="453,371,669,0"
+                   Grid.Column="0"
                    materialDesign:HintAssist.Hint="Item Condition">
-             <ComboBoxItem x:Name="Used" Content="Used"/>
-             <ComboBoxItem x:Name="New" Content="New"/>
-         </ComboBox>
-             <!--<StackPanel Orientation="Horizontal"
+            <ComboBoxItem x:Name="Used" Content="Used"/>
+            <ComboBoxItem x:Name="New" Content="New"/>
+        </ComboBox>
+        <!--<StackPanel Orientation="Horizontal"
                          HorizontalAlignment="Center" VerticalAlignment="Top"
                          Margin="20 0 20 10"
                          Grid.Column="0" Grid.Row="9">
@@ -133,21 +109,23 @@
              </StackPanel>-->
 
 
-             <TextBox x:Name="comments" HorizontalAlignment="Center" TextWrapping="Wrap"
+        <TextBox x:Name="comments" HorizontalAlignment="Center" TextWrapping="Wrap"
                  materialDesign:HintAssist.Hint="Additional Comments..." VerticalAlignment="Top" Width="246"
                  FontSize="21.333" MaxLines="5"
-                 Grid.Column="0" Grid.Row="9"
-                 Margin="20 0 20 10"/>
+                 Grid.Column="0"
+                 Margin="452,555,582,0"/>
         <Button x:Name="uploadPhoto" Content="Upload Photo" HorizontalAlignment="Center" VerticalAlignment="Center"
-                Width="246" FontSize="21.333" Height="Auto"
-                Grid.Column="1" Grid.Row="9"
-                Margin="20 0 20 0"
+                Width="175" FontSize="21.333" Height="Auto"
+                Margin="826,441,279,423"
                 Click="UploadPhoto_OnClick"/>
 
         <Button x:Name="addItemButton" Content="Add Item" HorizontalAlignment="Center" VerticalAlignment="Top"
                 Width="246" FontSize="26.667" Height="Auto" Click="addItemButton_Click"
-                Grid.Column="0" Grid.Row="11" Grid.ColumnSpan="2"
-                Margin="0 20 0 50"/>
+                Grid.Column="0"
+                Margin="453,623,581,0"/>
+        <Image x:Name="itemImage" HorizontalAlignment="Center" VerticalAlignment="Top" Width="260"
+            Margin="764,192,256,0"
+            Source="Icon-Placeholder.png" Height="229"/>
 
     </Grid>
 </Page>
