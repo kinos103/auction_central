@@ -510,9 +510,9 @@ INSERT INTO auction_central.admin (firstName, lastName, phoneID, emailID) VALUES
                 insertItemCommand.Parameters.AddWithValue("@quantity", item.Quantity);
                 insertItemCommand.Parameters.AddWithValue("@location", item.StorageLocation);
                 insertItemCommand.Parameters.AddWithValue("@comments", item.Comments);
-               
-                
             }
+            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
+            finally { connection.Close(); }
         }
 
     }
