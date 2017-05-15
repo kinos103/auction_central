@@ -47,9 +47,10 @@ namespace auction_central {
 		public string Comments { get; set; }
 		public string ImageUrl { get; set; }
 		public bool IsSmall { get; set; }
+        public bool IsSold { get; set; }
 
 
-		public AuctionItem(string name, int quantity, double startingBid, double currentBid, string donor, int auctionItemId, double height, double width, double length, ItemUnitEnum itemUnit, string storageLocation, ItemConditionEnum condition, string comments, string imageUrl, bool isSmall) {
+		public AuctionItem(string name, int quantity, double startingBid, double currentBid, string donor, int auctionItemId, double height, double width, double length, ItemUnitEnum itemUnit, string storageLocation, ItemConditionEnum condition, string comments, string imageUrl, bool isSmall, bool isSold) {
 			Name = name;
 			Quantity = quantity;
 			StartingBid = startingBid;
@@ -65,6 +66,7 @@ namespace auction_central {
 			Comments = comments;
 			ImageUrl = imageUrl;
 			IsSmall = isSmall;
+            IsSold = isSold
 		}
 
 		public AuctionItem() {
@@ -82,6 +84,7 @@ namespace auction_central {
 			Comments = "This is an unset additional comments string you should really set it";
 			ImageUrl = "";
 			IsSmall = false;
+		    IsSold = false;
 		}
 	}
 }

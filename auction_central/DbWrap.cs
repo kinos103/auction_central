@@ -249,10 +249,6 @@ namespace auction_central
             return bidderObj;
         }
 
-        private void AddItems()
-        {
-        }
-
         public List<Auction> AuctionObjList()
         {
             CultureInfo enUS = new CultureInfo("en-US");
@@ -416,8 +412,8 @@ namespace auction_central
                 if (reader.HasRows)
                 */
 
-            
-        public void insertAdmin(string firstname, string lastname, string email, string password, int phonenumber, Person.UserTypeEnum type)
+        // create account 
+        public void InsertAdmin(string firstname, string lastname, string email, string password, int phonenumber, Person.UserTypeEnum type)
         {
             MySqlConnection connection;
             string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
@@ -454,7 +450,7 @@ INSERT INTO auction_central.admin (firstName, lastName, phoneID, emailID) VALUES
                     MySqlCommand loginInsertCommand = new MySqlCommand(loginInsertString, connection);
                     loginInsertCommand.Parameters.AddWithValue("@email", email);
                     loginInsertCommand.Parameters.AddWithValue("@password", password);
-                    loginInsertCommand.Parameters.AddWithValue("@type", 2);
+                    loginInsertCommand.Parameters.AddWithValue("@type", type);
                     loginInsertCommand.ExecuteNonQuery();
                     long email_id = loginInsertCommand.LastInsertedId;
                     int emailID_int = unchecked ((int) email_id);
@@ -473,11 +469,51 @@ INSERT INTO auction_central.admin (firstName, lastName, phoneID, emailID) VALUES
             //return ....;
         } 
 
+
+        // inserting new item 
+        public void AddAuctionItem(AuctionItem item)
+        {
+            MySqlConnection connection;
+            string connectionString =
+                @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+            connection = new MySqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+
+                string dimensionsString = @"INSERT INTO auction_central.itemdimensions (height, width, length, itemunit) VALUES (@height, @width, @length, @itemunit)";
+                MySqlCommand dimInsertCommand = new MySqlCommand(dimensionsString, connection);
+                dimInsertCommand.Parameters.AddWithValue("@height", item.Height);
+                dimInsertCommand.Parameters.AddWithValue("@width", item.Width);
+                dimInsertCommand.Parameters.AddWithValue("@length", item.Length);
+                dimInsertCommand.Parameters.AddWithValue("@itemunit", (int)item.ItemUnit);
+
+                dimInsertCommand.ExecuteNonQuery();
+                long dim_id = dimInsertCommand.LastInsertedId;
+                int dimID_int = unchecked((int)dim_id);
+
+
+                string insertItemString = @"INSERT INTO auction_central.auctionitem (itemName, donorID, itemdimensions, 
+                                            conditionRate, auctionID, isSold, isSmall, currentprice, originalprice, quantity,
+                                            location, comments) VALUES (@itemname, @donorid, @itemdimensionID, @condition, @auctionid,
+                                            @issold, @issmall, @curprice, origprice, @quantity, @location, @comments);";
+                MySqlCommand insertItemCommand = new MySqlCommand(insertItemString, connection);
+                insertItemCommand.Parameters.AddWithValue("@itemname", item.Name);
+                insertItemCommand.Parameters.AddWithValue("@donorid", item.Donor);
+                insertItemCommand.Parameters.AddWithValue("@itemdimensionID", dimID_int);
+                insertItemCommand.Parameters.AddWithValue("@condition", item.ItemCondition);
+                insertItemCommand.Parameters.AddWithValue("@auctionid", item.AuctionItemId);
+                insertItemCommand.Parameters.AddWithValue("@issold", item.IsSold);
+                insertItemCommand.Parameters.AddWithValue("@issmall", item.IsSmall);
+                insertItemCommand.Parameters.AddWithValue("@curprice", item.CurrentBid);
+                insertItemCommand.Parameters.AddWithValue("@origprice", item.StartingBid);
+                insertItemCommand.Parameters.AddWithValue("@quantity", item.Quantity);
+                insertItemCommand.Parameters.AddWithValue("@location", item.StorageLocation);
+                insertItemCommand.Parameters.AddWithValue("@comments", item.Comments);
+               
+                
+            }
+        }
+
     }
 }
-
-
-
-
-//usertype, int userid, string firstname, string lastname, string email, int cardnumber, string address, int phonenumber
-//usertype, int userid, string firstname, string lastname, string email, int phonenumber, string orgname
