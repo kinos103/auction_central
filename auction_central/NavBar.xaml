@@ -23,7 +23,7 @@
 			<Button x:Name="header_homeButton" Content="Home" Height="31" Margin="8 0 8 15" VerticalAlignment="Bottom"  Click="header_homeButton_Click" Grid.Column="0"/>
 			<Button x:Name="header_auctionsButton" Content="Auctions" Height="31" Margin="8 0 8 15" VerticalAlignment="Bottom"  Click="header_auctionsButton_Click" Grid.Column="1"/>
 			<Button x:Name="header_contactButton" Content="Contact" Height="31" Margin="8 0 8 15" VerticalAlignment="Bottom"  Grid.Column="2"/>
-			<Button x:Name="header_donorButton" Content="Donors" Height="31" Margin="8 0 8 15" VerticalAlignment="Bottom"  Grid.Column="3"/>
+			<Button x:Name="header_donorButton" Content="Donors" Height="31" Margin="8 0 8 15" VerticalAlignment="Bottom"  Grid.Column="3" Click="header_donorButton_Click"/>
 			<TextBlock x:Name="header_header" TextWrapping="Wrap" Text="AUCTION CENTRAL" Margin="8 0 8 0" VerticalAlignment="Bottom" FontSize="70" Grid.Column="4"/>
 			<Button x:Name="header_signOutButton" Content="Sign Out" Height="31" Margin="8 0 8 15" VerticalAlignment="Bottom"  Click="header_signOutButton_Click" Grid.Column="5"/>
 
