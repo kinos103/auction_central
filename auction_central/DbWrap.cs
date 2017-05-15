@@ -345,7 +345,7 @@ namespace auction_central
                 connection.Open();
                 string auctionQueryString = @"SELECT A.itemName, A.AuctionItemID,
                                               A.location, N.orgName, A.conditionRate, A.isSmall, A.comments, A.quantity,
-                                              A.originalprice,A.currentprice, I.height, I.width, I.length, I.itemunit
+                                              A.originalprice, A.currentprice, A.isSold, I.height, I.width, I.length, I.itemunit
                                             FROM auctionitem A
                                             LEFT JOIN itemdimensions I
                                             ON A.itemdimensions = I.dimensionID
@@ -464,6 +464,7 @@ namespace auction_central
                         adminInsertCommand.Parameters.AddWithValue("@last", lastname);
                         adminInsertCommand.Parameters.AddWithValue("@phone__id", phoneID_int);
                         adminInsertCommand.Parameters.AddWithValue("@email__id", emailID_int);
+                        adminInsertCommand.ExecuteNonQuery();
                         connection2.Close();
                     }
                     catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
