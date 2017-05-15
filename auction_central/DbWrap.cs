@@ -443,8 +443,11 @@ namespace auction_central
                 MySqlDataReader reader = emailQueryCommand.ExecuteReader();
                 if (reader.HasRows)
                 {
-                    reader.Read();
-                    toReturn = reader.GetInt32(0);
+                    while (reader.Read())
+                    {
+                        reader.Read();
+                        toReturn = reader.GetInt32(0);
+                    }
                 }
 
             }
