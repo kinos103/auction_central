@@ -23,6 +23,17 @@ namespace auction_central {
 			PhoneNumber = phoneNumber;
 		}
 
+
+		public Auction(int auctionId, string charityName, DateTime startTime, DateTime endTime, string contact, string phoneNumber) {
+			AuctionId = auctionId;
+			CharityName = charityName;
+			EventDate = startTime.Date;
+			StartTime = startTime;
+			EndTime = endTime;
+			Contact = contact;
+			PhoneNumber = phoneNumber;
+		}
+
 		public Auction() {
 			AuctionId = 0;
 			CharityName = "Auction ";

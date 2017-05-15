@@ -52,8 +52,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -72,10 +70,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="NonprofitOrgForm.cs" />
-    <Compile Include="NonprofitOrgForm.Designer.cs">
-      <DependentUpon>NonprofitOrgForm.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Address.cs" />
+    <Compile Include="CreditCard.cs" />
     <Compile Include="SignUp.xaml.cs">
       <DependentUpon>SignUp.xaml</DependentUpon>
     </Compile>
