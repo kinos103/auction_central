@@ -111,9 +111,18 @@ namespace auction_central
             }
             else if (Equals(item, Bidder))
             {
-                Address address = new Address("number", "city", "state", 92610);
-                CreditCard creditCard = new CreditCard("number", 123, "name", "expdate");
-                auction_central.Bidder bidder = new Bidder(Person.UserTypeEnum.Bidder, 0, firstName, lastName, email, "card", "address", phone.ToString());
+                string streetAddress = SignUpAddress.Text;
+                string city = SignUpCity.Text;
+                int zipcode = Int32.Parse(SignUpZipcode.Text);
+                string state = SignUpState.Text;
+                string creditCardNum = SignUpCreditCard.Text;
+                int cvv = Int32.Parse(SignUpCVV.Text);
+                string exp = SignUpCreditCardExpDate.Text;
+                
+
+                Address address = new Address(streetAddress, city, state, zipcode);
+                CreditCard creditCard = new CreditCard(creditCardNum, cvv, firstName + " " + lastName, exp);
+                auction_central.Bidder bidder = new Bidder(Person.UserTypeEnum.Bidder, 0, firstName, lastName, email, "", "", phone.ToString());
 
                 dbWrap.InsertBidder(bidder, Person.UserTypeEnum.Bidder, password, creditCard, address);
 
