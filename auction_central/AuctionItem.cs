@@ -66,7 +66,7 @@ namespace auction_central {
 			Comments = comments;
 			ImageUrl = imageUrl;
 			IsSmall = isSmall;
-            IsSold = isSold
+		    IsSold = isSold;
 		}
 
 		public AuctionItem() {

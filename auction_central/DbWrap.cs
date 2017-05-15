@@ -335,6 +335,7 @@ namespace auction_central
             string comments; //
             //string imageUrl; //
             bool isSmall; // 
+            bool isSold;
 
             MySqlConnection connection;
             string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
@@ -370,16 +371,17 @@ namespace auction_central
                         quantity = reader.GetInt32(7);
                         startingBid = reader.GetInt32(8);
                         currentBid = reader.GetInt32(9);
-                        height = reader.GetInt32(10);
-                        width = reader.GetInt32(11);
-                        length = reader.GetInt32(12);
-                        int itemUnit_int = reader.GetInt32(13);
+                        isSold = reader.GetBoolean(10);
+                        height = reader.GetInt32(11);
+                        width = reader.GetInt32(12);
+                        length = reader.GetInt32(13);
+                        int itemUnit_int = reader.GetInt32(14);
                         itemUnit = (AuctionItem.ItemUnitEnum) Enum.ToObject(typeof(AuctionItem.ItemUnitEnum), itemUnit_int);
                         //string name, int quantity, double startingBid, double currentBid, string donor, int auctionItemId, double height, double width, double length,
                         //ItemUnitEnum itemUnit, string storageLocation, ItemConditionEnum condition, string comments, string imageUrl, bool isSmall
                         AuctionItem curAuctionItem = new AuctionItem(name, quantity, startingBid, currentBid, donor,
                             auctionItemId, height, width, length, itemUnit, storageLocation, itemCondition, comments,
-                            "", isSmall);
+                            "", isSmall, isSold);
                         auctionItems.Add(curAuctionItem);
                     }
 
@@ -432,13 +434,7 @@ namespace auction_central
                     //return null; //error message here
                 }
                 else
-                {   //TODO FINISH --------------------------------
-
-                    /* INSERT INTO auction_central.phonenumbers (phoneNumber) VALUES (2222222222);
-INSERT INTO auction_central.login (emailAddress, password, type) VALUES ('isabella@test.com', 'password', 2);
-INSERT INTO auction_central.admin (firstName, lastName, phoneID, emailID) VALUES ('isabella', 'cedric', 11, 11);
-*/
-
+                {  
                     string phoneInsertString = @"INSERT INTO auction_central.phonenumbers (phoneNumber) VALUES (@phonenumber)";
                     MySqlCommand phoneInsertCommand = new MySqlCommand(phoneInsertString, connection);
                     phoneInsertCommand.Parameters.AddWithValue("@phonenumber", phonenumber);
