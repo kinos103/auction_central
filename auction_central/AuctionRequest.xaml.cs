@@ -72,7 +72,7 @@ namespace auction_central
                 hasError = true;
             }
             // no more than 1 per year? Changed to no more than one up coming
-            if (belongsToNP.Count > 0) {
+            if (belongsToNP.Count > 3) {
                 MessageBox.Show("Auction for non-profit already scheduled");
                 hasError = true;
             }
@@ -83,12 +83,12 @@ namespace auction_central
         // false if no error, true if error
        private bool Validate()
         {
-            int intPhoneNumber;
+            long intPhoneNumber;
             bool hasError = false;
 
 
             
-            if (!int.TryParse(phoneNumber.Text, out intPhoneNumber))
+            if (!Int64.TryParse(phoneNumber.Text, out intPhoneNumber))
             {
                 MessageBox.Show("Please enter phone number");
                 hasError = true;
@@ -138,7 +138,7 @@ namespace auction_central
 
             //contactID
 
-            int phoneNumber = Int32.Parse(this.phoneNumber.Text);
+            long phoneNumber = Int64.Parse(this.phoneNumber.Text);
             string location = this.location.Text;
 
             //dateTimeID
