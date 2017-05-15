@@ -460,7 +460,6 @@ namespace auction_central
         }
 
 
-
         // ACCOUNT CREATION METHODS
         // create admin account 
         public void InsertAdmin(string firstname, string lastname, string email, string password, Int64 phonenumber, Person.UserTypeEnum type)

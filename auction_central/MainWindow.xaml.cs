@@ -20,6 +20,7 @@ namespace auction_central
     /// </summary>
     public partial class MainWindow : Window {
         private NavBar navBar;
+        private dBData data;
         public Person User { get; set; }
 
         public MainWindow() {
@@ -29,6 +30,13 @@ namespace auction_central
 
         private void enter_button_Click(object sender, RoutedEventArgs e)
         {
+
+            data = new dBData();
+            //data.AdminData();
+            //data.BidderData();
+            //data.NonProfitData();
+            //data.AuctionData();
+
             if (User == null)
             {
                 HeaderNavBar.Visibility = Visibility.Hidden;

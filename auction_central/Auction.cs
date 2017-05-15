@@ -24,7 +24,7 @@ namespace auction_central {
 			PhoneNumber = phoneNumber;
 		}
 
-
+        //current
 		public Auction(int auctionId, string charityName, DateTime startTime, DateTime endTime, string contact, string phoneNumber, string location) {
 			AuctionId = auctionId;
 			CharityName = charityName;
