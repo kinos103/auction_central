@@ -26,7 +26,7 @@ namespace auction_central
         {
             InitializeComponent();
             dbWrap = new DbWrap();
-            List<string> tempList = new List<string>{"blah", "sdfgsd", "SDFGSdfg", "Sdgsdfg"};
+            List<string> tempList = dbWrap.ReturnOrgNames();
             OrgNames.ItemsSource = tempList;
         }
 
@@ -34,6 +34,8 @@ namespace auction_central
         {
             (Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new login());
         }
+
+        
 
         private void SignUpButton_OnClick(object sender, RoutedEventArgs e)
         {
@@ -147,5 +149,16 @@ namespace auction_central
         }
 
 
+        private void ComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Equals((ComboBoxItem)ComboBox.SelectedItem, NP))
+            {
+                OrgNames.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                OrgNames.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }
