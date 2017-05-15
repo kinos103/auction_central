@@ -47,7 +47,8 @@ namespace auction_central
             String firstName = SignUpFirstName.Text;
             String lastName = SignUpLastName.Text;
             String email = SignUpEmail.Text;
-            Int64 phone = Int64.Parse(SignUpPhone.Text);
+            Int64 phone;
+            Int64.TryParse(SignUpPhone.Text, out phone);
             String password = SignUpPassword.Password;
             String passwordConfirm = SignUpPasswordConfirm.Password;
             var navigationService = this.NavigationService;
@@ -62,6 +63,12 @@ namespace auction_central
             if (!IsValidEmailAddress(email))
             {
                 MessageBox.Show("Error creating account: Check email");
+                return;
+            }
+
+            if (phone == 0)
+            {
+                MessageBox.Show("Error creating account: check phone number");
                 return;
             }
 
@@ -113,12 +120,20 @@ namespace auction_central
             {
                 string streetAddress = SignUpAddress.Text;
                 string city = SignUpCity.Text;
-                int zipcode = Int32.Parse(SignUpZipcode.Text);
+                int zipcode;
+                Int32.TryParse(SignUpZipcode.Text, out zipcode);
                 string state = SignUpState.Text;
                 string creditCardNum = SignUpCreditCard.Text;
-                int cvv = Int32.Parse(SignUpCVV.Text);
+                int cvv;
+                Int32.TryParse(SignUpCVV.Text, out cvv);
                 string exp = SignUpCreditCardExpDate.Text;
-                
+
+                if (streetAddress == "" || city == "" || state == "" || creditCardNum == "" || exp == "" || 
+                    zipcode == 0 || cvv == 0 || cvv.ToString().Length < 3 || creditCardNum.Length != 16 || cvv.ToString().Length > 4)
+                {
+                    MessageBox.Show("Error creating bidder: check credit card and address");
+                    return;
+                }
 
                 Address address = new Address(streetAddress, city, state, zipcode);
                 CreditCard creditCard = new CreditCard(creditCardNum, cvv, firstName + " " + lastName, exp);

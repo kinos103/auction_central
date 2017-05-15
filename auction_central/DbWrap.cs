@@ -633,7 +633,7 @@ namespace auction_central
         }
         
         // insert new auction item into DB
-        public void InsertAuction(Auction auction, NonProfit nonprofit, int phonenum)
+        public void InsertAuction(Auction auction, NonProfit nonprofit, long phonenum)
         {
             MySqlConnection connection;
             string connectionString =
