@@ -207,6 +207,7 @@ namespace auction_central
             currItem.Donor = donor;
 
             new DbWrap().AddAuctionItem(currItem);
+            MessageBox.Show("Item added successfully");
             (Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new AddItem(CurrAuction));
         }
 
