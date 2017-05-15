@@ -703,7 +703,7 @@ namespace auction_central
         }
 
         // inserting new item 
-        public void InsertAuction(Auction auction)
+        public void InsertAuction(Auction auction, NonProfit nonprofit, int phonenum)
         {
             MySqlConnection connection;
             string connectionString =
@@ -711,41 +711,28 @@ namespace auction_central
             connection = new MySqlConnection(connectionString);
             try
             {
+                string phoneInsertString = @"INSERT INTO auction_central.phonenumbers VALUES @phonenum;";
+                MySqlCommand insertPhoneCommand = new MySqlCommand(phoneInsertString, connection);
+                insertPhoneCommand.Parameters.AddWithValue("@phonenum", phonenum);
+                insertPhoneCommand.ExecuteNonQuery();
+                long phone_id = insertPhoneCommand.LastInsertedId;
+                int phoneID_int = unchecked((int)phone_id);
+
+
                 string endtime_str = auction.EndTime.ToString("t");
-                string enddate_str = auction.EndTime.ToString("g")
+                string enddate_str = auction.EndTime.ToString("g");
+                string starttime_str = auction.StartTime.ToString("g");
                 connection.Open();
                 string insertAuctionString = @"INSERT INTO auction_central.auctioninfo (phoneID, location, endtime, enddate, starttime, nonprofitID, currentBidderID) VALUES (@phoneID, @location, @endtime, @enddate, @starttime, @nonprofitID, @currentBidderID)";
                 MySqlCommand insertAuctionCommand = new MySqlCommand(insertAuctionString, connection);
-                insertAuctionCommand.Parameters.AddWithValue("@phoneID", );
+                insertAuctionCommand.Parameters.AddWithValue("@phoneID", phoneID_int);
                 insertAuctionCommand.Parameters.AddWithValue("@location", auction.Location);
                 insertAuctionCommand.Parameters.AddWithValue("@endtime", endtime_str);
-                insertAuctionCommand.Parameters.AddWithValue("@enddate", );
-                insertAuctionCommand.Parameters.AddWithValue("@starttime", );
-                insertAuctionCommand.Parameters.AddWithValue("@nonprofitID", );
-                insertAuctionCommand.Parameters.AddWithValue("@currentBidderID", );
-
-                dimInsertCommand.ExecuteNonQuery();
-                long dim_id = dimInsertCommand.LastInsertedId;
-                int dimID_int = unchecked((int)dim_id);
-
-
-                string insertItemString = @"INSERT INTO auction_central.auctionitem (itemName, donorID, itemdimensions, 
-                                            conditionRate, auctionID, isSold, isSmall, currentprice, originalprice, quantity,
-                                            location, comments) VALUES (@itemname, @donorid, @itemdimensionID, @condition, @auctionid,
-                                            @issold, @issmall, @curprice, origprice, @quantity, @location, @comments);";
-                MySqlCommand insertItemCommand = new MySqlCommand(insertItemString, connection);
-                insertItemCommand.Parameters.AddWithValue("@itemname", item.Name);
-                insertItemCommand.Parameters.AddWithValue("@donorid", item.Donor);
-                insertItemCommand.Parameters.AddWithValue("@itemdimensionID", dimID_int);
-                insertItemCommand.Parameters.AddWithValue("@condition", item.ItemCondition);
-                insertItemCommand.Parameters.AddWithValue("@auctionid", item.AuctionItemId);
-                insertItemCommand.Parameters.AddWithValue("@issold", item.IsSold);
-                insertItemCommand.Parameters.AddWithValue("@issmall", item.IsSmall);
-                insertItemCommand.Parameters.AddWithValue("@curprice", item.CurrentBid);
-                insertItemCommand.Parameters.AddWithValue("@origprice", item.StartingBid);
-                insertItemCommand.Parameters.AddWithValue("@quantity", item.Quantity);
-                insertItemCommand.Parameters.AddWithValue("@location", item.StorageLocation);
-                insertItemCommand.Parameters.AddWithValue("@comments", item.Comments);
+                insertAuctionCommand.Parameters.AddWithValue("@enddate", enddate_str);
+                insertAuctionCommand.Parameters.AddWithValue("@starttime", starttime_str);
+                insertAuctionCommand.Parameters.AddWithValue("@nonprofitID", nonprofit.UserId);
+                insertAuctionCommand.Parameters.AddWithValue("@currentBidderID", 0);
+                insertAuctionCommand.ExecuteNonQuery();
             }
             catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
             finally { connection.Close(); }
