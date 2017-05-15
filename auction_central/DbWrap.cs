@@ -662,7 +662,7 @@ namespace auction_central
                 insertAuctionCommand.Parameters.AddWithValue("@enddate", enddate_str);
                 insertAuctionCommand.Parameters.AddWithValue("@starttime", starttime_str);
                 insertAuctionCommand.Parameters.AddWithValue("@nonprofitID", nonprofit.UserId);
-                insertAuctionCommand.Parameters.AddWithValue("@currentBidderID", 0);
+                insertAuctionCommand.Parameters.AddWithValue("@currentBidderID", 1);
                 insertAuctionCommand.ExecuteNonQuery();
             }
             catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
