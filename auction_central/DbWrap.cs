@@ -688,10 +688,13 @@ namespace auction_central
                 string orgQueryString = @"SELECT DISTINCT orgName FROM auction_central.nonprofit;";
                 MySqlCommand orgQueryCommand = new MySqlCommand(orgQueryString, connection);
                 MySqlDataReader reader = orgQueryCommand.ExecuteReader();
-                while (reader.HasRows)
+                if (reader.HasRows)
                 {
-                    string curOrg = reader.GetString(0);
-                    allOrgs.Add(curOrg);
+                    while (reader.Read())
+                    {
+                        string curOrg = reader.GetString(0);
+                        allOrgs.Add(curOrg);
+                    }
                 }
             }
             catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
@@ -708,14 +711,14 @@ namespace auction_central
             connection = new MySqlConnection(connectionString);
             try
             {
-                string endtime_str = auction.EndTime.ToString("g");
-                string 
+                string endtime_str = auction.EndTime.ToString("t");
+                string enddate_str = auction.EndTime.ToString("g")
                 connection.Open();
                 string insertAuctionString = @"INSERT INTO auction_central.auctioninfo (phoneID, location, endtime, enddate, starttime, nonprofitID, currentBidderID) VALUES (@phoneID, @location, @endtime, @enddate, @starttime, @nonprofitID, @currentBidderID)";
                 MySqlCommand insertAuctionCommand = new MySqlCommand(insertAuctionString, connection);
                 insertAuctionCommand.Parameters.AddWithValue("@phoneID", );
                 insertAuctionCommand.Parameters.AddWithValue("@location", auction.Location);
-                insertAuctionCommand.Parameters.AddWithValue("@endtime", );
+                insertAuctionCommand.Parameters.AddWithValue("@endtime", endtime_str);
                 insertAuctionCommand.Parameters.AddWithValue("@enddate", );
                 insertAuctionCommand.Parameters.AddWithValue("@starttime", );
                 insertAuctionCommand.Parameters.AddWithValue("@nonprofitID", );
