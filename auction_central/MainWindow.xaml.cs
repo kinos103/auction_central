@@ -31,7 +31,7 @@ namespace auction_central
         private void enter_button_Click(object sender, RoutedEventArgs e)
         {
 
-            data = new dBData();
+            //data = new dBData();
             //data.AdminData();
             //data.BidderData();
             //data.NonProfitData();

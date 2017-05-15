@@ -11,7 +11,7 @@ namespace auction_central
         {
             dbWrap = new DbWrap();
         }
-
+        /*
         public void AdminData()
         {
             for (int i = 0; i < 5; i++)
@@ -55,8 +55,8 @@ namespace auction_central
                 string zip = LocationFaker.ZipCode();
                 int zipcode = Convert.ToInt32(zip);
 
-                Address address = new Address(streetAddress, city, "CA", zipcode);
-                CreditCard creditCard = new CreditCard(card, cvv, first + " " + last, "05/20");
+                Address address = new Address(streetAddress, city, "NY", zipcode);
+                CreditCard creditCard = new CreditCard(card, cvv, first + " " + last, "05/22");
 
                 Bidder bidder = new Bidder(Person.UserTypeEnum.Bidder, 0, first, last, email, card, streetAddress,
                     phone);
@@ -97,7 +97,11 @@ namespace auction_central
             NonProfit nonprofit = new NonProfit(Person.UserTypeEnum.Nonprofit, 121, first, last, email, phone, org);
             dbWrap.InsertAuction(auction, nonprofit, phonenum);
         }
+        */
     }
 }
 
 //public void InsertAdmin(string firstname, string lastname, string email, string password, Int64 phonenumber, Person.UserTypeEnum type
+
+   
+  
