@@ -120,14 +120,16 @@ namespace auction_central
             {
                 string streetAddress = SignUpAddress.Text;
                 string city = SignUpCity.Text;
-                int zipcode = Int32.Parse(SignUpZipcode.Text);
+                int zipcode;
+                Int32.TryParse(SignUpZipcode.Text, out zipcode);
                 string state = SignUpState.Text;
                 string creditCardNum = SignUpCreditCard.Text;
-                int cvv = Int32.Parse(SignUpCVV.Text);
+                int cvv;
+                Int32.TryParse(SignUpCVV.Text, out cvv);
                 string exp = SignUpCreditCardExpDate.Text;
 
                 if (streetAddress == "" || city == "" || state == "" || creditCardNum == "" || exp == "" || 
-                    zipcode.ToString() == "" || cvv.ToString() == "" || cvv.ToString().Length > 3 || creditCardNum.Length != 16)
+                    zipcode == 0 || cvv == 0 || cvv.ToString().Length < 3 || creditCardNum.Length != 16 || cvv.ToString().Length > 4)
                 {
                     MessageBox.Show("Error creating bidder: check credit card and address");
                     return;
