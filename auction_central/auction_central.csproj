@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Faker">
+      <HintPath>..\..\..\..\Downloads\Faker\Faker\Faker.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
       <Private>True</Private>
@@ -76,6 +79,7 @@
       <DependentUpon>ContactUs.xaml</DependentUpon>
     </Compile>
     <Compile Include="CreditCard.cs" />
+    <Compile Include="dBData.cs" />
     <Compile Include="Donor.xaml.cs">
       <DependentUpon>Donor.xaml</DependentUpon>
     </Compile>
