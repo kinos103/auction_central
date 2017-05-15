@@ -15,7 +15,8 @@ namespace auction_central
         public DbWrap()
         {
         }
-
+        
+        // MAIN METHOD FOR CREATING ACCOUNT OBJECTS
         public Person LoginExists(string emailAddress, string password, Person.UserTypeEnum userType) {
             Person toReturn = null;
 
@@ -43,43 +44,21 @@ namespace auction_central
 
             return toReturn;
         }
+        
+        
 
-        public int GetEmailId(string emailAddress, string password, Person.UserTypeEnum userTypeEnum) {
-            int toReturn = -1;
-            string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
-            MySqlConnection connection = new MySqlConnection(connectionString);
-            try
-            {
-                connection.Open();
-                string emailQueryString = @"SELECT emailID
-                                            FROM login
-                                            WHERE emailAddress=@emailAddress AND password=@password AND type=@userType;";
-                MySqlCommand emailQueryCommand = new MySqlCommand(emailQueryString, connection);
-                emailQueryCommand.Parameters.AddWithValue("@emailAddress", emailAddress);
-                emailQueryCommand.Parameters.AddWithValue("@password", password);
-                emailQueryCommand.Parameters.AddWithValue("@userType", (int) userTypeEnum);
-                MySqlDataReader reader = emailQueryCommand.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    reader.Read();
-                    toReturn = reader.GetInt32(0);
-                }
-
-            }
-            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
-            finally { connection.Close(); }
-
-            return toReturn;
-        }
-
-        private Admin AdminObjCreation(int adminEmailID) ////usertype, int userid, string firstname, string lastname, string phonenumber, string email
+        // DATABASE TO OBJECT CREATION METHODS
+        // create Admin Object from login & DB info
+        private Admin AdminObjCreation(int adminEmailID)
         {
+            // fields
             int employeeid = 0;
             string firstname = "";
             string lastname = "";
             string phonenumber = "";
             string email = "";
 
+            //make connection 
             MySqlConnection connection;
             string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
             connection = new MySqlConnection(connectionString);
@@ -101,6 +80,7 @@ namespace auction_central
                 MySqlDataReader reader = adminQueryCommand.ExecuteReader(); 
                 if (reader.HasRows)
                 {
+                    // get admin information 
                     while (reader.Read())
                     {
                         employeeid = reader.GetInt32(0);
@@ -124,8 +104,10 @@ namespace auction_central
             return adminObj;
         }
 
+        // create Nonprofit Object from login & DB info
         private NonProfit NonProfitObjCreation(int nonprofitEmailID)
         {
+            // fields
             int npid = 0;
             string firstname = "";
             string lastname = "";
@@ -133,6 +115,7 @@ namespace auction_central
             string email = "";
             string org = "";
 
+            // create DB connection 
             MySqlConnection connection;
             string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
             connection = new MySqlConnection(connectionString);
@@ -155,6 +138,7 @@ namespace auction_central
                 MySqlDataReader reader = npQueryCommand.ExecuteReader();
                 if (reader.HasRows)
                 {
+                    // get Nonprofit information 
                     while (reader.Read())
                     {
                         npid = reader.GetInt32(0);
@@ -178,8 +162,10 @@ namespace auction_central
             return nonProfitObj;
         }
 
+        // create Bidder Object from login & DB info 
         private Bidder BidderObjCreation(int bidderEmailId)
         {
+            // fields
             int bidderid = 0;
             string firstname = "";
             string lastname = "";
@@ -191,7 +177,7 @@ namespace auction_central
             string state = "";
             int zipCode = 0;
 
-
+            // create DB connection 
             MySqlConnection connection;
             string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
             connection = new MySqlConnection(connectionString);
@@ -220,6 +206,7 @@ namespace auction_central
                 MySqlDataReader reader = npQueryCommand.ExecuteReader();
                 if (reader.HasRows)
                 {
+                    // get bidder information 
                     while (reader.Read())
                     {
                         bidderid = reader.GetInt32(0);
@@ -248,23 +235,25 @@ namespace auction_central
             Bidder bidderObj = new Bidder(Person.UserTypeEnum.Bidder, bidderid, firstname, lastname, email, cardNumber, concatAddress, phonenumber);
             return bidderObj;
         }
+        
 
+
+        // RETURN INFORMATION METHODS
+        // returns list of all Auctions in DB
         public List<Auction> AuctionObjList()
         {
+            // fields
             CultureInfo enUS = new CultureInfo("en-US");
-            //string charityName, DateTime startTime, DateTime endTime, string contact, string phoneNumber
             List<Auction> auctions = new List<Auction>();
-            //string charityName = "";
             string firstName = "";
             string lastName = "";
-            //DateTime startTime;
-            //DateTime endTime;
             string startTime_str;
             string endTime_str;
             string contact = ""; // full name
             string phoneNumber = "";
             int auctionid = 0;
 
+            // create connection
             MySqlConnection connection;
             string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
             connection = new MySqlConnection(connectionString);
@@ -283,6 +272,7 @@ namespace auction_central
                 MySqlDataReader reader = auctionQueryCommand.ExecuteReader();
                 if (reader.HasRows)
                 {
+                    // get Auction details
                     while (reader.Read())
                     {
                         string charityName = reader.GetString(0);
@@ -296,16 +286,21 @@ namespace auction_central
                         string location = reader.GetString(7);
                         DateTime startTime;
                         DateTime endTime;
+
                         // Parse date with no style flags.
                         if (DateTime.TryParse(startTime_str, out startTime))
                             Console.WriteLine("Converted '{0}' to {1} ({2}).", startTime_str, startTime,
                                 startTime.Kind);
+
                         // Parse date with no style flags.
                         if (DateTime.TryParse(endTime_str, out endTime))
                             Console.WriteLine("Converted '{0}' to {1} ({2}).", endTime_str, endTime,
                                 endTime.Kind);
+
+                        // create new Auction Object
                         Auction curAuction = new Auction(auctionid, charityName, startTime, endTime, contact, phoneNumber, location);
-                       auctions.Add(curAuction);
+                        // add Auction Object to Auction Object List
+                        auctions.Add(curAuction);
                     }
 
                 }
@@ -320,6 +315,7 @@ namespace auction_central
             return auctions;
         }
 
+        // returns all auction items in a given auction 
         public List<AuctionItem> AuctionItemsObjList(int auctionid)
         {
             List<AuctionItem> auctionItems = new List<AuctionItem>();
@@ -400,23 +396,67 @@ namespace auction_central
             return auctionItems;
         }
 
-
-        /*  @"SELECT
-                                              employeeID,
-                                              firstName,
-                                              lastName,
-                                              emailAddress,
-                                              phoneNumber
-                                            FROM admin
-                                              JOIN phonenumbers ON admin.phoneID = phonenumbers.phoneID
-                                              JOIN login ON admin.emailID = login.emailID
-                                            WHERE admin.emailID = @adminEmailId";
-                MySqlCommand adminQueryCommand = new MySqlCommand(adminQueryString, connection);
-                adminQueryCommand.Parameters.AddWithValue("@adminEmailId", adminEmailID);
-                MySqlDataReader reader = adminQueryCommand.ExecuteReader(); 
+        // returns all orginization names in database
+        public List<string> ReturnOrgNames()
+        {
+            List<string> allOrgs = new List<string>();
+            MySqlConnection connection;
+            string connectionString =
+                @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+            connection = new MySqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                string orgQueryString = @"SELECT DISTINCT orgName FROM auction_central.nonprofit;";
+                MySqlCommand orgQueryCommand = new MySqlCommand(orgQueryString, connection);
+                MySqlDataReader reader = orgQueryCommand.ExecuteReader();
                 if (reader.HasRows)
-                */
+                {
+                    while (reader.Read())
+                    {
+                        string curOrg = reader.GetString(0);
+                        allOrgs.Add(curOrg);
+                    }
+                }
+            }
+            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
+            finally { connection.Close(); }
+            return allOrgs;
+        }
 
+        // returns emailID given user account information 
+        public int GetEmailId(string emailAddress, string password, Person.UserTypeEnum userTypeEnum)
+        {
+            int toReturn = -1;
+            string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                string emailQueryString = @"SELECT emailID
+                                            FROM login
+                                            WHERE emailAddress=@emailAddress AND password=@password AND type=@userType;";
+                MySqlCommand emailQueryCommand = new MySqlCommand(emailQueryString, connection);
+                emailQueryCommand.Parameters.AddWithValue("@emailAddress", emailAddress);
+                emailQueryCommand.Parameters.AddWithValue("@password", password);
+                emailQueryCommand.Parameters.AddWithValue("@userType", (int)userTypeEnum);
+                MySqlDataReader reader = emailQueryCommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    toReturn = reader.GetInt32(0);
+                }
+
+            }
+            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
+            finally { connection.Close(); }
+
+            return toReturn;
+        }
+
+
+
+        // ACCOUNT CREATION METHODS
         // create admin account 
         public void InsertAdmin(string firstname, string lastname, string email, string password, Int64 phonenumber, Person.UserTypeEnum type)
         {
@@ -478,7 +518,6 @@ namespace auction_central
             finally { connection.Close(); }
             //return ....;
         }
-
 
         // create nonprofit account 
         public void InsertNonprofit(string firstname, string lastname, string email, string password, Int64 phonenumber, Person.UserTypeEnum type, string orgname)
@@ -544,7 +583,8 @@ namespace auction_central
         }
 
 
-        // inserting new item 
+        // INSERTING INTO DB METHODS
+        // insert new Auction into DB 
         public void AddAuctionItem(AuctionItem item)
         {
             MySqlConnection connection;
@@ -588,8 +628,44 @@ namespace auction_central
             catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
             finally { connection.Close(); }
         }
+        
+        // insert new auction item into DB
+        public void InsertAuction(Auction auction, NonProfit nonprofit, int phonenum)
+        {
+            MySqlConnection connection;
+            string connectionString =
+                @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+            connection = new MySqlConnection(connectionString);
+            try
+            {
+                string phoneInsertString = @"INSERT INTO auction_central.phonenumbers VALUES @phonenum;";
+                MySqlCommand insertPhoneCommand = new MySqlCommand(phoneInsertString, connection);
+                insertPhoneCommand.Parameters.AddWithValue("@phonenum", phonenum);
+                insertPhoneCommand.ExecuteNonQuery();
+                long phone_id = insertPhoneCommand.LastInsertedId;
+                int phoneID_int = unchecked((int)phone_id);
 
-        // create bidder account 
+
+                string endtime_str = auction.EndTime.ToString("t");
+                string enddate_str = auction.EndTime.ToString("g");
+                string starttime_str = auction.StartTime.ToString("g");
+                connection.Open();
+                string insertAuctionString = @"INSERT INTO auction_central.auctioninfo (phoneID, location, endtime, enddate, starttime, nonprofitID, currentBidderID) VALUES (@phoneID, @location, @endtime, @enddate, @starttime, @nonprofitID, @currentBidderID)";
+                MySqlCommand insertAuctionCommand = new MySqlCommand(insertAuctionString, connection);
+                insertAuctionCommand.Parameters.AddWithValue("@phoneID", phoneID_int);
+                insertAuctionCommand.Parameters.AddWithValue("@location", auction.Location);
+                insertAuctionCommand.Parameters.AddWithValue("@endtime", endtime_str);
+                insertAuctionCommand.Parameters.AddWithValue("@enddate", enddate_str);
+                insertAuctionCommand.Parameters.AddWithValue("@starttime", starttime_str);
+                insertAuctionCommand.Parameters.AddWithValue("@nonprofitID", nonprofit.UserId);
+                insertAuctionCommand.Parameters.AddWithValue("@currentBidderID", 0);
+                insertAuctionCommand.ExecuteNonQuery();
+            }
+            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
+            finally { connection.Close(); }
+        }
+        
+        // Create new bidder account into DB
         public void InsertBidder(Bidder bidder, Person.UserTypeEnum type, string password, CreditCard creditcard, Address bidderaddress)
         {
             //(UserTypeEnum usertype, int userid, string firstname, string lastname, string email, string cardnumber, string address, string phonenumber)
@@ -643,7 +719,7 @@ namespace auction_central
                         addressInsertCommand.Parameters.AddWithValue("@zip", bidderaddress.Zipcode);
                         addressInsertCommand.ExecuteNonQuery();
                         long address_id = addressInsertCommand.LastInsertedId;
-                        int addressID_int = unchecked ((int) address_id);
+                        int addressID_int = unchecked((int)address_id);
 
                         string creditCardInsertQuery =
                             @"INSERT INTO auction_central.creditcards (cardnumber, cvv, nameoncard, exdate) VALUES (@cardnum, @cvv, @nameoncard, @exdate);";
@@ -653,7 +729,7 @@ namespace auction_central
                         cardInsertCommand.Parameters.AddWithValue("@nameoncard", creditcard.NameOnCard);
                         cardInsertCommand.Parameters.AddWithValue("@exdate", creditcard.ExpDate);
                         long card_id = cardInsertCommand.LastInsertedId;
-                        int cardID_int = unchecked ((int) card_id);
+                        int cardID_int = unchecked((int)card_id);
 
                         string adminInsertString = @"INSERT INTO auction_central.bidder (cardID, emailID, phoneID, addressID, firstname, lastname) VALUES (@card__id, @email__id, @phone__id, @address__id, firstname, lastname);";
                         MySqlCommand adminInsertCommand = new MySqlCommand(adminInsertString, connection2);
@@ -661,7 +737,7 @@ namespace auction_central
                         adminInsertCommand.Parameters.AddWithValue("@phone__id", phoneID_int);
                         adminInsertCommand.Parameters.AddWithValue("@email__id", emailID_int);
                         adminInsertCommand.Parameters.AddWithValue("@address_id", addressID_int);
-                        adminInsertCommand.Parameters.AddWithValue("@last", bidder.LastName);
+                        adminInsertCommand.Parameters.AddWithValue("@last", bidder.FirstName);
                         adminInsertCommand.Parameters.AddWithValue("@last", bidder.LastName);
                         adminInsertCommand.ExecuteNonQuery();
                         connection2.Close();
@@ -674,68 +750,6 @@ namespace auction_central
             finally { connection.Close(); }
             //return ....;
         }
-
-        public List<string> ReturnOrgNames()
-        {
-            List<string> allOrgs = new List<string>();
-            MySqlConnection connection;
-            string connectionString =
-                @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
-            connection = new MySqlConnection(connectionString);
-            try
-            {
-                connection.Open();
-                string orgQueryString = @"SELECT DISTINCT orgName FROM auction_central.nonprofit;";
-                MySqlCommand orgQueryCommand = new MySqlCommand(orgQueryString, connection);
-                MySqlDataReader reader = orgQueryCommand.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        string curOrg = reader.GetString(0);
-                        allOrgs.Add(curOrg);
-                    }
-                }
-            }
-            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
-            finally { connection.Close(); }
-            return allOrgs;
-        }
-
-        // inserting new item 
-        public void InsertAuction(Auction auction, NonProfit nonprofit, int phonenum)
-        {
-            MySqlConnection connection;
-            string connectionString =
-                @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
-            connection = new MySqlConnection(connectionString);
-            try
-            {
-                string phoneInsertString = @"INSERT INTO auction_central.phonenumbers VALUES @phonenum;";
-                MySqlCommand insertPhoneCommand = new MySqlCommand(phoneInsertString, connection);
-                insertPhoneCommand.Parameters.AddWithValue("@phonenum", phonenum);
-                insertPhoneCommand.ExecuteNonQuery();
-                long phone_id = insertPhoneCommand.LastInsertedId;
-                int phoneID_int = unchecked((int)phone_id);
-
-
-                string endtime_str = auction.EndTime.ToString("t");
-                string enddate_str = auction.EndTime.ToString("g");
-                string starttime_str = auction.StartTime.ToString("g");
-                connection.Open();
-                string insertAuctionString = @"INSERT INTO auction_central.auctioninfo (phoneID, location, endtime, enddate, starttime, nonprofitID, currentBidderID) VALUES (@phoneID, @location, @endtime, @enddate, @starttime, @nonprofitID, @currentBidderID)";
-                MySqlCommand insertAuctionCommand = new MySqlCommand(insertAuctionString, connection);
-                insertAuctionCommand.Parameters.AddWithValue("@phoneID", phoneID_int);
-                insertAuctionCommand.Parameters.AddWithValue("@location", auction.Location);
-                insertAuctionCommand.Parameters.AddWithValue("@endtime", endtime_str);
-                insertAuctionCommand.Parameters.AddWithValue("@enddate", enddate_str);
-                insertAuctionCommand.Parameters.AddWithValue("@starttime", starttime_str);
-                insertAuctionCommand.Parameters.AddWithValue("@nonprofitID", nonprofit.UserId);
-                insertAuctionCommand.Parameters.AddWithValue("@currentBidderID", 0);
-                insertAuctionCommand.ExecuteNonQuery();
-            }
-            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
-            finally { connection.Close(); }
-        }
+        
     }
 }
