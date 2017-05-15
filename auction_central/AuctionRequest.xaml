@@ -14,15 +14,15 @@
 <!--        <TextBox x:Name="charityName" HorizontalAlignment="Left" Height="51" Margin="179,182,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Charity Name" VerticalAlignment="Top" Width="430" FontSize="21.333"/>-->
 <!--        <TextBox x:Name="firstName" HorizontalAlignment="Left" Height="51" Margin="179,238,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="First Name" VerticalAlignment="Top" Width="164" FontSize="21.333" />-->
 <!--        <TextBox x:Name="lastName" HorizontalAlignment="Left" Height="51" Margin="445,238,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Last Name" VerticalAlignment="Top" Width="164" FontSize="21.333"/>-->
-        <TextBox x:Name="phoneNumber" HorizontalAlignment="Left" Height="51" Margin="179,294,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Phone Number" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <materialDesign:TimePicker x:Name="startTime" HorizontalAlignment="Left" Height="51" Margin="179,460,0,0"  materialDesign:HintAssist.Hint="Start Time" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <materialDesign:TimePicker x:Name="endTime" HorizontalAlignment="Left" Height="51" Margin="180,517,0,0" materialDesign:HintAssist.Hint="End Time" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
+        <TextBox x:Name="phoneNumber" HorizontalAlignment="Left" Height="51" Margin="184,246,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Phone Number" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
+        <materialDesign:TimePicker x:Name="startTime" HorizontalAlignment="Left" Height="51" Margin="184,437,0,0"  materialDesign:HintAssist.Hint="Start Time" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
+        <materialDesign:TimePicker x:Name="endTime" HorizontalAlignment="Left" Height="51" Margin="184,507,0,0" materialDesign:HintAssist.Hint="End Time" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
 <!--        <TextBox x:Name="numOfItems" HorizontalAlignment="Left" Height="51" Margin="182,573,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Anticipated # of Items" VerticalAlignment="Top" Width="430" FontSize="21.333"/>-->
 <!--        <TextBox x:Name="additionalComments" HorizontalAlignment="Left" Height="152" Margin="179,630,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="1011" materialDesign:HintAssist.Hint="Additional Comments..." FontSize="21.333"/>-->
-        <Button x:Name="placeRequest" Content="Place Request" HorizontalAlignment="Left" Height="56" Margin="179,805,0,0" VerticalAlignment="Top" Width="229" FontSize="24" Click="placeRequest_Click"/>
-        <TextBox x:Name="location" HorizontalAlignment="Left" Height="51" Margin="180,350,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Location" VerticalAlignment="Top" Width="430" FontSize="21.333" />
-        <DatePicker x:Name="datePickerAuction" SelectedDateFormat="Long" HorizontalAlignment="Left" Height="44" Margin="327,411,0,0" VerticalAlignment="Top" Foreground="Gray" Width="282" materialDesign:HintAssist.Hint="Event Date"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="46" Margin="179,424,0,0" Foreground="Gray"  TextWrapping="Wrap" Text="Select a Date" VerticalAlignment="Top" Width="144" FontSize="21.333"/>
+        <Button x:Name="placeRequest" Content="Place Request" HorizontalAlignment="Left" Height="56" Margin="184,630,0,0" VerticalAlignment="Top" Width="229" FontSize="24" Click="placeRequest_Click"/>
+        <TextBox x:Name="location" HorizontalAlignment="Left" Height="51" Margin="184,306,0,0" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Location" VerticalAlignment="Top" Width="430" FontSize="21.333" />
+        <DatePicker x:Name="datePickerAuction" SelectedDateFormat="Long" HorizontalAlignment="Left" Height="44" Margin="332,375,0,0" VerticalAlignment="Top" Foreground="Gray" Width="282" materialDesign:HintAssist.Hint="Event Date"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Height="46" Margin="184,381,0,0" Foreground="Gray"  TextWrapping="Wrap" Text="Select a Date" VerticalAlignment="Top" Width="144" FontSize="21.333"/>
 
     </Grid>
 </Page>
