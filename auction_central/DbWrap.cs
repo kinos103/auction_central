@@ -464,6 +464,7 @@ namespace auction_central
                         adminInsertCommand.Parameters.AddWithValue("@last", lastname);
                         adminInsertCommand.Parameters.AddWithValue("@phone__id", phoneID_int);
                         adminInsertCommand.Parameters.AddWithValue("@email__id", emailID_int);
+                        adminInsertCommand.ExecuteNonQuery();
                         connection2.Close();
                     }
                     catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
