@@ -478,7 +478,7 @@ namespace auction_central
 
 
         // create nonprofit account 
-        public void InsertNonprofit(string firstname, string lastname, string email, string password, int phonenumber, Person.UserTypeEnum type, string orgname)
+        public void InsertNonprofit(string firstname, string lastname, string email, string password, Int64 phonenumber, Person.UserTypeEnum type, string orgname)
         {
             MySqlConnection connection;
             string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
