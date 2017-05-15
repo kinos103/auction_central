@@ -21,9 +21,11 @@ namespace auction_central
     /// </summary>
     public partial class AddItem : Page {
         private AuctionItem currItem;
-        public AddItem()
+        private Auction CurrAuction;
+        public AddItem(Auction currAuction)
         {
             InitializeComponent();
+            CurrAuction = currAuction;
             currItem = new AuctionItem();
         }
 
@@ -105,7 +107,7 @@ namespace auction_central
 
         private void addItemButton_Click(object sender, RoutedEventArgs e) {
             bool hadError = false;
-            if (!Validate()) {
+            if (Validate()) {
                 MessageBox.Show("One or more fields are wrong");
                 return;
             }
@@ -166,13 +168,19 @@ namespace auction_central
 //            int condition = (int) conditionSlider.Value;
             AuctionItem.ItemConditionEnum condition = AuctionItem.ItemConditionEnum.Used;
 
-            ComboBoxItem conditionItem = ComboBoxCondition.SelectionBoxItem as ComboBoxItem;
+            ComboBoxItem conditionItem = ComboBoxCondition.SelectedItem as ComboBoxItem;
 
-            if (Equals(conditionItem, Used)) {
-                condition = AuctionItem.ItemConditionEnum.Used;
-            }
-            else if (Equals(conditionItem, New)) {
-                condition = AuctionItem.ItemConditionEnum.New;
+            if (conditionItem != null) {
+                if (conditionItem.Content.ToString() == "Used") {
+                    condition = AuctionItem.ItemConditionEnum.Used;
+                }
+                else if (conditionItem.Content.ToString() ==  "New") {
+                    condition = AuctionItem.ItemConditionEnum.New;
+                }
+                else {
+                    MessageBox.Show("Is the item new or used?");
+                    hadError = true;
+                }
             }
             else {
                 MessageBox.Show("Is the item new or used?");
@@ -184,6 +192,7 @@ namespace auction_central
                 return;
             }
 
+            currItem.AuctionItemId = CurrAuction.AuctionId;
             currItem.Name = itemName;
             currItem.StorageLocation = storageLocationText;
             currItem.Quantity = itemQuantity;
@@ -195,10 +204,10 @@ namespace auction_central
             currItem.ItemCondition = condition;
             currItem.Comments = comments.Text;
             currItem.ItemUnit = itemUnitToStore;
-            //TODO Set donor?
+            currItem.Donor = donor;
 
-            //TODO use DbWrap to add item
-
+            new DbWrap().AddAuctionItem(currItem);
+            (Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new AddItem(CurrAuction));
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e) {

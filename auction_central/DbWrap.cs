@@ -615,10 +615,10 @@ namespace auction_central
                 string insertItemString = @"INSERT INTO auction_central.auctionitem (itemName, donorID, itemdimensions, 
                                             conditionRate, auctionID, isSold, isSmall, currentprice, originalprice, quantity,
                                             location, comments) VALUES (@itemname, @donorid, @itemdimensionID, @condition, @auctionid,
-                                            @issold, @issmall, @curprice, origprice, @quantity, @location, @comments);";
+                                            @issold, @issmall, @curprice, @origprice, @quantity, @location, @comments);";
                 MySqlCommand insertItemCommand = new MySqlCommand(insertItemString, connection);
                 insertItemCommand.Parameters.AddWithValue("@itemname", item.Name);
-                insertItemCommand.Parameters.AddWithValue("@donorid", item.Donor);
+                insertItemCommand.Parameters.AddWithValue("@donorid", 1);
                 insertItemCommand.Parameters.AddWithValue("@itemdimensionID", dimID_int);
                 insertItemCommand.Parameters.AddWithValue("@condition", item.ItemCondition);
                 insertItemCommand.Parameters.AddWithValue("@auctionid", item.AuctionItemId);
@@ -629,6 +629,8 @@ namespace auction_central
                 insertItemCommand.Parameters.AddWithValue("@quantity", item.Quantity);
                 insertItemCommand.Parameters.AddWithValue("@location", item.StorageLocation);
                 insertItemCommand.Parameters.AddWithValue("@comments", item.Comments);
+                insertItemCommand.ExecuteNonQuery();
+                connection.Close();
             }
             catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
             finally { connection.Close(); }
