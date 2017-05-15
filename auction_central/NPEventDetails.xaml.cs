@@ -56,6 +56,7 @@ namespace auction_central
                 EndTime.Visibility = belongsToNP.Count != 0 ? Visibility.Visible : Visibility.Collapsed;
                 addItemsButton.Visibility = belongsToNP.Count != 0 ? Visibility.Visible : Visibility.Collapsed;
                 ViewItemsButton.Visibility = belongsToNP.Count != 0 ? Visibility.Visible : Visibility.Collapsed;
+                AddAuctionButton.Visibility = belongsToNP.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
             };
 
         }
@@ -84,9 +85,7 @@ namespace auction_central
 
         private void addItemsButton_Click(object sender, RoutedEventArgs e)
         {
-            /*EventDetails.Content = new AddItem();*/
             this.NavigationService.Navigate(new Uri("AddItem.xaml", UriKind.Relative));
-
         }
 
         private void ViewItemsButton_Click(object sender, RoutedEventArgs e)
@@ -94,6 +93,10 @@ namespace auction_central
             this.NavigationService.Navigate(new Uri("AuctionItems.xaml", UriKind.Relative));
         }
 
+        private void AddAuctionButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("AuctionRequest.xaml", UriKind.Relative));
+        }
     }
     
 }
