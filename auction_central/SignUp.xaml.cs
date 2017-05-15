@@ -26,8 +26,7 @@ namespace auction_central
         {
             InitializeComponent();
             dbWrap = new DbWrap();
-            List<string> tempList = dbWrap.ReturnOrgNames();
-            OrgNames.ItemsSource = tempList;
+            OrgNames.ItemsSource = dbWrap.ReturnOrgNames();
         }
 
         private void SignUpLoginButton_OnClick(object sender, RoutedEventArgs e)
@@ -90,7 +89,13 @@ namespace auction_central
             }
             else if (Equals(item, NP))
             {
-                dbWrap.InsertNonprofit(firstName, lastName, email, password, phone, Person.UserTypeEnum.Nonprofit, "Org1");
+                if (OrgNames.SelectionBoxItem.ToString() == "")
+                {
+                    MessageBox.Show("Please select an Org");
+                    return;
+                }
+
+                dbWrap.InsertNonprofit(firstName, lastName, email, password, phone, Person.UserTypeEnum.Nonprofit, OrgNames.SelectionBoxItem.ToString());
 
                 Person returned = dbWrap.LoginExists(email, password, Person.UserTypeEnum.Nonprofit);
                 if (returned == null)
@@ -148,17 +153,9 @@ namespace auction_central
             }
         }
 
-
         private void ComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (Equals((ComboBoxItem)ComboBox.SelectedItem, NP))
-            {
-                OrgNames.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                OrgNames.Visibility = Visibility.Collapsed;
-            }
+            OrgNames.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, NP) ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }
