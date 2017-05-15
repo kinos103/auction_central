@@ -703,7 +703,7 @@ namespace auction_central
                                             @issold, @issmall, @curprice, @origprice, @quantity, @location, @comments);";
                 MySqlCommand insertItemCommand = new MySqlCommand(insertItemString, connection);
                 insertItemCommand.Parameters.AddWithValue("@itemname", item.Name);
-                insertItemCommand.Parameters.AddWithValue("@donorid", 1);
+                insertItemCommand.Parameters.AddWithValue("@donorid", 211);
                 insertItemCommand.Parameters.AddWithValue("@itemdimensionID", dimID_int);
                 insertItemCommand.Parameters.AddWithValue("@condition", item.ItemCondition);
                 insertItemCommand.Parameters.AddWithValue("@auctionid", item.AuctionItemId);
