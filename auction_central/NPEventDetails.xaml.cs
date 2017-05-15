@@ -58,7 +58,6 @@ namespace auction_central
                 ViewItemsButton.Visibility = belongsToNP.Count != 0 ? Visibility.Visible : Visibility.Collapsed;
                 AddAuctionButton.Visibility = belongsToNP.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
             };
-
         }
 
         private void AddBelongsTo()
@@ -98,5 +97,4 @@ namespace auction_central
             this.NavigationService.Navigate(new Uri("AuctionRequest.xaml", UriKind.Relative));
         }
     }
-    
 }
