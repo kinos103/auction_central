@@ -272,11 +272,11 @@ namespace auction_central
             {
                 connection.Open();
                 string auctionQueryString = @"SELECT N.orgName, N.firstname, N.lastName,
-                                              A.enddate, A.starttime, A.enddate, P.phoneNumber, A.auctionID, A.location
+                                            A.starttime, A.endtime, P.phoneNumber, A.auctionID, A.location
                                             FROM nonprofit N
-                                            RIGHT JOIN auctioninfo A
+                                            JOIN auctioninfo A
                                             ON N.nonprofitID = A.nonprofitID
-                                            LEFT JOIN phonenumbers P
+                                            JOIN phonenumbers P
                                             ON N.phoneID = P.phoneID;
                                             ";
                 MySqlCommand auctionQueryCommand = new MySqlCommand(auctionQueryString, connection);
