@@ -64,7 +64,7 @@
 				<RowDefinition Height="*"/>
 			</Grid.RowDefinitions>
 
-			<TextBlock Grid.Row="0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Event Calendar" FontSize="64"/>
+			<TextBlock Grid.Row="0" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Event Calendar" FontSize="64" FontFamily="Segoe UI Light"/>
 			<TabControl Grid.Row="1" Width="1300" Height="800">
 				<TabItem Header="Single Month">
 					<Viewbox HorizontalAlignment="Center" VerticalAlignment="Center">
