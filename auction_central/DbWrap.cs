@@ -743,7 +743,7 @@ namespace auction_central
                 string enddate_str = auction.EndTime.ToString("d");
                 string starttime_str = auction.StartTime.ToString("g");
             
-                string insertAuctionString = @"INSERT INTO auction_central.auctioninfo (phoneID, location, endtime, enddate, starttime, nonprofitID, currentBidderID) VALUES (@phoneID, @location, @endtime, @enddate, @starttime, @nonprofitID, @currentBidderID)";
+                string insertAuctionString = @"INSERT INTO auction_central.auctioninfo (phoneID, location, endtime, enddate, starttime, nonprofitID) VALUES (@phoneID, @location, @endtime, @enddate, @starttime, @nonprofitID, @currentBidderID)";
                 MySqlCommand insertAuctionCommand = new MySqlCommand(insertAuctionString, connection);
                 insertAuctionCommand.Parameters.AddWithValue("@phoneID", phoneID_int);
                 insertAuctionCommand.Parameters.AddWithValue("@location", auction.Location);
