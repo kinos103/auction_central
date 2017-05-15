@@ -21,9 +21,11 @@ namespace auction_central
     /// </summary>
     public partial class SignUp : Page
     {
+        private DbWrap dbWrap;
         public SignUp()
         {
             InitializeComponent();
+            dbWrap = new DbWrap();
         }
 
         private void SignUpLoginButton_OnClick(object sender, RoutedEventArgs e)
@@ -44,6 +46,7 @@ namespace auction_central
             String email = SignUpEmail.Text;
             String password = SignUpPassword.Password;
             String passwordConfirm = SignUpPasswordConfirm.Password;
+            var navigationService = this.NavigationService;
 
 
             if (firstName == "" || lastName == "")
@@ -64,10 +67,18 @@ namespace auction_central
                 return;
             }
 
-
             if (Equals(item, Admin))
             {
-                MessageBox.Show("USER TYPE WORKS: Admin");
+                if (dbWrap.InsertAdmin(firstName, lastName, email, password, 0, Person.UserTypeEnum.Admin);)
+                {
+                    navigationService?.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
+                    (Window.GetWindow(this) as MainWindow).HeaderNavBar.Visibility = Visibility.Visible;
+                    (Window.GetWindow(this) as MainWindow).MainContent.NavigationUIVisibility = NavigationUIVisibility.Visible;
+                }
+                else
+                {
+                    MessageBox.Show("Error creating account, please try again.");
+                }
             }
             else if (Equals(item, NP))
             {
@@ -81,6 +92,7 @@ namespace auction_central
             {
                 MessageBox.Show("Please Select a User Type");
             }
+            
         }
 
         public static bool IsValidEmailAddress(string emailaddress)
