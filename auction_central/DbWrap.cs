@@ -474,7 +474,71 @@ namespace auction_central
             catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
             finally { connection.Close(); }
             //return ....;
-        } 
+        }
+
+
+        // create nonprofit account 
+        public void InsertNonprofit(string firstname, string lastname, string email, string password, Int64 phonenumber, Person.UserTypeEnum type, string orgname)
+        {
+            MySqlConnection connection;
+            string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+            connection = new MySqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                string loginQueryString = @"SELECT * FROM login WHERE login.emailAddress=@emailaddress;";
+                MySqlCommand loginQueryCommand = new MySqlCommand(loginQueryString, connection);
+                loginQueryCommand.Parameters.AddWithValue("@emailaddress", email);
+                MySqlDataReader reader = loginQueryCommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    MessageBox.Show("That email address is already linked to another account. Use a different one. ");
+                    // means the entry already exists 
+                    //return null; //error message here
+                }
+                else
+                {
+                    connection.Close();
+                    MySqlConnection connection2;
+                    string connectionString2 = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+                    connection2 = new MySqlConnection(connectionString2);
+                    try
+                    {
+                        connection2.Open();
+                        string phoneInsertString = @"INSERT INTO auction_central.phonenumbers (phoneNumber) VALUES (@phonenumber)";
+                        MySqlCommand phoneInsertCommand = new MySqlCommand(phoneInsertString, connection2);
+                        phoneInsertCommand.Parameters.AddWithValue("@phonenumber", phonenumber);
+                        phoneInsertCommand.ExecuteNonQuery();
+                        long phone_id = phoneInsertCommand.LastInsertedId;
+                        int phoneID_int = unchecked((int)phone_id);
+
+                        string loginInsertString = @"INSERT INTO auction_central.login (emailAddress, password, type) VALUES (@email, @password, @type);";
+                        MySqlCommand loginInsertCommand = new MySqlCommand(loginInsertString, connection2);
+                        loginInsertCommand.Parameters.AddWithValue("@email", email);
+                        loginInsertCommand.Parameters.AddWithValue("@password", password);
+                        loginInsertCommand.Parameters.AddWithValue("@type", type);
+                        loginInsertCommand.ExecuteNonQuery();
+                        long email_id = loginInsertCommand.LastInsertedId;
+                        int emailID_int = unchecked((int)email_id);
+
+                        string adminInsertString = @"INSERT INTO auction_central.nonprofit (firstName, lastName, phoneID, emailID, orgName) VALUES (@first, @last, @phone__id, @email__id, @org);";
+                        MySqlCommand adminInsertCommand = new MySqlCommand(adminInsertString, connection2);
+                        adminInsertCommand.Parameters.AddWithValue("@first", firstname);
+                        adminInsertCommand.Parameters.AddWithValue("@last", lastname);
+                        adminInsertCommand.Parameters.AddWithValue("@phone__id", phoneID_int);
+                        adminInsertCommand.Parameters.AddWithValue("@email__id", emailID_int);
+                        adminInsertCommand.Parameters.AddWithValue("@org", orgname);
+                        adminInsertCommand.ExecuteNonQuery();
+                        connection2.Close();
+                    }
+                    catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
+                }
+
+            }
+            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
+            finally { connection.Close(); }
+            //return ....;
+        }
 
 
         // inserting new item 
