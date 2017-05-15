@@ -83,5 +83,10 @@ namespace auction_central {
 	        }
 
         }
-	}
+
+        private void header_donorButton_Click(object sender, RoutedEventArgs e)
+        {
+            (Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new Donor());
+        }
+    }
 }

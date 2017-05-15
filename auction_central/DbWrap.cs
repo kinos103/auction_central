@@ -80,9 +80,11 @@ namespace auction_central
                 MySqlDataReader reader = adminQueryCommand.ExecuteReader(); 
                 if (reader.HasRows)
                 {
+
                     // get admin information 
                     while (reader.Read())
                     {
+
                         employeeid = reader.GetInt32(0);
                         firstname = reader.GetString(1);
                         lastname = reader.GetString(2);
@@ -641,7 +643,8 @@ namespace auction_central
             connection = new MySqlConnection(connectionString);
             try
             {
-                string phoneInsertString = @"INSERT INTO auction_central.phonenumbers VALUES @phonenum;";
+                connection.Open();
+                string phoneInsertString = @"INSERT INTO auction_central.phonenumbers (phonenumber) VALUES (@phonenum);";
                 MySqlCommand insertPhoneCommand = new MySqlCommand(phoneInsertString, connection);
                 insertPhoneCommand.Parameters.AddWithValue("@phonenum", phonenum);
                 insertPhoneCommand.ExecuteNonQuery();
@@ -649,10 +652,10 @@ namespace auction_central
                 int phoneID_int = unchecked((int)phone_id);
 
 
-                string endtime_str = auction.EndTime.ToString("t");
-                string enddate_str = auction.EndTime.ToString("g");
+                string endtime_str = auction.EndTime.ToString("g");
+                string enddate_str = auction.EndTime.ToString("d");
                 string starttime_str = auction.StartTime.ToString("g");
-                connection.Open();
+            
                 string insertAuctionString = @"INSERT INTO auction_central.auctioninfo (phoneID, location, endtime, enddate, starttime, nonprofitID, currentBidderID) VALUES (@phoneID, @location, @endtime, @enddate, @starttime, @nonprofitID, @currentBidderID)";
                 MySqlCommand insertAuctionCommand = new MySqlCommand(insertAuctionString, connection);
                 insertAuctionCommand.Parameters.AddWithValue("@phoneID", phoneID_int);
@@ -661,7 +664,7 @@ namespace auction_central
                 insertAuctionCommand.Parameters.AddWithValue("@enddate", enddate_str);
                 insertAuctionCommand.Parameters.AddWithValue("@starttime", starttime_str);
                 insertAuctionCommand.Parameters.AddWithValue("@nonprofitID", nonprofit.UserId);
-                insertAuctionCommand.Parameters.AddWithValue("@currentBidderID", 0);
+                insertAuctionCommand.Parameters.AddWithValue("@currentBidderID", 1);
                 insertAuctionCommand.ExecuteNonQuery();
             }
             catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }

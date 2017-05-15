@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -71,6 +72,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Address.cs" />
+    <Compile Include="ContactUs.xaml.cs">
+      <DependentUpon>ContactUs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CreditCard.cs" />
     <Compile Include="Donor.xaml.cs">
       <DependentUpon>Donor.xaml</DependentUpon>
@@ -109,6 +113,10 @@
     <Page Include="Calendar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ContactUs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CurrentBids.xaml">
       <SubType>Designer</SubType>
@@ -255,6 +263,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon-Placeholder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gradientbackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="65thfiw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\65thfiw.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
