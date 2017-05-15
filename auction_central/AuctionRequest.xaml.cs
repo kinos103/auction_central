@@ -22,6 +22,7 @@ namespace auction_central
         private List<Auction> allAuctions;
         private List<Auction> upComing;
         private List<Auction> belongsToNP;
+        private Dictionary<DateTime, List<Auction>> converted;
         private NonProfit npObj;
 
         public AuctionRequest()
@@ -35,6 +36,7 @@ namespace auction_central
                 npObj = (Window.GetWindow(this) as MainWindow).User as NonProfit;
                 AddUpcoming();
                 AddBelongsTo();
+                converted = ConvertListToDict(upComing);
             };
 
 
@@ -68,16 +70,66 @@ namespace auction_central
             }
             // no more than 3 months away
             if (datePickerAuction.SelectedDate.Value > DateTime.Now.AddMonths(3)) {
-                MessageBox.Show("Auction too far in advance. Three months adhead is farthest");
+                MessageBox.Show("Auction too far in advance. Three months ahead is farthest");
                 hasError = true;
             }
             // no more than 1 per year? Changed to no more than one up coming
-            if (belongsToNP.Count > 3) {
+            if (belongsToNP.Count > 5) {
                 MessageBox.Show("Auction for non-profit already scheduled");
                 hasError = true;
             }
 
+            // no more than 5 in a 7 day period
+            int weekCount = 0;
+            foreach (Auction auction in upComing) {
+                if (auction.EventDate.AddDays(-3) < datePickerAuction.SelectedDate.Value &&
+                    auction.EventDate.AddDays(3) > datePickerAuction.SelectedDate.Value) {
+                    ++weekCount;
+                }
+            }
+
+            if (weekCount >= 5) {
+                MessageBox.Show("Max number of auctions in 7 day period");
+                hasError = true;
+            }
+
+            
+
+            // must be at least 2 hours later
+
+            if (converted.ContainsKey(datePickerAuction.SelectedDate.Value.Date)) {
+                List<Auction> dayOf = converted[datePickerAuction.SelectedDate.Value.Date];
+				// no more than 2 in day
+				if(dayOf.Count >= 2) {
+					MessageBox.Show("No more than 2 auctions in a day");
+					hasError = true;
+				}
+				Auction toCheck = dayOf[0];
+                if (startTime.SelectedTime.Value <= toCheck.EndTime.AddHours(2)) {
+                    MessageBox.Show("Start time must be two hours later than previous auction");
+                    hasError = true;
+                }
+            }
+
+
             return hasError;
+        }
+
+
+        private Dictionary<DateTime, List<Auction>> ConvertListToDict(List<Auction> auctionList) {
+            Dictionary<DateTime, List<Auction>> toReturn = new Dictionary<DateTime, List<Auction>>();
+            foreach (var auction in auctionList) {
+                // if it already has the key append to the list
+                if (toReturn.ContainsKey(auction.StartTime.Date)) {
+                    toReturn[auction.StartTime.Date].Add(auction);
+                }
+                else {// otherwise create a list with the current auction
+                    List<Auction> newList = new List<Auction> {auction};
+                    toReturn.Add(auction.StartTime.Date, newList);
+                }
+            }
+
+            return toReturn;
         }
 
         // false if no error, true if error
@@ -149,12 +201,15 @@ namespace auction_central
             DateTime endTime = this.endTime.SelectedTime.Value;
 
             startTime = new DateTime(auctionDate.Year, auctionDate.Month, auctionDate.Day, startTime.Hour, startTime.Minute,0);
+            endTime = new DateTime(auctionDate.Year, auctionDate.Month, auctionDate.Day, endTime.Hour, endTime.Minute, 0);
 
             //check if numOfItems and additionalComments are on auctioninfo table
 
             Auction toCreate = new Auction(-1, charityName, startTime, endTime, npObj.FirstName + " " + npObj.LastName, phoneNumber.ToString(), location);
 
             new DbWrap().InsertAuction(toCreate, npObj, phoneNumber);
+
+            (Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new NPHome());
         }
 
     }
