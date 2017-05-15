@@ -18,6 +18,7 @@
         <TextBlock x:Name="StartTime" HorizontalAlignment="Left" Height="51" Margin="320,355,0,0" TextWrapping="Wrap" Text="Start Time" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
         <TextBlock x:Name="Location" HorizontalAlignment="Left" Height="51" Margin="320,266,0,0" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
         <Button x:Name="ViewItemsButton" Content="View Auction Items" HorizontalAlignment="Left" Height="56" Margin="40,193,0,0" VerticalAlignment="Top" Width="227" FontSize="21.333" Click="ViewItemsButton_Click"/>
+        <Button x:Name="AddAuctionButton" Content="View Auction Items" HorizontalAlignment="Left" Visibility="Collapsed" Height="56" Margin="40,193,0,0" VerticalAlignment="Top" Width="227" FontSize="21.333" Click="AddAuctionButton_OnClick"/>
         <Button x:Name="addItemsButton" Content="Add Item" HorizontalAlignment="Left" Height="56" Margin="40,272,0,0" VerticalAlignment="Top" Width="227" RenderTransformOrigin="-0.834,3.079" FontSize="21.333" Click="addItemsButton_Click"/>
         <TextBlock x:Name="EndTime" HorizontalAlignment="Left" Height="51" Margin="320,398,0,0" TextWrapping="Wrap" Text="End time" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
     </Grid>
