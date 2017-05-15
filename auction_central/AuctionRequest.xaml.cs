@@ -30,64 +30,73 @@ namespace auction_central
             int intPhoneNumber;
             //int intAuctionDate;
             int intNumOfItems;
+            bool hasError = false;
 
-            if (string.IsNullOrEmpty(charityName.Text))
+
+            /*if (string.IsNullOrEmpty(charityName.Text))
             {
                 MessageBox.Show("Please enter Charity Name");
+                hasError = true;
             }
 
-            else if(string.IsNullOrEmpty(firstName.Text))
+            if(string.IsNullOrEmpty(firstName.Text))
             {
                 MessageBox.Show("Please enter your first name");
+                hasError = true;
             }
 
-            else if(string.IsNullOrEmpty(lastName.Text))
+            if(string.IsNullOrEmpty(lastName.Text))
             {
                 MessageBox.Show("Please enter your last name");
-            }
+                hasError = true;
+            }*/
             
-            else if (!int.TryParse(phoneNumber.Text, out intPhoneNumber))
+            if (!int.TryParse(phoneNumber.Text, out intPhoneNumber))
             {
                 MessageBox.Show("Please enter phone number");
+                hasError = true;
             }
 
-            else if(string.IsNullOrEmpty(location.Text))
+            if(string.IsNullOrEmpty(location.Text))
             {
                 MessageBox.Show("Please enter location");
+                hasError = true;
             }
 
-            else if (string.IsNullOrEmpty(startTime.Text))
+            if (string.IsNullOrEmpty(startTime.Text))
             {
                 MessageBox.Show("Please enter start time for the event");
+                hasError = true;
             }
 
-            else if (string.IsNullOrEmpty(endTime.Text))
+            if (string.IsNullOrEmpty(endTime.Text))
             {
                 MessageBox.Show("Please enter end time for the event");
+                hasError = true;
             }
 
-            else if (!int.TryParse(numOfItems.Text, out intNumOfItems))
+            /*if (!int.TryParse(numOfItems.Text, out intNumOfItems))
             {
                 MessageBox.Show("Please enter number of items included in the bundle");
-            }
-        
-            else
-            {
-                MessageBox.Show("Error sending in Auction Request");
-            }
+                hasError = true;
+            }*/
 
-            return true;
+
+
+
+
+            return hasError;
         }
 
         //must make sure that request is assigned to nonprofitID
 
-        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        /*private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             var dateString = DatePicker1.SelectedDate.Value.ToShortDateString();
 
             DatePicker1.SelectedDate = DateTime.Parse(dateString);
              
-        }
+        }*/
 
         private void placeRequest_Click(object sender, RoutedEventArgs e)
         {
@@ -97,27 +106,34 @@ namespace auction_central
                 return;
             }
 
-            string charityName = this.charityName.Text;
+            NonProfit npObj = (Window.GetWindow(this) as MainWindow).User as NonProfit;
+
+            string charityName = npObj.OrgName;
 
             //contactID
-            string firstName = this.firstName.Text;
-            string lastName = this.lastName.Text;
+//            string firstName = this.firstName.Text;
+//            string lastName = this.lastName.Text;
 
             int phoneNumber = Int32.Parse(this.phoneNumber.Text);
             string location = this.location.Text;
 
             //dateTimeID
             //should auction date be string? ex: May 10, 2017. See what works best with calendar
-            //int auctionDate = Int32.Parse(this.auctionDate.Text);
-            string startTime = this.startTime.Text;
-            string endTime = this.endTime.Text;
+            DateTime auctionDate = datePickerAuction.DisplayDate;
+
+            DateTime startTime = this.startTime.SelectedTime.Value;
+            DateTime endTime = this.endTime.SelectedTime.Value;
+
+            startTime = new DateTime(auctionDate.Year, auctionDate.Month, auctionDate.Day, startTime.Hour, startTime.Minute,0);
 
             //check if numOfItems and additionalComments are on auctioninfo table
-            int numOfItems = Int32.Parse(this.numOfItems.Text);
-            string additionalComments = this.additionalComments.Text;
+//            int numOfItems = Int32.Parse(this.numOfItems.Text);
+//            string additionalComments = this.additionalComments.Text;
 
 
+            Auction toCreate = new Auction(-1, charityName, startTime, endTime, npObj.FirstName + " " + npObj.LastName, phoneNumber.ToString(), location);
 
+            new DbWrap().InsertAuction(toCreate, npObj, phoneNumber);
         }
 
     }
