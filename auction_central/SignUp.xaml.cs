@@ -118,7 +118,13 @@ namespace auction_central
                 string creditCardNum = SignUpCreditCard.Text;
                 int cvv = Int32.Parse(SignUpCVV.Text);
                 string exp = SignUpCreditCardExpDate.Text;
-                
+
+                if (streetAddress == "" || city == "" || state == "" || creditCardNum == "" || exp == "" || 
+                    zipcode.ToString() == "" || cvv.ToString() == "" || cvv.ToString().Length > 3 || creditCardNum.Length != 16)
+                {
+                    MessageBox.Show("Error creating bidder: check credit card and address");
+                    return;
+                }
 
                 Address address = new Address(streetAddress, city, state, zipcode);
                 CreditCard creditCard = new CreditCard(creditCardNum, cvv, firstName + " " + lastName, exp);
