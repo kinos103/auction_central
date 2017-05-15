@@ -34,7 +34,7 @@
 					  Grid.Column="0">
 			<ListBox Height="Auto" Name="listBoxAuctions" ItemsSource="{Binding}"
 					 ItemTemplate="{StaticResource auctionTemplate}" Width="Auto"
-					 MouseDoubleClick="ListBoxAuctions_OnMouseDoubleClick">
+					 MouseUp="OnMouseUp">
 			</ListBox>
 		</ScrollViewer>
 		
