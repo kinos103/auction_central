@@ -44,6 +44,7 @@ namespace auction_central
             String firstName = SignUpFirstName.Text;
             String lastName = SignUpLastName.Text;
             String email = SignUpEmail.Text;
+            Int64 phone = Int64.Parse(SignUpPhone.Text);
             String password = SignUpPassword.Password;
             String passwordConfirm = SignUpPasswordConfirm.Password;
             var navigationService = this.NavigationService;
@@ -69,16 +70,19 @@ namespace auction_central
 
             if (Equals(item, Admin))
             {
-                if (dbWrap.InsertAdmin(firstName, lastName, email, password, 0, Person.UserTypeEnum.Admin);)
+                dbWrap.InsertAdmin(firstName, lastName, email, password, phone, Person.UserTypeEnum.Admin);
+
+                Person returned = dbWrap.LoginExists(email, password, Person.UserTypeEnum.Admin);
+                if (returned == null)
                 {
-                    navigationService?.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
-                    (Window.GetWindow(this) as MainWindow).HeaderNavBar.Visibility = Visibility.Visible;
-                    (Window.GetWindow(this) as MainWindow).MainContent.NavigationUIVisibility = NavigationUIVisibility.Visible;
+                    MessageBox.Show("Error");
+                    return;
                 }
-                else
-                {
-                    MessageBox.Show("Error creating account, please try again.");
-                }
+                // everything should happen in the MainWindow so this should be safe
+                (Window.GetWindow(this) as MainWindow).User = returned;
+                navigationService?.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
+                (Window.GetWindow(this) as MainWindow).HeaderNavBar.Visibility = Visibility.Visible;
+                (Window.GetWindow(this) as MainWindow).MainContent.NavigationUIVisibility = NavigationUIVisibility.Visible;   
             }
             else if (Equals(item, NP))
             {
