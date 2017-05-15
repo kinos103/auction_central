@@ -649,13 +649,17 @@ namespace auction_central
                         cardInsertCommand.Parameters.AddWithValue("@cvv", creditcard.CVV);
                         cardInsertCommand.Parameters.AddWithValue("@nameoncard", creditcard.NameOnCard);
                         cardInsertCommand.Parameters.AddWithValue("@exdate", creditcard.ExpDate);
+                        long card_id = cardInsertCommand.LastInsertedId;
+                        int cardID_int = unchecked ((int) card_id);
 
-                        string adminInsertString = @"INSERT INTO auction_central.bidder (cardID, lastName, phoneID, emailID) VALUES (@first, @last, @phone__id, @email__id);";
+                        string adminInsertString = @"INSERT INTO auction_central.bidder (cardID, emailID, phoneID, addressID, firstname, lastname) VALUES (@card__id, @email__id, @phone__id, @address__id, firstname, lastname);";
                         MySqlCommand adminInsertCommand = new MySqlCommand(adminInsertString, connection2);
-                        adminInsertCommand.Parameters.AddWithValue("@first", bidder.FirstName);
-                        adminInsertCommand.Parameters.AddWithValue("@last", bidder.LastName);
+                        adminInsertCommand.Parameters.AddWithValue("@card__id", cardID_int);
                         adminInsertCommand.Parameters.AddWithValue("@phone__id", phoneID_int);
                         adminInsertCommand.Parameters.AddWithValue("@email__id", emailID_int);
+                        adminInsertCommand.Parameters.AddWithValue("@address_id", addressID_int);
+                        adminInsertCommand.Parameters.AddWithValue("@last", bidder.LastName);
+                        adminInsertCommand.Parameters.AddWithValue("@last", bidder.LastName);
                         adminInsertCommand.ExecuteNonQuery();
                         connection2.Close();
                     }
