@@ -47,6 +47,13 @@ namespace auction_central
             String firstName = SignUpFirstName.Text;
             String lastName = SignUpLastName.Text;
             String email = SignUpEmail.Text;
+
+            if (SignUpPhone.Text == "")
+            {
+                MessageBox.Show("Error creating account: check phone number");
+                return;
+            }
+
             Int64 phone = Int64.Parse(SignUpPhone.Text);
             String password = SignUpPassword.Password;
             String passwordConfirm = SignUpPasswordConfirm.Password;
@@ -64,6 +71,7 @@ namespace auction_central
                 MessageBox.Show("Error creating account: Check email");
                 return;
             }
+
 
             if (!IsValidPassword(password, passwordConfirm))
             {
