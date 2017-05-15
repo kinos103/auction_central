@@ -35,52 +35,61 @@ namespace auction_central
             int intHeight;
             int intLength;
             int intWidth;
+            bool hasError = false;
 
             if(string.IsNullOrEmpty(itemName.Text))
             {
                 MessageBox.Show("Please enter Item Name");
+                hasError = true;
             }
             
-            else if(!int.TryParse(itemQuantity.Text, out intItemQuantity))
+            if(!int.TryParse(itemQuantity.Text, out intItemQuantity))
             {
                 MessageBox.Show("Please enter Auction ID");
+                hasError = true;
             }
 
-            else if(!int.TryParse(startBid.Text, out intStartBid))
+            if(!int.TryParse(startBid.Text, out intStartBid))
             {
                 MessageBox.Show("Please enter a starting bid price");
+                hasError = true;
             }
 
-            else if(string.IsNullOrEmpty(donor.Text))
+            if(string.IsNullOrEmpty(donor.Text))
             {
                 MessageBox.Show("Please enter donor name");
+                hasError = true;
             }
 
-            else if(!int.TryParse(height.Text, out intHeight))
+            if(!int.TryParse(height.Text, out intHeight))
             {
                 MessageBox.Show("Please enter item height");
+                hasError = true;
             }
 
-            else if(!int.TryParse(width.Text, out intLength))
+            if(!int.TryParse(width.Text, out intLength))
             {
                 MessageBox.Show("Please enter item length");
+                hasError = true;
             }
 
-            else if (!int.TryParse(width.Text, out intWidth))
+            if (!int.TryParse(width.Text, out intWidth))
             {
                 MessageBox.Show("Please enter item width");
+                hasError = true;
             }
 
-            else if(string.IsNullOrEmpty(storageLocation.Text))
+            if(string.IsNullOrEmpty(storageLocation.Text))
             {
                 MessageBox.Show("Please enter the storage location");
+                hasError = true;
             }
 
-            else
+           /* else
             {
                 MessageBox.Show("Error Adding Item");
             }
-
+*/
             //check if comboboxes are selected
 
             // check if all numerical boxes are able to be parsed
@@ -91,7 +100,7 @@ namespace auction_central
 
             // check if combo boxes have values chosen
 
-            return true;
+            return hasError;
         }
 
         private void addItemButton_Click(object sender, RoutedEventArgs e) {

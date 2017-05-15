@@ -29,7 +29,7 @@ namespace auction_central
         {
             int intPhoneNumber;
             //int intAuctionDate;
-            int intNumOfItems;
+            /*int intNumOfItems;*/
             bool hasError = false;
 
 
@@ -80,10 +80,7 @@ namespace auction_central
                 MessageBox.Show("Please enter number of items included in the bundle");
                 hasError = true;
             }*/
-
-
-
-
+            
 
             return hasError;
         }
