@@ -730,6 +730,7 @@ namespace auction_central
                         cardInsertCommand.Parameters.AddWithValue("@cvv", creditcard.CVV);
                         cardInsertCommand.Parameters.AddWithValue("@nameoncard", creditcard.NameOnCard);
                         cardInsertCommand.Parameters.AddWithValue("@exdate", creditcard.ExpDate);
+                        cardInsertCommand.ExecuteNonQuery();
                         long card_id = cardInsertCommand.LastInsertedId;
                         int cardID_int = unchecked((int)card_id);
 

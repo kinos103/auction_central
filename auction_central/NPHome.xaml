@@ -10,9 +10,9 @@
 
     <Grid>
         <Frame x:Name="npHome"/>
-        <Button x:Name="eventDetails_button" Content="View Current Events" HorizontalAlignment="Left" Margin="194,197,0,0" VerticalAlignment="Top" Width="337" Height="51" FontSize="26.667" Click="eventDetails_button_Click"/>
-        <Button x:Name="button1" Content="Make Event Request" HorizontalAlignment="Left" Margin="732,197,0,0" VerticalAlignment="Top" Width="337" Height="51" FontSize="26.667" Click="button1_Click"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" Margin="380,65,0,0" TextWrapping="Wrap" Text="Non-Profit Member" VerticalAlignment="Top" Width="564" FontSize="64"/>
+        <Button x:Name="eventDetails_button" Content="My Auctions" HorizontalAlignment="Left" Margin="40,193,0,0" VerticalAlignment="Top" Width="280" Height="51" FontSize="26.667" Click="eventDetails_button_Click"/>
+        <Button x:Name="button1" Content="Make Event Request" HorizontalAlignment="Left" Margin="40,272,0,0" VerticalAlignment="Top" Width="280" Height="51" FontSize="26.667" Click="button1_Click"/>
+        <TextBlock x:Name="np_header" HorizontalAlignment="Left" Height="88" Margin="340,66,0,0" TextAlignment="Center" TextWrapping="Wrap" Text="Welcome, Non-Profit." VerticalAlignment="Top" Width="620" FontSize="64" FontFamily="Segoe UI Light"/>
 
     </Grid>
 </Page>
