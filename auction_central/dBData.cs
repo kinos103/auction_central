@@ -8,6 +8,9 @@ namespace auction_central
 {
     class dBData
     {
-        public void 
+        public dBData()
+        {
+            
+        }
     }
 }
