@@ -111,7 +111,23 @@ namespace auction_central
             }
             else if (Equals(item, Bidder))
             {
-                MessageBox.Show("USER TYPE WORKS: Bidder");
+                Address address = new Address("number", "city", "state", 92610);
+                CreditCard creditCard = new CreditCard("number", 123, "name", "expdate");
+                auction_central.Bidder bidder = new Bidder(Person.UserTypeEnum.Bidder, 0, firstName, lastName, email, "card", "address", phone.ToString());
+
+                dbWrap.InsertBidder(bidder, Person.UserTypeEnum.Bidder, password, creditCard, address);
+
+                Person returned = dbWrap.LoginExists(email, password, Person.UserTypeEnum.Bidder);
+                if (returned == null)
+                {
+                    MessageBox.Show("Error");
+                    return;
+                }
+                // everything should happen in the MainWindow so this should be safe
+                (Window.GetWindow(this) as MainWindow).User = returned;
+                navigationService?.Navigate(new Uri("BidderHome.xaml", UriKind.Relative));
+                (Window.GetWindow(this) as MainWindow).HeaderNavBar.Visibility = Visibility.Visible;
+                (Window.GetWindow(this) as MainWindow).MainContent.NavigationUIVisibility = NavigationUIVisibility.Visible;
             }
             else
             {
