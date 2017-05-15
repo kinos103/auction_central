@@ -26,12 +26,15 @@ namespace auction_central
             InitializeComponent();
 		}
 
+	    // fill the fields if they give us an auction to use
 		public AuctionDetails(Auction _auction) {
 			InitializeComponent();
 			auction = _auction;
 			fillFields();
 		}
 
+
+	    // take the given auction and extract info from it
 		public void fillFields() {
 			lbAuctionId.Text = auction.AuctionId.ToString();
 			lbCharity.Text = auction.CharityName;
@@ -43,9 +46,9 @@ namespace auction_central
 
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("AuctionItems.xaml", UriKind.Relative));
-        }
+	    // When they click on View Inventory we redirect them to the Items page using the auction they have selected
+	    private void ButtonBase_OnClick(object sender, RoutedEventArgs e) {
+		    (Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new AuctionItems(auction));
+	    }
     }
 }

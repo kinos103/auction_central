@@ -52,19 +52,19 @@ namespace auction_central
 
             if (firstName == "" || lastName == "")
             {
-                MessageBox.Show("Error creating account");
+                MessageBox.Show("Error creating account: Check name");
                 return;
             }
 
             if (!IsValidEmailAddress(email))
             {
-                MessageBox.Show("Error creating account");
+                MessageBox.Show("Error creating account: Check email");
                 return;
             }
 
             if (!IsValidPassword(password, passwordConfirm))
             {
-                MessageBox.Show("Error creating account");
+                MessageBox.Show("Error creating account: Check password");
                 return;
             }
 
@@ -86,7 +86,19 @@ namespace auction_central
             }
             else if (Equals(item, NP))
             {
-                MessageBox.Show("USER TYPE WORKS: NP");
+                dbWrap.InsertNonprofit(firstName, lastName, email, password, phone, Person.UserTypeEnum.Nonprofit, "Org1");
+
+                Person returned = dbWrap.LoginExists(email, password, Person.UserTypeEnum.Nonprofit);
+                if (returned == null)
+                {
+                    MessageBox.Show("Error");
+                    return;
+                }
+                // everything should happen in the MainWindow so this should be safe
+                (Window.GetWindow(this) as MainWindow).User = returned;
+                navigationService?.Navigate(new Uri("NPHome.xaml", UriKind.Relative));
+                (Window.GetWindow(this) as MainWindow).HeaderNavBar.Visibility = Visibility.Visible;
+                (Window.GetWindow(this) as MainWindow).MainContent.NavigationUIVisibility = NavigationUIVisibility.Visible;
             }
             else if (Equals(item, Bidder))
             {
@@ -131,6 +143,7 @@ namespace auction_central
                 return false;
             }
         }
+
 
     }
 }

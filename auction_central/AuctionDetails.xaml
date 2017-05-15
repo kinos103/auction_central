@@ -10,9 +10,9 @@
 
     <Grid>
 
-		
+
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="83" Margin="150,100,0,0" TextWrapping="Wrap" Text="Auction Details" VerticalAlignment="Top" Width="435" FontSize="64"/>
-		
+
 		<Grid Background="#FFF4F4F5" Height="410" Width="602" Margin="150,258,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition/>
@@ -28,26 +28,31 @@
 				<RowDefinition/>
 				<RowDefinition/>
 				<RowDefinition/>
+				<RowDefinition/>
 			</Grid.RowDefinitions>
 
 			<TextBlock Grid.Column="0" Grid.Row="0" Margin="5,0,0,0" HorizontalAlignment="Left" Text="AuctionID: " VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="26.667"/>
-			<TextBlock Grid.Column="0" Grid.Row="8" Margin="5,0,0,0" HorizontalAlignment="Left" Text="Phone Number: " VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
-			<TextBlock Grid.Column="0" Grid.Row="7" Margin="5,0,0,0" HorizontalAlignment="Left" Text="NonProf Contact: " VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
-			<TextBlock Grid.Column="0" Grid.Row="6" Margin="5,0,0,0" HorizontalAlignment="Left" Text="End Time: " VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
-			<TextBlock Grid.Column="0" Grid.Row="5" Margin="5,0,0,0" HorizontalAlignment="Left" Text="Start Time: " VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
-			<TextBlock Grid.Column="0" Grid.Row="4" Margin="5,0,0,0" HorizontalAlignment="Left" Text="Date: " VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
 			<TextBlock Grid.Column="0" Grid.Row="2" Margin="5,0,0,0" HorizontalAlignment="Left" Text="Charity Name: " VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
-            <TextBlock Grid.Column="0" Grid.Row="3" Margin="5,0,0,0" HorizontalAlignment="Left" Text="Location: " VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
-            
-            <TextBlock x:Name="lbAuctionId" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="26.667"/>
-			<TextBlock x:Name="lbLocation" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
-			<TextBlock x:Name="lbPhoneNumber" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
-			<TextBlock x:Name="lbNpContact" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
-			<TextBlock x:Name="lbEnd" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
-			<TextBlock x:Name="lbStart" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
-			<TextBlock x:Name="lbDate" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
-			<TextBlock x:Name="lbCharity" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
+			<TextBlock Grid.Column="0" Grid.Row="3" Margin="5,0,0,0" HorizontalAlignment="Left" Text="Location: " VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
+			<TextBlock Grid.Column="0" Grid.Row="4" Margin="5,0,0,0" HorizontalAlignment="Left" Text="Date: " VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
+			<TextBlock Grid.Column="0" Grid.Row="5" Margin="5,0,0,0" HorizontalAlignment="Left" Text="Start Time: " VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
+			<TextBlock Grid.Column="0" Grid.Row="6" Margin="5,0,0,0" HorizontalAlignment="Left" Text="End Time: " VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
+			<TextBlock Grid.Column="0" Grid.Row="7" Margin="5,0,0,0" HorizontalAlignment="Left" Text="NonProf Contact: " VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
+			<TextBlock Grid.Column="0" Grid.Row="8" Margin="5,0,0,0" HorizontalAlignment="Left" Text="Phone Number: " VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
 
+
+			<TextBlock x:Name="lbAuctionId" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="26.667"/>
+			<TextBlock x:Name="lbCharity" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
+			<TextBlock x:Name="lbLocation" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
+			<TextBlock x:Name="lbDate" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
+			<TextBlock x:Name="lbStart" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
+			<TextBlock x:Name="lbEnd" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
+			<TextBlock x:Name="lbNpContact" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
+			<TextBlock x:Name="lbPhoneNumber" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="Auto" Height ="Auto" FontSize="21.333"/>
+
+			<Button Content="View Inventory"
+			        Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"
+			        Click="ButtonBase_OnClick"/>
 
 		</Grid>
 
