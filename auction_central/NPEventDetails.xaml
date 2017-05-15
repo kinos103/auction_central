@@ -11,7 +11,8 @@
     <Grid>
         <Frame x:Name="EventDetails" Margin="-10,10,10,-10"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" FontSize="64" FontFamily="Segoe UI Light" Margin="320,70,0,0" TextWrapping="Wrap" TextAlignment="Left" Text="My Event Details" VerticalAlignment="Top" Width="473"/>
-        <TextBlock x:Name="AuctionID" HorizontalAlignment="Left" Height="51" Margin="320,182,0,0" TextWrapping="Wrap" Text="Auction ID (Charity-Month-Day-Year" VerticalAlignment="Top" Width="430" FontSize="21.333" />
+        <TextBlock x:Name="NoAuction" HorizontalAlignment="Left" Height="51" Margin="320,182,0,0" TextWrapping="Wrap" Visibility="Collapsed" Text="Sorry no auctions for this user" VerticalAlignment="Top" Width="430" FontSize="21.333" />
+        <TextBlock x:Name="AuctionID" HorizontalAlignment="Left" Height="51" Margin="320,182,0,0" TextWrapping="Wrap" Text="Auction ID" VerticalAlignment="Top" Width="430" FontSize="21.333" />
         <TextBlock x:Name="CharityName" HorizontalAlignment="Left" Height="51" Margin="320,222,0,0" TextWrapping="Wrap" Text="Charity Name" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
         <TextBlock x:Name="AuctionDate" HorizontalAlignment="Left" Height="51" Margin="320,310,0,0" TextWrapping="Wrap" Text="Auction Date" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
         <TextBlock x:Name="StartTime" HorizontalAlignment="Left" Height="51" Margin="320,355,0,0" TextWrapping="Wrap" Text="Start Time" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
