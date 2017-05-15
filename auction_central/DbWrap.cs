@@ -263,6 +263,7 @@ namespace auction_central
             string endTime_str;
             string contact = ""; // full name
             string phoneNumber = "";
+            int auctionid = 0;
 
             MySqlConnection connection;
             string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
@@ -271,7 +272,7 @@ namespace auction_central
             {
                 connection.Open();
                 string auctionQueryString = @"SELECT N.orgName, N.firstname, N.lastName,
-                                              A.enddate, A.starttime, A.enddate, P.phoneNumber, A.auctionID
+                                              A.enddate, A.starttime, A.enddate, P.phoneNumber, A.auctionID, A.location
                                             FROM nonprofit N
                                             RIGHT JOIN auctioninfo A
                                             ON N.nonprofitID = A.nonprofitID
@@ -291,6 +292,8 @@ namespace auction_central
                         startTime_str = reader.GetString(3);
                         endTime_str = reader.GetString(4);
                         phoneNumber = reader.GetString(5);
+                        auctionid = reader.GetInt32(6);
+                        string location = reader.GetString(7);
                         DateTime startTime;
                         DateTime endTime;
                         // Parse date with no style flags.
@@ -301,7 +304,7 @@ namespace auction_central
                         if (DateTime.TryParse(endTime_str, out endTime))
                             Console.WriteLine("Converted '{0}' to {1} ({2}).", endTime_str, endTime,
                                 endTime.Kind);
-                        Auction curAuction = new Auction(charityName, startTime, endTime, contact, phoneNumber);
+                        Auction curAuction = new Auction(auctionid, charityName, startTime, endTime, contact, phoneNumber, location);
                        auctions.Add(curAuction);
                     }
 
@@ -694,6 +697,54 @@ namespace auction_central
             catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
             finally { connection.Close(); }
             return allOrgs;
+        }
+
+        // inserting new item 
+        public void InsertAuction(Auction auction)
+        {
+            MySqlConnection connection;
+            string connectionString =
+                @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+            connection = new MySqlConnection(connectionString);
+            try
+            {
+                string endtime_str = auction.EndTime.ToString("g");
+                connection.Open();
+                string insertAuctionString = @"INSERT INTO auction_central.auctioninfo (phoneID, location, endtime, enddate, starttime, nonprofitID, currentBidderID) VALUES (@phoneID, @location, @endtime, @enddate, @starttime, @nonprofitID, @currentBidderID)";
+                MySqlCommand insertAuctionCommand = new MySqlCommand(insertAuctionString, connection);
+                insertAuctionCommand.Parameters.AddWithValue("@phoneID", );
+                insertAuctionCommand.Parameters.AddWithValue("@location", );
+                insertAuctionCommand.Parameters.AddWithValue("@endtime", );
+                insertAuctionCommand.Parameters.AddWithValue("@enddate", );
+                insertAuctionCommand.Parameters.AddWithValue("@starttime", );
+                insertAuctionCommand.Parameters.AddWithValue("@nonprofitID", );
+                insertAuctionCommand.Parameters.AddWithValue("@currentBidderID", );
+
+                dimInsertCommand.ExecuteNonQuery();
+                long dim_id = dimInsertCommand.LastInsertedId;
+                int dimID_int = unchecked((int)dim_id);
+
+
+                string insertItemString = @"INSERT INTO auction_central.auctionitem (itemName, donorID, itemdimensions, 
+                                            conditionRate, auctionID, isSold, isSmall, currentprice, originalprice, quantity,
+                                            location, comments) VALUES (@itemname, @donorid, @itemdimensionID, @condition, @auctionid,
+                                            @issold, @issmall, @curprice, origprice, @quantity, @location, @comments);";
+                MySqlCommand insertItemCommand = new MySqlCommand(insertItemString, connection);
+                insertItemCommand.Parameters.AddWithValue("@itemname", item.Name);
+                insertItemCommand.Parameters.AddWithValue("@donorid", item.Donor);
+                insertItemCommand.Parameters.AddWithValue("@itemdimensionID", dimID_int);
+                insertItemCommand.Parameters.AddWithValue("@condition", item.ItemCondition);
+                insertItemCommand.Parameters.AddWithValue("@auctionid", item.AuctionItemId);
+                insertItemCommand.Parameters.AddWithValue("@issold", item.IsSold);
+                insertItemCommand.Parameters.AddWithValue("@issmall", item.IsSmall);
+                insertItemCommand.Parameters.AddWithValue("@curprice", item.CurrentBid);
+                insertItemCommand.Parameters.AddWithValue("@origprice", item.StartingBid);
+                insertItemCommand.Parameters.AddWithValue("@quantity", item.Quantity);
+                insertItemCommand.Parameters.AddWithValue("@location", item.StorageLocation);
+                insertItemCommand.Parameters.AddWithValue("@comments", item.Comments);
+            }
+            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
+            finally { connection.Close(); }
         }
     }
 }
