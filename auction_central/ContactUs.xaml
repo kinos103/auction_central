@@ -9,6 +9,7 @@
       Title="ContactUs">
 
     <Grid>
-        
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="In Need of Assistance?" VerticalAlignment="Top" Height="143" Width="369" Margin="468,80,0,0" FontSize="48" TextAlignment="Center"/>
+
     </Grid>
 </Page>

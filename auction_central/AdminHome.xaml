@@ -9,7 +9,7 @@
       Title="AdminHome">
 
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" Margin="479,65,0,0" TextWrapping="Wrap" Text="Administrator" VerticalAlignment="Top" Width="394" FontSize="64"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" Margin="454,71,0,0" TextWrapping="Wrap" Text="Administrator" VerticalAlignment="Top" Width="394" FontSize="64"/>
         <Button x:Name="viewCalendar_button" Content="View Calendar" HorizontalAlignment="Left" Margin="194,197,0,0" VerticalAlignment="Top" Width="337" Height="51" FontSize="26.667" Click="viewCalendar_button_Click"/>
 
     </Grid>
