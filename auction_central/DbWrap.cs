@@ -39,12 +39,9 @@ namespace auction_central
                     case Person.UserTypeEnum.Nonprofit:
                         toReturn = NonProfitObjCreation(emailId);
                         break;
-
             }
-
             return toReturn;
         }
-        
         
 
         // DATABASE TO OBJECT CREATION METHODS
@@ -65,6 +62,7 @@ namespace auction_central
             try
             {
                 connection.Open();
+                // query
                 string adminQueryString = @"SELECT
                                               employeeID,
                                               firstName,
@@ -124,6 +122,7 @@ namespace auction_central
             try
             {
                 connection.Open();
+                // query
                 string npQueryString = @"SELECT
                                           nonprofitID,
                                           firstname,
@@ -161,6 +160,7 @@ namespace auction_central
             catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
             finally { connection.Close(); }
             NonProfit nonProfitObj = new NonProfit(Person.UserTypeEnum.Nonprofit, npid, firstname, lastname, email, phonenumber, org);
+
             return nonProfitObj;
         }
 
@@ -186,6 +186,7 @@ namespace auction_central
             try
             {
                 connection.Open();
+                // query
                 string bidderQueryString = @"SELECT
                                               contactID,
                                               firstname,
@@ -211,6 +212,7 @@ namespace auction_central
                     // get bidder information 
                     while (reader.Read())
                     {
+                        // fields
                         bidderid = reader.GetInt32(0);
                         firstname = reader.GetString(1);
                         lastname = reader.GetString(2);
@@ -235,6 +237,7 @@ namespace auction_central
             finally { connection.Close(); }
             string concatAddress = address + " " + city + " " + state + " " + zipCode;
             Bidder bidderObj = new Bidder(Person.UserTypeEnum.Bidder, bidderid, firstname, lastname, email, cardNumber, concatAddress, phonenumber);
+
             return bidderObj;
         }
         
@@ -261,7 +264,9 @@ namespace auction_central
             connection = new MySqlConnection(connectionString);
             try
             {
+                // make connection 
                 connection.Open();
+                // query 
                 string auctionQueryString = @"SELECT N.orgName, N.firstname, N.lastName,
                                             A.starttime, A.endtime, P.phoneNumber, A.auctionID, A.location
                                             FROM nonprofit N
@@ -277,6 +282,7 @@ namespace auction_central
                     // get Auction details
                     while (reader.Read())
                     {
+                        // fields 
                         string charityName = reader.GetString(0);
                         firstName = reader.GetString(1);
                         lastName = reader.GetString(2);
@@ -314,6 +320,7 @@ namespace auction_central
             }
             catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
             finally { connection.Close(); }
+
             return auctions;
         }
 
@@ -343,7 +350,9 @@ namespace auction_central
             connection = new MySqlConnection(connectionString);
             try
             {
+                // make connection 
                 connection.Open();
+                // query 
                 string auctionQueryString = @"SELECT A.itemName, A.AuctionItemID,
                                               A.location, N.orgName, A.conditionRate, A.isSmall, A.comments, A.quantity,
                                               A.originalprice, A.currentprice, A.isSold, I.height, I.width, I.length, I.itemunit
@@ -358,6 +367,7 @@ namespace auction_central
                 MySqlDataReader reader = auctionQueryCommand.ExecuteReader();
                 if (reader.HasRows)
                 {
+                    // get information 
                     while (reader.Read())
                     {
                         name = reader.GetString(0);
@@ -395,6 +405,7 @@ namespace auction_central
             }
             catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
             finally { connection.Close(); }
+
             return auctionItems;
         }
 
@@ -408,12 +419,14 @@ namespace auction_central
             connection = new MySqlConnection(connectionString);
             try
             {
+                //make connectoin 
                 connection.Open();
                 string orgQueryString = @"SELECT DISTINCT orgName FROM auction_central.nonprofit;";
                 MySqlCommand orgQueryCommand = new MySqlCommand(orgQueryString, connection);
                 MySqlDataReader reader = orgQueryCommand.ExecuteReader();
                 if (reader.HasRows)
                 {
+                    // get information 
                     while (reader.Read())
                     {
                         string curOrg = reader.GetString(0);
@@ -683,6 +696,7 @@ namespace auction_central
             connection = new MySqlConnection(connectionString);
             try
             {
+                // make connection 
                 connection.Open();
 
                 string dimensionsString = @"INSERT INTO auction_central.itemdimensions (height, width, length, itemunit) VALUES (@height, @width, @length, @itemunit)";
@@ -701,6 +715,7 @@ namespace auction_central
                                             conditionRate, auctionID, isSold, isSmall, currentprice, originalprice, quantity,
                                             location, comments) VALUES (@itemname, @donorid, @itemdimensionID, @condition, @auctionid,
                                             @issold, @issmall, @curprice, @origprice, @quantity, @location, @comments);";
+
                 MySqlCommand insertItemCommand = new MySqlCommand(insertItemString, connection);
                 insertItemCommand.Parameters.AddWithValue("@itemname", item.Name);
                 insertItemCommand.Parameters.AddWithValue("@donorid", 211);
