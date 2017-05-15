@@ -18,7 +18,7 @@ namespace auction_central
             {
                 string first = NameFaker.FirstName();
                 string last = NameFaker.LastName();
-                string email = first + last + InternetFaker.Domain();
+                string email = first + last + "@" + InternetFaker.Domain();
                 string password = StringFaker.AlphaNumeric(GetRandInt(5, 14));
                 string phone = StringFaker.Numeric(10);
                 Int64 phonenum = Convert.ToInt64(phone);
@@ -39,7 +39,7 @@ namespace auction_central
             {
                 string first = NameFaker.FirstName();
                 string last = NameFaker.LastName();
-                string email = first + last + InternetFaker.Domain();
+                string email = first + last + "@" + InternetFaker.Domain();
                 string password = StringFaker.AlphaNumeric(GetRandInt(5, 14));
                 string phone = StringFaker.Numeric(10);
                 Int64 phonenum = Convert.ToInt64(phone);
@@ -71,7 +71,7 @@ namespace auction_central
             {
                 string first = NameFaker.FirstName();
                 string last = NameFaker.LastName();
-                string email = first + last + InternetFaker.Domain();
+                string email = first + last + "@" + InternetFaker.Domain();
                 string password = StringFaker.AlphaNumeric(GetRandInt(5, 14));
                 string phone = StringFaker.Numeric(10);
                 Int64 phonenum = Convert.ToInt64(phone);
@@ -84,7 +84,7 @@ namespace auction_central
         {
             string first = NameFaker.FirstName();
             string last = NameFaker.LastName();
-            string email = first + last + InternetFaker.Domain();
+            string email = first + last + "@" + InternetFaker.Domain();
             string password = StringFaker.AlphaNumeric(GetRandInt(5, 14));
             string phone = StringFaker.Numeric(10);
             Int64 phonenum = Convert.ToInt64(phone);
