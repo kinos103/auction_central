@@ -743,15 +743,17 @@ namespace auction_central
                 string enddate_str = auction.EndTime.ToString("d");
                 string starttime_str = auction.StartTime.ToString("g");
             
-                string insertAuctionString = @"INSERT INTO auction_central.auctioninfo (phoneID, location, endtime, enddate, starttime, nonprofitID) VALUES (@phoneID, @location, @endtime, @enddate, @starttime, @nonprofitID, @currentBidderID)";
+                string insertAuctionString = @"INSERT INTO auction_central.auctioninfo (currentBidderID, nonprofitID, phoneID, location, endtime, enddate, starttime) VALUES (@bidder, @phoneID, @location, @endtime, @enddate, @starttime, @nonprofitID, @currentBidderID)";
                 MySqlCommand insertAuctionCommand = new MySqlCommand(insertAuctionString, connection);
+                insertAuctionCommand.Parameters.AddWithValue("@bidder", 1);
+                insertAuctionCommand.Parameters.AddWithValue("@nonprofitID", nonprofit.UserId);
                 insertAuctionCommand.Parameters.AddWithValue("@phoneID", phoneID_int);
                 insertAuctionCommand.Parameters.AddWithValue("@location", auction.Location);
                 insertAuctionCommand.Parameters.AddWithValue("@endtime", endtime_str);
                 insertAuctionCommand.Parameters.AddWithValue("@enddate", enddate_str);
                 insertAuctionCommand.Parameters.AddWithValue("@starttime", starttime_str);
-                insertAuctionCommand.Parameters.AddWithValue("@nonprofitID", nonprofit.UserId);
-                //insertAuctionCommand.Parameters.AddWithValue("@currentBidderID", 1);
+                
+               
                 insertAuctionCommand.ExecuteNonQuery();
             }
             catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
