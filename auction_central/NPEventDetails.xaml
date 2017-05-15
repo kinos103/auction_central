@@ -10,16 +10,16 @@
 
     <Grid>
         <Frame x:Name="EventDetails" Margin="-10,10,10,-10"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" FontSize="64" FontFamily="Segoe UI Light" Margin="320,70,0,0" TextWrapping="Wrap" TextAlignment="Left" Text="My Event Details" VerticalAlignment="Top" Width="473"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" FontSize="64" FontFamily="Segoe UI Light" Margin="421,70,0,0" TextWrapping="Wrap" TextAlignment="Left" Text="My Event Details" VerticalAlignment="Top" Width="443"/>
         <TextBlock x:Name="NoAuction" HorizontalAlignment="Left" Height="51" Margin="320,182,0,0" TextWrapping="Wrap" Visibility="Collapsed" Text="Sorry no auctions for this user" VerticalAlignment="Top" Width="430" FontSize="21.333" />
-        <TextBlock x:Name="AuctionID" HorizontalAlignment="Left" Height="51" Margin="320,182,0,0" TextWrapping="Wrap" Text="Auction ID" VerticalAlignment="Top" Width="430" FontSize="21.333" />
-        <TextBlock x:Name="CharityName" HorizontalAlignment="Left" Height="51" Margin="320,222,0,0" TextWrapping="Wrap" Text="Charity Name" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <TextBlock x:Name="AuctionDate" HorizontalAlignment="Left" Height="51" Margin="320,310,0,0" TextWrapping="Wrap" Text="Auction Date" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <TextBlock x:Name="StartTime" HorizontalAlignment="Left" Height="51" Margin="320,355,0,0" TextWrapping="Wrap" Text="Start Time" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <TextBlock x:Name="Location" HorizontalAlignment="Left" Height="51" Margin="320,266,0,0" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
-        <Button x:Name="ViewItemsButton" Content="View Auction Items" HorizontalAlignment="Left" Height="56" Margin="40,193,0,0" VerticalAlignment="Top" Width="227" FontSize="21.333" Click="ViewItemsButton_Click"/>
+        <TextBlock x:Name="AuctionID" HorizontalAlignment="Left" Height="51" Margin="420,180,0,0" TextWrapping="Wrap" Text="Auction ID" VerticalAlignment="Top" Width="430" FontSize="32" />
+        <TextBlock x:Name="CharityName" HorizontalAlignment="Left" Height="51" Margin="420,240,0,0" TextWrapping="Wrap" Text="Charity Name" VerticalAlignment="Top" Width="430" FontSize="32"/>
+        <TextBlock x:Name="AuctionDate" HorizontalAlignment="Left" Height="51" Margin="420,360,0,0" TextWrapping="Wrap" Text="Auction Date" VerticalAlignment="Top" Width="430" FontSize="32"/>
+        <TextBlock x:Name="StartTime" HorizontalAlignment="Left" Height="51" Margin="420,420,0,0" TextWrapping="Wrap" Text="Start Time" VerticalAlignment="Top" Width="430" FontSize="32"/>
+        <TextBlock x:Name="Location" HorizontalAlignment="Left" Height="51" Margin="420,300,0,0" TextWrapping="Wrap" Text="Location" VerticalAlignment="Top" Width="430" FontSize="32"/>
+        <Button x:Name="ViewItemsButton" Content="View Items" HorizontalAlignment="Left" Height="56" Margin="150,180,0,0" VerticalAlignment="Top" Width="227" FontSize="32" Click="ViewItemsButton_Click"/>
         <Button x:Name="AddAuctionButton" Content="View Auction Items" HorizontalAlignment="Left" Visibility="Collapsed" Height="56" Margin="40,193,0,0" VerticalAlignment="Top" Width="227" FontSize="21.333" Click="AddAuctionButton_OnClick"/>
-        <Button x:Name="addItemsButton" Content="Add Item" HorizontalAlignment="Left" Height="56" Margin="40,272,0,0" VerticalAlignment="Top" Width="227" RenderTransformOrigin="-0.834,3.079" FontSize="21.333" Click="addItemsButton_Click"/>
-        <TextBlock x:Name="EndTime" HorizontalAlignment="Left" Height="51" Margin="320,398,0,0" TextWrapping="Wrap" Text="End time" VerticalAlignment="Top" Width="430" FontSize="21.333"/>
+        <Button x:Name="addItemsButton" Content="Add Item" HorizontalAlignment="Left" Height="56" Margin="150,264,0,0" VerticalAlignment="Top" Width="227" RenderTransformOrigin="-0.834,3.079" FontSize="32" Click="addItemsButton_Click"/>
+        <TextBlock x:Name="EndTime" HorizontalAlignment="Left" Height="51" Margin="420,480,0,0" TextWrapping="Wrap" Text="End time" VerticalAlignment="Top" Width="430" FontSize="32"/>
     </Grid>
 </Page>

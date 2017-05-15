@@ -9,10 +9,10 @@
       Title="BidderHome">
 
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" Margin="548,90,0,0" TextWrapping="Wrap" Text="Bidder" VerticalAlignment="Top" Width="193" FontSize="64"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Height="88" Margin="408,70,0,0" TextWrapping="Wrap" Text="Welcome, Bidder" VerticalAlignment="Top" Width="485" FontSize="64" FontFamily="Segoe UI Light"/>
         <!--buttons for show, can delete when we bind to dataset-->
-        <Button x:Name="currentBids_button" Content="Current Bids" HorizontalAlignment="Left" Height="68" Margin="803,233,0,0" VerticalAlignment="Top" Width="266" FontSize="21.333" Click="currentBids_button_Click"/>
-        <Button x:Name="auction_List_button" Content="View List of Auctions" HorizontalAlignment="Left" Height="68" Margin="215,233,0,0" VerticalAlignment="Top" Width="266" FontSize="21.333" Click="auction_List_button_Click" RenderTransformOrigin="-1.347,-0.364"/>
+        <Button x:Name="currentBids_button" Content="Current Bids" HorizontalAlignment="Left" Height="68" Margin="734,220,0,0" VerticalAlignment="Top" Width="335" FontSize="32" Click="currentBids_button_Click"/>
+        <Button x:Name="auction_List_button" Content="View List of Auctions" HorizontalAlignment="Left" Height="68" Margin="232,220,0,0" VerticalAlignment="Top" Width="335" FontSize="32" Click="auction_List_button_Click" RenderTransformOrigin="-1.347,-0.364"/>
 
     </Grid>
 </Page>
