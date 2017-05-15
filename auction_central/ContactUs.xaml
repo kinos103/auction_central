@@ -9,7 +9,51 @@
       Title="ContactUs">
 
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="In Need of Assistance?" VerticalAlignment="Top" Height="143" Width="369" Margin="468,80,0,0" FontSize="48" TextAlignment="Center"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="We're Here to Help!" VerticalAlignment="Top" Height="91" Width="529" Margin="388,70,0,0" FontSize="64" TextAlignment="Center" FontFamily="Segoe UI Light"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Front Desk" VerticalAlignment="Top" Height="43" Width="212" Margin="261,209,0,0" FontSize="26.667" FontWeight="Bold"/>
+        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Corporate Office" VerticalAlignment="Top" Height="43" Width="218" Margin="755,480,0,0" FontSize="26.667" FontWeight="Bold"/>
+        <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Technical Help" VerticalAlignment="Top" Height="43" Width="212" Margin="261,480,0,0" FontSize="26.667" FontWeight="Bold"/>
+        <TextBlock x:Name="textBlock1_Copy2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Event Booking Issues" VerticalAlignment="Top" Height="43" Width="279" Margin="755,209,0,0" FontSize="26.667" FontWeight="Bold"/>
+        <Grid HorizontalAlignment="Left" Height="180" Margin="253,266,0,0" VerticalAlignment="Top" Width="397">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="312*"/>
+                <ColumnDefinition Width="85*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="textBlock2" Height="32" Margin="8,14,63.6,0" TextWrapping="Wrap" Text="Front Desk" VerticalAlignment="Top" FontSize="18.667"/>
+            <TextBlock x:Name="textBlock2_Copy" HorizontalAlignment="Left" Height="32" Margin="8,123,0,0" TextWrapping="Wrap" Text="8394 Cedar Ave, Tustin CA" VerticalAlignment="Top" Width="263" FontSize="18.667"/>
+            <TextBlock x:Name="textBlock2_Copy1" HorizontalAlignment="Left" Height="32" Margin="8,85,0,0" TextWrapping="Wrap" Text="Email: front@auction.com" VerticalAlignment="Top" Width="263" FontSize="18.667"/>
+            <TextBlock x:Name="textBlock2_Copy2" HorizontalAlignment="Left" Height="32" Margin="8,49,0,0" TextWrapping="Wrap" Text="Call: (949)-338-9381" VerticalAlignment="Top" Width="263" FontSize="18.667"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="180" Margin="748,266,0,0" VerticalAlignment="Top" Width="397">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="312*"/>
+                <ColumnDefinition Width="85*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="textBlock3" Height="32" Margin="8,14,63.6,0" TextWrapping="Wrap" Text="Event Booking Issues" VerticalAlignment="Top" FontSize="18.667"/>
+            <TextBlock x:Name="textBlock2_Copy3" HorizontalAlignment="Left" Height="32" Margin="8,123,0,0" TextWrapping="Wrap" Text="8394 Cedar Ave, Tustin, CA" VerticalAlignment="Top" Width="263" FontSize="18.667"/>
+            <TextBlock x:Name="textBlock2_Copy4" HorizontalAlignment="Left" Height="32" Margin="8,85,0,0" TextWrapping="Wrap" Text="Email: event@auction.com" VerticalAlignment="Top" Width="263" FontSize="18.667"/>
+            <TextBlock x:Name="textBlock2_Copy5" HorizontalAlignment="Left" Height="32" Margin="8,49,0,0" TextWrapping="Wrap" Text="Call: (382)-384-3829" VerticalAlignment="Top" Width="263" FontSize="18.667"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="180" Margin="253,543,0,0" VerticalAlignment="Top" Width="397">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="312*"/>
+                <ColumnDefinition Width="85*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="textBlock4" Height="32" Margin="8,14,63.6,0" TextWrapping="Wrap" Text="Technical Help" VerticalAlignment="Top" FontSize="18.667"/>
+            <TextBlock x:Name="textBlock2_Copy6" HorizontalAlignment="Left" Height="32" Margin="8,123,0,0" TextWrapping="Wrap" Text="183 Harwood, Lake Forest, CA" VerticalAlignment="Top" Width="263" FontSize="18.667"/>
+            <TextBlock x:Name="textBlock2_Copy7" HorizontalAlignment="Left" Height="32" Margin="8,85,0,0" TextWrapping="Wrap" Text="Email: tech@auction.com" VerticalAlignment="Top" Width="263" FontSize="18.667"/>
+            <TextBlock x:Name="textBlock2_Copy8" HorizontalAlignment="Left" Height="32" Margin="8,49,0,0" TextWrapping="Wrap" Text="Call: (394)-283-2938" VerticalAlignment="Top" Width="263" FontSize="18.667"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="180" Margin="748,543,0,0" VerticalAlignment="Top" Width="397">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="312*"/>
+                <ColumnDefinition Width="85*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="textBlock5" Height="32" Margin="8,14,63.6,0" TextWrapping="Wrap" Text="Corporate Office" VerticalAlignment="Top" FontSize="18.667"/>
+            <TextBlock x:Name="textBlock2_Copy9" HorizontalAlignment="Left" Height="32" Margin="8,123,0,0" TextWrapping="Wrap" Text="1395 Avocado St, Newport, CA" VerticalAlignment="Top" Width="263" FontSize="18.667"/>
+            <TextBlock x:Name="textBlock2_Copy10" HorizontalAlignment="Left" Height="32" Margin="8,85,0,0" TextWrapping="Wrap" Text="Email: corporate@auction.com" VerticalAlignment="Top" Width="263" FontSize="18.667"/>
+            <TextBlock x:Name="textBlock2_Copy11" HorizontalAlignment="Left" Height="32" Margin="8,49,0,0" TextWrapping="Wrap" Text="Call: (949)-384-3849" VerticalAlignment="Top" Width="263" FontSize="18.667"/>
+        </Grid>
 
     </Grid>
 </Page>
