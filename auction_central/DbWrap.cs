@@ -633,7 +633,7 @@ namespace auction_central
         }
         
         // insert new auction item into DB
-        public void InsertAuction(Auction auction, NonProfit nonprofit, int phonenum)
+        public void InsertAuction(Auction auction, NonProfit nonprofit, long phonenum)
         {
             MySqlConnection connection;
             string connectionString =
@@ -641,7 +641,8 @@ namespace auction_central
             connection = new MySqlConnection(connectionString);
             try
             {
-                string phoneInsertString = @"INSERT INTO auction_central.phonenumbers VALUES @phonenum;";
+                connection.Open();
+                string phoneInsertString = @"INSERT INTO auction_central.phonenumbers (phonenumber) VALUES @phonenum;";
                 MySqlCommand insertPhoneCommand = new MySqlCommand(phoneInsertString, connection);
                 insertPhoneCommand.Parameters.AddWithValue("@phonenum", phonenum);
                 insertPhoneCommand.ExecuteNonQuery();
@@ -652,7 +653,7 @@ namespace auction_central
                 string endtime_str = auction.EndTime.ToString("t");
                 string enddate_str = auction.EndTime.ToString("g");
                 string starttime_str = auction.StartTime.ToString("g");
-                connection.Open();
+            
                 string insertAuctionString = @"INSERT INTO auction_central.auctioninfo (phoneID, location, endtime, enddate, starttime, nonprofitID, currentBidderID) VALUES (@phoneID, @location, @endtime, @enddate, @starttime, @nonprofitID, @currentBidderID)";
                 MySqlCommand insertAuctionCommand = new MySqlCommand(insertAuctionString, connection);
                 insertAuctionCommand.Parameters.AddWithValue("@phoneID", phoneID_int);
