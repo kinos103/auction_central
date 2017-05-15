@@ -716,6 +716,7 @@ namespace auction_central
                 insertItemCommand.Parameters.AddWithValue("@comments", item.Comments);
                 insertItemCommand.ExecuteNonQuery();
                 connection.Close();
+
             }
             catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
             finally { connection.Close(); }
