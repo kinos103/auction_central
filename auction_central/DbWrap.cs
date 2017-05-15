@@ -337,7 +337,7 @@ namespace auction_central
             string storageLocation; //
             AuctionItem.ItemConditionEnum itemCondition; //
             string comments; //
-            string imageUrl; //
+            //string imageUrl; //
             bool isSmall; // 
 
             MySqlConnection connection;
@@ -416,9 +416,8 @@ namespace auction_central
                 if (reader.HasRows)
                 */
 
-            /*
-        public Admin PersonObjCreation_InsertPerson(string firstname, string lastname, string email, string password,
-            Person.UserTypeEnum type)
+            
+        public void insertAdmin(string firstname, string lastname, string email, string password, int phonenumber, Person.UserTypeEnum type)
         {
             MySqlConnection connection;
             string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
@@ -432,20 +431,47 @@ namespace auction_central
                 MySqlDataReader reader = loginQueryCommand.ExecuteReader();
                 if (reader.HasRows)
                 {
-                    return null; //error message here
+                    MessageBox.Show("That email address is already linked to another account. Use a different one. ");
+                    // means the entry already exists 
+                    //return null; //error message here
                 }
                 else
                 {   //TODO FINISH --------------------------------
-                    string loginInsertString = @"";
+
+                    /* INSERT INTO auction_central.phonenumbers (phoneNumber) VALUES (2222222222);
+INSERT INTO auction_central.login (emailAddress, password, type) VALUES ('isabella@test.com', 'password', 2);
+INSERT INTO auction_central.admin (firstName, lastName, phoneID, emailID) VALUES ('isabella', 'cedric', 11, 11);
+*/
+
+                    string phoneInsertString = @"INSERT INTO auction_central.phonenumbers (phoneNumber) VALUES (@phonenumber)";
+                    MySqlCommand phoneInsertCommand = new MySqlCommand(phoneInsertString, connection);
+                    phoneInsertCommand.Parameters.AddWithValue("@phonenumber", phonenumber);
+                    phoneInsertCommand.ExecuteNonQuery();
+                    long phone_id = phoneInsertCommand.LastInsertedId;
+                    int phoneID_int = unchecked ((int) phone_id);
+                    
+                    string loginInsertString = @"INSERT INTO auction_central.login (emailAddress, password, type) VALUES (@email, @password, @type);";
                     MySqlCommand loginInsertCommand = new MySqlCommand(loginInsertString, connection);
-                    //loginInsertCommand.Parameters.AddWithValue("@", );
+                    loginInsertCommand.Parameters.AddWithValue("@email", email);
+                    loginInsertCommand.Parameters.AddWithValue("@password", password);
+                    loginInsertCommand.Parameters.AddWithValue("@type", 2);
+                    loginInsertCommand.ExecuteNonQuery();
+                    long email_id = loginInsertCommand.LastInsertedId;
+                    int emailID_int = unchecked ((int) email_id);
+
+                    string adminInsertString = @"INSERT INTO auction_central.admin (firstName, lastName, phoneID, emailID) VALUES (@first, @last, @phone__id, @email__id);";
+                    MySqlCommand adminInsertCommand = new MySqlCommand(adminInsertString, connection);
+                    adminInsertCommand.Parameters.AddWithValue("@first", firstname);
+                    adminInsertCommand.Parameters.AddWithValue("@last", lastname);
+                    adminInsertCommand.Parameters.AddWithValue("@phone__id", phoneID_int);
+                    adminInsertCommand.Parameters.AddWithValue("@email__id", emailID_int);
                 }
 
             }
             catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
             finally { connection.Close(); }
             //return ....;
-        } */
+        } 
 
     }
 }
