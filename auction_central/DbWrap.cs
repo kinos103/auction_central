@@ -80,9 +80,11 @@ namespace auction_central
                 MySqlDataReader reader = adminQueryCommand.ExecuteReader(); 
                 if (reader.HasRows)
                 {
+
                     // get admin information 
                     while (reader.Read())
                     {
+
                         employeeid = reader.GetInt32(0);
                         firstname = reader.GetString(1);
                         lastname = reader.GetString(2);
@@ -642,7 +644,7 @@ namespace auction_central
             try
             {
                 connection.Open();
-                string phoneInsertString = @"INSERT INTO auction_central.phonenumbers (phonenumber) VALUES @phonenum;";
+                string phoneInsertString = @"INSERT INTO auction_central.phonenumbers (phonenumber) VALUES (@phonenum);";
                 MySqlCommand insertPhoneCommand = new MySqlCommand(phoneInsertString, connection);
                 insertPhoneCommand.Parameters.AddWithValue("@phonenum", phonenum);
                 insertPhoneCommand.ExecuteNonQuery();
