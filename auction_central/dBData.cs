@@ -1,4 +1,4 @@
-﻿using Faker;
+﻿
 using System;
 
 namespace auction_central
