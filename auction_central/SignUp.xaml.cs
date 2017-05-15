@@ -26,6 +26,8 @@ namespace auction_central
         {
             InitializeComponent();
             dbWrap = new DbWrap();
+            List<string> tempList = new List<string>{"blah", "sdfgsd", "SDFGSdfg", "Sdgsdfg"};
+            OrgNames.ItemsSource = tempList;
         }
 
         private void SignUpLoginButton_OnClick(object sender, RoutedEventArgs e)

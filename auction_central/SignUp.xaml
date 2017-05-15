@@ -21,6 +21,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBox x:Name="SignUpFirstName" Margin="0 8 0 8" Grid.Row="0" Height="26" materialDesign:HintAssist.Hint="First Name"  Width="209"/>
         <TextBox x:Name="SignUpLastName" Margin="0 8 0 8" Grid.Row="1" Height="26" materialDesign:HintAssist.Hint="Last Name"  Width="209"/>
@@ -28,14 +29,21 @@
         <TextBox x:Name="SignUpPhone" Margin="0 8 0 8" Grid.Row="3" Height="26" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Phone"  Width="209"/>
         <PasswordBox x:Name="SignUpPassword" Margin="0 8 0 8" Grid.Row="4" Height="26" materialDesign:HintAssist.Hint="Password"  Width="209"/>
         <PasswordBox x:Name="SignUpPasswordConfirm" Margin="0 8 0 8" Grid.Row="5" Height="26" materialDesign:HintAssist.Hint="Confirm Password"  Width="209"/>
-        <ComboBox x:Name="ComboBox" Margin="0 8 0 8" Grid.Row="6" Width="209" Height="40" SelectedIndex="0">
+        <ComboBox x:Name="ComboBox" Margin="0 8 0 8" Grid.Row="6" Width="209" Height="40"
+                  materialDesign:HintAssist.Hint="User Type">
             <ComboBoxItem x:Name="Admin" Content="Admin" Width="206.4"/>
             <ComboBoxItem x:Name="NP" Content="Non-Profit" Width="206.4"/>
             <ComboBoxItem x:Name="Bidder" Content="Bidder" Width="206.4"/>
         </ComboBox>
-        <Button x:Name="SignUpButton" Margin="0 8 0 8" Grid.Row="7" Content="SIGN UP"  Width="100" Click="SignUpButton_OnClick"/>
-        <TextBlock x:Name="SignUpHaveAccountText" Margin="40 8 0 4" Grid.Row="8" TextWrapping="Wrap" Text="Already have an account?" />
-        <Button  x:Name="SignUpLoginButton" Margin="0 4 0 8" Grid.Row="9" Content="Back to Login" Height="32"  Width="150" Click="SignUpLoginButton_OnClick"/>
+        <ComboBox x:Name="OrgNames" materialDesign:HintAssist.Hint="Org Name"
+                 Height="Auto" ItemsSource="{Binding}"
+                 Width="Auto"
+                 Grid.Row="7"
+                 Margin="0 0 0 8">
+        </ComboBox>
+        <Button x:Name="SignUpButton" Margin="0 8 0 8" Grid.Row="8" Content="SIGN UP"  Width="100" Click="SignUpButton_OnClick"/>
+        <TextBlock x:Name="SignUpHaveAccountText" Margin="40 8 0 4" Grid.Row="9" TextWrapping="Wrap" Text="Already have an account?" />
+        <Button  x:Name="SignUpLoginButton" Margin="0 4 0 8" Grid.Row="10" Content="Back to Login" Height="32"  Width="150" Click="SignUpLoginButton_OnClick"/>
 
     </Grid>
 </Page>
