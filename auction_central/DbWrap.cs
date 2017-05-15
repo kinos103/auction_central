@@ -688,7 +688,7 @@ namespace auction_central
                 string orgQueryString = @"SELECT DISTINCT orgName FROM auction_central.nonprofit;";
                 MySqlCommand orgQueryCommand = new MySqlCommand(orgQueryString, connection);
                 MySqlDataReader reader = orgQueryCommand.ExecuteReader();
-                if (reader.HasRows)
+                while (reader.HasRows)
                 {
                     string curOrg = reader.GetString(0);
                     allOrgs.Add(curOrg);
@@ -709,11 +709,12 @@ namespace auction_central
             try
             {
                 string endtime_str = auction.EndTime.ToString("g");
+                string 
                 connection.Open();
                 string insertAuctionString = @"INSERT INTO auction_central.auctioninfo (phoneID, location, endtime, enddate, starttime, nonprofitID, currentBidderID) VALUES (@phoneID, @location, @endtime, @enddate, @starttime, @nonprofitID, @currentBidderID)";
                 MySqlCommand insertAuctionCommand = new MySqlCommand(insertAuctionString, connection);
                 insertAuctionCommand.Parameters.AddWithValue("@phoneID", );
-                insertAuctionCommand.Parameters.AddWithValue("@location", );
+                insertAuctionCommand.Parameters.AddWithValue("@location", auction.Location);
                 insertAuctionCommand.Parameters.AddWithValue("@endtime", );
                 insertAuctionCommand.Parameters.AddWithValue("@enddate", );
                 insertAuctionCommand.Parameters.AddWithValue("@starttime", );
