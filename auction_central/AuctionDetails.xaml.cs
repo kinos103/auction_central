@@ -36,7 +36,7 @@ namespace auction_central
 
 	    // take the given auction and extract info from it
 		public void fillFields() {
-			lbAuctionId.Text = auction.AuctionId.ToString();
+			lbAuctionId.Text = auction.CharityName + "-" + auction.EventDate.ToString("M") + "-" + auction.EventDate.Year;
 			lbCharity.Text = auction.CharityName;
 			lbDate.Text = auction.StartTime.Date.ToLongDateString();
 			lbStart.Text= auction.StartTime.ToString("hh:mm tt");

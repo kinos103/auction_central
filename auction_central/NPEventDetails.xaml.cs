@@ -39,7 +39,7 @@ namespace auction_central
 
                 if (belongsToNP.Count != 0)
                 {
-                    AuctionID.Text += ": " + belongsToNP[0].CharityName + belongsToNP[0].EventDate.Month + belongsToNP[0].EventDate.Day + belongsToNP[0].EventDate.Year;
+                    AuctionID.Text += ": " + belongsToNP[0].CharityName + "-" + belongsToNP[0].EventDate.ToString("M") + "-" + belongsToNP[0].EventDate.Year;
                     AuctionDate.Text += ": " + belongsToNP[0].EventDate.ToShortDateString();
                     CharityName.Text += ": " + belongsToNP[0].CharityName;
                     StartTime.Text += ": " + belongsToNP[0].StartTime.ToShortTimeString();
