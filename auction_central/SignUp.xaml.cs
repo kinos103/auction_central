@@ -172,6 +172,13 @@ namespace auction_central
         private void ComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             OrgNames.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, NP) ? Visibility.Visible : Visibility.Collapsed;
+            SignUpCreditCard.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, Bidder) ? Visibility.Visible : Visibility.Collapsed;
+            SignUpCVV.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, Bidder) ? Visibility.Visible : Visibility.Collapsed;
+            SignUpAddress.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, Bidder) ? Visibility.Visible : Visibility.Collapsed;
+            SignUpCity.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, Bidder) ? Visibility.Visible : Visibility.Collapsed;
+            SignUpCreditCardExpDate.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, Bidder) ? Visibility.Visible : Visibility.Collapsed;
+            SignUpState.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, Bidder) ? Visibility.Visible : Visibility.Collapsed;
+            SignUpZipcode.Visibility = Equals((ComboBoxItem)ComboBox.SelectedItem, Bidder) ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }
