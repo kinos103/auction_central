@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -255,6 +256,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon-Placeholder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gradientbackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="65thfiw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\65thfiw.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

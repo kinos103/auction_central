@@ -642,7 +642,7 @@ namespace auction_central
             try
             {
                 connection.Open();
-                string phoneInsertString = @"INSERT INTO auction_central.phonenumbers VALUES @phonenum;";
+                string phoneInsertString = @"INSERT INTO auction_central.phonenumbers (phonenumber) VALUES @phonenum;";
                 MySqlCommand insertPhoneCommand = new MySqlCommand(phoneInsertString, connection);
                 insertPhoneCommand.Parameters.AddWithValue("@phonenum", phonenum);
                 insertPhoneCommand.ExecuteNonQuery();
