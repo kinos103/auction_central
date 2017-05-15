@@ -18,38 +18,75 @@ namespace auction_central
     /// <summary>
     /// Interaction logic for Page4.xaml
     /// </summary>
-    public partial class AuctionRequest : Page
-    {
+    public partial class AuctionRequest : Page {
+        private List<Auction> allAuctions;
+        private List<Auction> upComing;
+        private List<Auction> belongsToNP;
+        private NonProfit npObj;
+
         public AuctionRequest()
         {
             InitializeComponent();
+            allAuctions = new DbWrap().AuctionObjList();
+            upComing = new List<Auction>();
+            belongsToNP = new List<Auction>();
+
+            this.Loaded += (sender, args) => {
+                npObj = (Window.GetWindow(this) as MainWindow).User as NonProfit;
+                AddUpcoming();
+                AddBelongsTo();
+            };
+
+
+
+            }
+
+        private void AddBelongsTo() {
+            foreach (Auction auction in upComing) {
+                if (auction.CharityName == npObj.OrgName) {
+                    belongsToNP.Add(auction);
+                }
+            }
         }
 
+        private void AddUpcoming() {
+            foreach (Auction auction in allAuctions) {
+                if (auction.EventDate >= DateTime.Now) {
+                    upComing.Add(auction);
+                }
+            }
+        }
+
+        // false if no error, true if error
+        private bool ValidateDates() {
+            bool hasError = false;
+
+            // no more than 25 into future
+            if (upComing.Count >= 25) {
+                MessageBox.Show("Maximum number of auctions reached for current time frame");
+                hasError = true;
+            }
+            // no more than 3 months away
+            if (datePickerAuction.SelectedDate.Value > DateTime.Now.AddMonths(3)) {
+                MessageBox.Show("Auction too far in advance. Three months adhead is farthest");
+                hasError = true;
+            }
+            // no more than 1 per year? Changed to no more than one up coming
+            if (belongsToNP.Count > 0) {
+                MessageBox.Show("Auction for non-profit already scheduled");
+                hasError = true;
+            }
+
+            return hasError;
+        }
+
+        // false if no error, true if error
        private bool Validate()
         {
             int intPhoneNumber;
-            //int intAuctionDate;
-            /*int intNumOfItems;*/
             bool hasError = false;
 
 
-            /*if (string.IsNullOrEmpty(charityName.Text))
-            {
-                MessageBox.Show("Please enter Charity Name");
-                hasError = true;
-            }
-
-            if(string.IsNullOrEmpty(firstName.Text))
-            {
-                MessageBox.Show("Please enter your first name");
-                hasError = true;
-            }
-
-            if(string.IsNullOrEmpty(lastName.Text))
-            {
-                MessageBox.Show("Please enter your last name");
-                hasError = true;
-            }*/
             
             if (!int.TryParse(phoneNumber.Text, out intPhoneNumber))
             {
@@ -75,41 +112,31 @@ namespace auction_central
                 hasError = true;
             }
 
-            /*if (!int.TryParse(numOfItems.Text, out intNumOfItems))
-            {
-                MessageBox.Show("Please enter number of items included in the bundle");
+            // if it's empty don't ValidateDates, if it has text we can ValidateDates
+            if (string.IsNullOrEmpty(datePickerAuction.Text)) {
                 hasError = true;
-            }*/
-            
-
+            }
+            else if (ValidateDates()) {
+                hasError = true;
+            }
             return hasError;
         }
 
         //must make sure that request is assigned to nonprofitID
 
-        /*private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var dateString = DatePicker1.SelectedDate.Value.ToShortDateString();
-
-            DatePicker1.SelectedDate = DateTime.Parse(dateString);
-             
-        }*/
 
         private void placeRequest_Click(object sender, RoutedEventArgs e)
         {
-            if (!Validate())
+            if (Validate())
             {
                 MessageBox.Show("One or more fields are wrong");
                 return;
             }
 
-            NonProfit npObj = (Window.GetWindow(this) as MainWindow).User as NonProfit;
 
             string charityName = npObj.OrgName;
 
             //contactID
-//            string firstName = this.firstName.Text;
-//            string lastName = this.lastName.Text;
 
             int phoneNumber = Int32.Parse(this.phoneNumber.Text);
             string location = this.location.Text;
@@ -124,9 +151,6 @@ namespace auction_central
             startTime = new DateTime(auctionDate.Year, auctionDate.Month, auctionDate.Day, startTime.Hour, startTime.Minute,0);
 
             //check if numOfItems and additionalComments are on auctioninfo table
-//            int numOfItems = Int32.Parse(this.numOfItems.Text);
-//            string additionalComments = this.additionalComments.Text;
-
 
             Auction toCreate = new Auction(-1, charityName, startTime, endTime, npObj.FirstName + " " + npObj.LastName, phoneNumber.ToString(), location);
 
