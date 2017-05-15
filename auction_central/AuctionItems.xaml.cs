@@ -21,12 +21,12 @@ namespace auction_central
     public partial class AuctionItems : Page {
         private List<AuctionItem> items;
         private Auction auction;
-        public AuctionItems()
+       /* public AuctionItems()
         {
             InitializeComponent();
             //TODO shouldn't be hard coded, probably will create a new Constructor to do it though
             AddItems(1);
-        }
+        }*/
 
         public AuctionItems(Auction _auction) {
             InitializeComponent();

@@ -587,90 +587,6 @@ namespace auction_central
             //return ....;
         }
 
-
-        // INSERTING INTO DB METHODS
-        // insert new Auction into DB 
-        public void AddAuctionItem(AuctionItem item)
-        {
-            MySqlConnection connection;
-            string connectionString =
-                @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
-            connection = new MySqlConnection(connectionString);
-            try
-            {
-                connection.Open();
-
-                string dimensionsString = @"INSERT INTO auction_central.itemdimensions (height, width, length, itemunit) VALUES (@height, @width, @length, @itemunit)";
-                MySqlCommand dimInsertCommand = new MySqlCommand(dimensionsString, connection);
-                dimInsertCommand.Parameters.AddWithValue("@height", item.Height);
-                dimInsertCommand.Parameters.AddWithValue("@width", item.Width);
-                dimInsertCommand.Parameters.AddWithValue("@length", item.Length);
-                dimInsertCommand.Parameters.AddWithValue("@itemunit", (int)item.ItemUnit);
-
-                dimInsertCommand.ExecuteNonQuery();
-                long dim_id = dimInsertCommand.LastInsertedId;
-                int dimID_int = unchecked((int)dim_id);
-
-
-                string insertItemString = @"INSERT INTO auction_central.auctionitem (itemName, donorID, itemdimensions, 
-                                            conditionRate, auctionID, isSold, isSmall, currentprice, originalprice, quantity,
-                                            location, comments) VALUES (@itemname, @donorid, @itemdimensionID, @condition, @auctionid,
-                                            @issold, @issmall, @curprice, origprice, @quantity, @location, @comments);";
-                MySqlCommand insertItemCommand = new MySqlCommand(insertItemString, connection);
-                insertItemCommand.Parameters.AddWithValue("@itemname", item.Name);
-                insertItemCommand.Parameters.AddWithValue("@donorid", item.Donor);
-                insertItemCommand.Parameters.AddWithValue("@itemdimensionID", dimID_int);
-                insertItemCommand.Parameters.AddWithValue("@condition", item.ItemCondition);
-                insertItemCommand.Parameters.AddWithValue("@auctionid", item.AuctionItemId);
-                insertItemCommand.Parameters.AddWithValue("@issold", item.IsSold);
-                insertItemCommand.Parameters.AddWithValue("@issmall", item.IsSmall);
-                insertItemCommand.Parameters.AddWithValue("@curprice", item.CurrentBid);
-                insertItemCommand.Parameters.AddWithValue("@origprice", item.StartingBid);
-                insertItemCommand.Parameters.AddWithValue("@quantity", item.Quantity);
-                insertItemCommand.Parameters.AddWithValue("@location", item.StorageLocation);
-                insertItemCommand.Parameters.AddWithValue("@comments", item.Comments);
-            }
-            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
-            finally { connection.Close(); }
-        }
-        
-        // insert new auction item into DB
-        public void InsertAuction(Auction auction, NonProfit nonprofit, long phonenum)
-        {
-            MySqlConnection connection;
-            string connectionString =
-                @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
-            connection = new MySqlConnection(connectionString);
-            try
-            {
-                connection.Open();
-                string phoneInsertString = @"INSERT INTO auction_central.phonenumbers (phonenumber) VALUES (@phonenum);";
-                MySqlCommand insertPhoneCommand = new MySqlCommand(phoneInsertString, connection);
-                insertPhoneCommand.Parameters.AddWithValue("@phonenum", phonenum);
-                insertPhoneCommand.ExecuteNonQuery();
-                long phone_id = insertPhoneCommand.LastInsertedId;
-                int phoneID_int = unchecked((int)phone_id);
-
-
-                string endtime_str = auction.EndTime.ToString("g");
-                string enddate_str = auction.EndTime.ToString("d");
-                string starttime_str = auction.StartTime.ToString("g");
-            
-                string insertAuctionString = @"INSERT INTO auction_central.auctioninfo (phoneID, location, endtime, enddate, starttime, nonprofitID, currentBidderID) VALUES (@phoneID, @location, @endtime, @enddate, @starttime, @nonprofitID, @currentBidderID)";
-                MySqlCommand insertAuctionCommand = new MySqlCommand(insertAuctionString, connection);
-                insertAuctionCommand.Parameters.AddWithValue("@phoneID", phoneID_int);
-                insertAuctionCommand.Parameters.AddWithValue("@location", auction.Location);
-                insertAuctionCommand.Parameters.AddWithValue("@endtime", endtime_str);
-                insertAuctionCommand.Parameters.AddWithValue("@enddate", enddate_str);
-                insertAuctionCommand.Parameters.AddWithValue("@starttime", starttime_str);
-                insertAuctionCommand.Parameters.AddWithValue("@nonprofitID", nonprofit.UserId);
-                insertAuctionCommand.Parameters.AddWithValue("@currentBidderID", 1);
-                insertAuctionCommand.ExecuteNonQuery();
-            }
-            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
-            finally { connection.Close(); }
-        }
-        
         // Create new bidder account into DB
         public void InsertBidder(Bidder bidder, Person.UserTypeEnum type, string password, CreditCard creditcard, Address bidderaddress)
         {
@@ -756,6 +672,93 @@ namespace auction_central
             finally { connection.Close(); }
             //return ....;
         }
+
+
+        // INSERTING INTO DB METHODS
+        // insert new Auction into DB 
+        public void AddAuctionItem(AuctionItem item)
+        {
+            MySqlConnection connection;
+            string connectionString =
+                @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+            connection = new MySqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+
+                string dimensionsString = @"INSERT INTO auction_central.itemdimensions (height, width, length, itemunit) VALUES (@height, @width, @length, @itemunit)";
+                MySqlCommand dimInsertCommand = new MySqlCommand(dimensionsString, connection);
+                dimInsertCommand.Parameters.AddWithValue("@height", item.Height);
+                dimInsertCommand.Parameters.AddWithValue("@width", item.Width);
+                dimInsertCommand.Parameters.AddWithValue("@length", item.Length);
+                dimInsertCommand.Parameters.AddWithValue("@itemunit", (int)item.ItemUnit);
+
+                dimInsertCommand.ExecuteNonQuery();
+                long dim_id = dimInsertCommand.LastInsertedId;
+                int dimID_int = unchecked((int)dim_id);
+
+
+                string insertItemString = @"INSERT INTO auction_central.auctionitem (itemName, donorID, itemdimensions, 
+                                            conditionRate, auctionID, isSold, isSmall, currentprice, originalprice, quantity,
+                                            location, comments) VALUES (@itemname, @donorid, @itemdimensionID, @condition, @auctionid,
+                                            @issold, @issmall, @curprice, @origprice, @quantity, @location, @comments);";
+                MySqlCommand insertItemCommand = new MySqlCommand(insertItemString, connection);
+                insertItemCommand.Parameters.AddWithValue("@itemname", item.Name);
+                insertItemCommand.Parameters.AddWithValue("@donorid", 1);
+                insertItemCommand.Parameters.AddWithValue("@itemdimensionID", dimID_int);
+                insertItemCommand.Parameters.AddWithValue("@condition", item.ItemCondition);
+                insertItemCommand.Parameters.AddWithValue("@auctionid", item.AuctionItemId);
+                insertItemCommand.Parameters.AddWithValue("@issold", item.IsSold);
+                insertItemCommand.Parameters.AddWithValue("@issmall", item.IsSmall);
+                insertItemCommand.Parameters.AddWithValue("@curprice", item.CurrentBid);
+                insertItemCommand.Parameters.AddWithValue("@origprice", item.StartingBid);
+                insertItemCommand.Parameters.AddWithValue("@quantity", item.Quantity);
+                insertItemCommand.Parameters.AddWithValue("@location", item.StorageLocation);
+                insertItemCommand.Parameters.AddWithValue("@comments", item.Comments);
+                insertItemCommand.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
+            finally { connection.Close(); }
+        }
+        
+        // insert new auction item into DB
+        public void InsertAuction(Auction auction, NonProfit nonprofit, long phonenum)
+        {
+            MySqlConnection connection;
+            string connectionString =
+                @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+            connection = new MySqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                string phoneInsertString = @"INSERT INTO auction_central.phonenumbers (phonenumber) VALUES (@phonenum);";
+                MySqlCommand insertPhoneCommand = new MySqlCommand(phoneInsertString, connection);
+                insertPhoneCommand.Parameters.AddWithValue("@phonenum", phonenum);
+                insertPhoneCommand.ExecuteNonQuery();
+                long phone_id = insertPhoneCommand.LastInsertedId;
+                int phoneID_int = unchecked((int)phone_id);
+
+
+                string endtime_str = auction.EndTime.ToString("g");
+                string enddate_str = auction.EndTime.ToString("d");
+                string starttime_str = auction.StartTime.ToString("g");
+            
+                string insertAuctionString = @"INSERT INTO auction_central.auctioninfo (phoneID, location, endtime, enddate, starttime, nonprofitID, currentBidderID) VALUES (@phoneID, @location, @endtime, @enddate, @starttime, @nonprofitID, @currentBidderID)";
+                MySqlCommand insertAuctionCommand = new MySqlCommand(insertAuctionString, connection);
+                insertAuctionCommand.Parameters.AddWithValue("@phoneID", phoneID_int);
+                insertAuctionCommand.Parameters.AddWithValue("@location", auction.Location);
+                insertAuctionCommand.Parameters.AddWithValue("@endtime", endtime_str);
+                insertAuctionCommand.Parameters.AddWithValue("@enddate", enddate_str);
+                insertAuctionCommand.Parameters.AddWithValue("@starttime", starttime_str);
+                insertAuctionCommand.Parameters.AddWithValue("@nonprofitID", nonprofit.UserId);
+                insertAuctionCommand.Parameters.AddWithValue("@currentBidderID", 1);
+                insertAuctionCommand.ExecuteNonQuery();
+            }
+            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
+            finally { connection.Close(); }
+        }
+        
         
     }
 }
