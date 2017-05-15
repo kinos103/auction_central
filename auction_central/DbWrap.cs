@@ -671,7 +671,6 @@ namespace auction_central
         // Create new bidder account into DB
         public void InsertBidder(Bidder bidder, Person.UserTypeEnum type, string password, CreditCard creditcard, Address bidderaddress)
         {
-            //(UserTypeEnum usertype, int userid, string firstname, string lastname, string email, string cardnumber, string address, string phonenumber)
             MySqlConnection connection;
             string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
             connection = new MySqlConnection(connectionString);
@@ -714,7 +713,7 @@ namespace auction_central
                         int emailID_int = unchecked((int)email_id);
 
                         string addressInsertQuery =
-                            @"INSERT INTO auction_central.address (homeaddress, city, state, zipcode) VALUES (@homead, @city, @ state, @zip);";
+                            @"INSERT INTO auction_central.address (homeaddress, city, state, zipcode) VALUES (@homead, @city, @state, @zip);";
                         MySqlCommand addressInsertCommand = new MySqlCommand(addressInsertQuery, connection2);
                         addressInsertCommand.Parameters.AddWithValue("@homead", bidderaddress.HouseNumber);
                         addressInsertCommand.Parameters.AddWithValue("@city", bidderaddress.City);
@@ -731,17 +730,18 @@ namespace auction_central
                         cardInsertCommand.Parameters.AddWithValue("@cvv", creditcard.CVV);
                         cardInsertCommand.Parameters.AddWithValue("@nameoncard", creditcard.NameOnCard);
                         cardInsertCommand.Parameters.AddWithValue("@exdate", creditcard.ExpDate);
+                        cardInsertCommand.ExecuteNonQuery();
                         long card_id = cardInsertCommand.LastInsertedId;
                         int cardID_int = unchecked((int)card_id);
 
-                        string adminInsertString = @"INSERT INTO auction_central.bidder (cardID, emailID, phoneID, addressID, firstname, lastname) VALUES (@card__id, @email__id, @phone__id, @address__id, firstname, lastname);";
+                        string adminInsertString = @"INSERT INTO auction_central.bidder (cardID, emailID, phoneID, addressID, firstname, lastname) VALUES (@card__id, @email__id, @phone__id, @address__id, @firstname, @lastname);";
                         MySqlCommand adminInsertCommand = new MySqlCommand(adminInsertString, connection2);
                         adminInsertCommand.Parameters.AddWithValue("@card__id", cardID_int);
                         adminInsertCommand.Parameters.AddWithValue("@phone__id", phoneID_int);
                         adminInsertCommand.Parameters.AddWithValue("@email__id", emailID_int);
-                        adminInsertCommand.Parameters.AddWithValue("@address_id", addressID_int);
-                        adminInsertCommand.Parameters.AddWithValue("@last", bidder.FirstName);
-                        adminInsertCommand.Parameters.AddWithValue("@last", bidder.LastName);
+                        adminInsertCommand.Parameters.AddWithValue("@address__id", addressID_int);
+                        adminInsertCommand.Parameters.AddWithValue("@firstname", bidder.FirstName);
+                        adminInsertCommand.Parameters.AddWithValue("@lastname", bidder.LastName);
                         adminInsertCommand.ExecuteNonQuery();
                         connection2.Close();
                     }
