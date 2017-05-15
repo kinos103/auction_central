@@ -672,6 +672,28 @@ namespace auction_central
             //return ....;
         }
 
-
+        public List<string> ReturnOrgNames()
+        {
+            List<string> allOrgs = new List<string>();
+            MySqlConnection connection;
+            string connectionString =
+                @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
+            connection = new MySqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                string orgQueryString = @"SELECT DISTINCT orgName FROM auction_central.nonprofit;";
+                MySqlCommand orgQueryCommand = new MySqlCommand(orgQueryString, connection);
+                MySqlDataReader reader = orgQueryCommand.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    string curOrg = reader.GetString(0);
+                    allOrgs.Add(curOrg);
+                }
+            }
+            catch (MySqlException ex) { MessageBox.Show(ex.ToString()); }
+            finally { connection.Close(); }
+            return allOrgs;
+        }
     }
 }
