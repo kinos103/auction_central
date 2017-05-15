@@ -652,8 +652,8 @@ namespace auction_central
                 int phoneID_int = unchecked((int)phone_id);
 
 
-                string endtime_str = auction.EndTime.ToString("t");
-                string enddate_str = auction.EndTime.ToString("g");
+                string endtime_str = auction.EndTime.ToString("g");
+                string enddate_str = auction.EndTime.ToString("d");
                 string starttime_str = auction.StartTime.ToString("g");
             
                 string insertAuctionString = @"INSERT INTO auction_central.auctioninfo (phoneID, location, endtime, enddate, starttime, nonprofitID, currentBidderID) VALUES (@phoneID, @location, @endtime, @enddate, @starttime, @nonprofitID, @currentBidderID)";
