@@ -671,7 +671,6 @@ namespace auction_central
         // Create new bidder account into DB
         public void InsertBidder(Bidder bidder, Person.UserTypeEnum type, string password, CreditCard creditcard, Address bidderaddress)
         {
-            //(UserTypeEnum usertype, int userid, string firstname, string lastname, string email, string cardnumber, string address, string phonenumber)
             MySqlConnection connection;
             string connectionString = @"Database=auction_central;Data Source=us-cdbr-azure-west-b.cleardb.com;User Id=b1a4a9b19daca1;Password=d28c0eba";
             connection = new MySqlConnection(connectionString);
@@ -714,7 +713,7 @@ namespace auction_central
                         int emailID_int = unchecked((int)email_id);
 
                         string addressInsertQuery =
-                            @"INSERT INTO auction_central.address (homeaddress, city, state, zipcode) VALUES (@homead, @city, @ state, @zip);";
+                            @"INSERT INTO auction_central.address (homeaddress, city, state, zipcode) VALUES (@homead, @city, @state, @zip);";
                         MySqlCommand addressInsertCommand = new MySqlCommand(addressInsertQuery, connection2);
                         addressInsertCommand.Parameters.AddWithValue("@homead", bidderaddress.HouseNumber);
                         addressInsertCommand.Parameters.AddWithValue("@city", bidderaddress.City);
