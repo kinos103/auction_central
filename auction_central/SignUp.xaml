@@ -29,7 +29,7 @@
         <TextBox x:Name="SignUpPhone" Margin="0 8 0 8" Grid.Row="3" Height="26" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Phone"  Width="209"/>
         <PasswordBox x:Name="SignUpPassword" Margin="0 8 0 8" Grid.Row="4" Height="26" materialDesign:HintAssist.Hint="Password"  Width="209"/>
         <PasswordBox x:Name="SignUpPasswordConfirm" Margin="0 8 0 8" Grid.Row="5" Height="26" materialDesign:HintAssist.Hint="Confirm Password"  Width="209"/>
-        <ComboBox x:Name="ComboBox" Margin="0 8 0 8" Grid.Row="6" Width="209" Height="40"
+        <ComboBox x:Name="ComboBox" SelectionChanged="ComboBox_OnSelectionChanged" Margin="0 8 0 8" Grid.Row="6" Width="209" Height="40"
                   materialDesign:HintAssist.Hint="User Type">
             <ComboBoxItem x:Name="Admin" Content="Admin" Width="206.4"/>
             <ComboBoxItem x:Name="NP" Content="Non-Profit" Width="206.4"/>
@@ -39,6 +39,7 @@
                  Height="Auto" ItemsSource="{Binding}"
                  Width="Auto"
                  Grid.Row="7"
+                  Visibility="Collapsed"
                  Margin="0 0 0 8">
         </ComboBox>
         <Button x:Name="SignUpButton" Margin="0 8 0 8" Grid.Row="8" Content="SIGN UP"  Width="100" Click="SignUpButton_OnClick"/>
