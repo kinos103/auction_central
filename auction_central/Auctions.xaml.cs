@@ -25,17 +25,21 @@ namespace auction_central {
 		}
 
 		public void loadAuctions() {
+			auctions = new DbWrap().AuctionObjList();
+			// Test data if db is being wonky
+			/*
 			auctions = new List<Auction>();
 			for (int i = 0; i < 7; ++i)
 			{
 				Auction tempAuction = new Auction();
 				tempAuction.CharityName += i.ToString();
 				auctions.Add(tempAuction);
-			}
+			}*/
 			listBoxAuctions.ItemsSource = auctions;
 		}
 
-		private void ListBoxAuctions_OnMouseDoubleClick(object sender, MouseButtonEventArgs e) {
+		// method for when they click in the list box
+		private void OnMouseUp(object sender, MouseButtonEventArgs e) {
 			int index = this.listBoxAuctions.SelectedIndex;
 			DetailFrame.NavigationService.Navigate(new AuctionDetails(auctions[index]));
 		}

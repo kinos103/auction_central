@@ -21,15 +21,21 @@ namespace auction_central
     /// </summary>
     public partial class SignUp : Page
     {
+        private DbWrap dbWrap;
         public SignUp()
         {
             InitializeComponent();
+            dbWrap = new DbWrap();
+            List<string> tempList = dbWrap.ReturnOrgNames();
+            OrgNames.ItemsSource = tempList;
         }
 
         private void SignUpLoginButton_OnClick(object sender, RoutedEventArgs e)
         {
             (Window.GetWindow(this) as MainWindow).MainContent.NavigationService.Navigate(new login());
         }
+
+        
 
         private void SignUpButton_OnClick(object sender, RoutedEventArgs e)
         {
@@ -42,36 +48,61 @@ namespace auction_central
             String firstName = SignUpFirstName.Text;
             String lastName = SignUpLastName.Text;
             String email = SignUpEmail.Text;
+            Int64 phone = Int64.Parse(SignUpPhone.Text);
             String password = SignUpPassword.Password;
             String passwordConfirm = SignUpPasswordConfirm.Password;
+            var navigationService = this.NavigationService;
 
 
             if (firstName == "" || lastName == "")
             {
-                MessageBox.Show("Error creating account");
+                MessageBox.Show("Error creating account: Check name");
                 return;
             }
 
             if (!IsValidEmailAddress(email))
             {
-                MessageBox.Show("Error creating account");
+                MessageBox.Show("Error creating account: Check email");
                 return;
             }
 
             if (!IsValidPassword(password, passwordConfirm))
             {
-                MessageBox.Show("Error creating account");
+                MessageBox.Show("Error creating account: Check password");
                 return;
             }
 
-
             if (Equals(item, Admin))
             {
-                MessageBox.Show("USER TYPE WORKS: Admin");
+                dbWrap.InsertAdmin(firstName, lastName, email, password, phone, Person.UserTypeEnum.Admin);
+
+                Person returned = dbWrap.LoginExists(email, password, Person.UserTypeEnum.Admin);
+                if (returned == null)
+                {
+                    MessageBox.Show("Error");
+                    return;
+                }
+                // everything should happen in the MainWindow so this should be safe
+                (Window.GetWindow(this) as MainWindow).User = returned;
+                navigationService?.Navigate(new Uri("AdminHome.xaml", UriKind.Relative));
+                (Window.GetWindow(this) as MainWindow).HeaderNavBar.Visibility = Visibility.Visible;
+                (Window.GetWindow(this) as MainWindow).MainContent.NavigationUIVisibility = NavigationUIVisibility.Visible;   
             }
             else if (Equals(item, NP))
             {
-                MessageBox.Show("USER TYPE WORKS: NP");
+                dbWrap.InsertNonprofit(firstName, lastName, email, password, phone, Person.UserTypeEnum.Nonprofit, "Org1");
+
+                Person returned = dbWrap.LoginExists(email, password, Person.UserTypeEnum.Nonprofit);
+                if (returned == null)
+                {
+                    MessageBox.Show("Error");
+                    return;
+                }
+                // everything should happen in the MainWindow so this should be safe
+                (Window.GetWindow(this) as MainWindow).User = returned;
+                navigationService?.Navigate(new Uri("NPHome.xaml", UriKind.Relative));
+                (Window.GetWindow(this) as MainWindow).HeaderNavBar.Visibility = Visibility.Visible;
+                (Window.GetWindow(this) as MainWindow).MainContent.NavigationUIVisibility = NavigationUIVisibility.Visible;
             }
             else if (Equals(item, Bidder))
             {
@@ -81,6 +112,7 @@ namespace auction_central
             {
                 MessageBox.Show("Please Select a User Type");
             }
+            
         }
 
         public static bool IsValidEmailAddress(string emailaddress)
@@ -116,5 +148,17 @@ namespace auction_central
             }
         }
 
+
+        private void ComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Equals((ComboBoxItem)ComboBox.SelectedItem, NP))
+            {
+                OrgNames.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                OrgNames.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }

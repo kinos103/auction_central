@@ -13,6 +13,7 @@ namespace auction_central {
 		public DateTime EndTime { get; set; }
 		public string Contact { get; set; }
 		public string PhoneNumber { get; set; }
+		public string Location {get; set; }
 
 		public Auction(string charityName, DateTime startTime, DateTime endTime, string contact, string phoneNumber) {
 			CharityName = charityName;
@@ -21,6 +22,18 @@ namespace auction_central {
 			EndTime = endTime;
 			Contact = contact;
 			PhoneNumber = phoneNumber;
+		}
+
+
+		public Auction(int auctionId, string charityName, DateTime startTime, DateTime endTime, string contact, string phoneNumber, string location) {
+			AuctionId = auctionId;
+			CharityName = charityName;
+			EventDate = startTime.Date;
+			StartTime = startTime;
+			EndTime = endTime;
+			Contact = contact;
+			PhoneNumber = phoneNumber;
+			Location = location;
 		}
 
 		public Auction() {
