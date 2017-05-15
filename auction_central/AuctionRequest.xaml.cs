@@ -70,7 +70,7 @@ namespace auction_central
             {
                 MessageBox.Show("Please enter number of items included in the bundle");
             }
-
+        
             else
             {
                 MessageBox.Show("Error sending in Auction Request");
@@ -115,6 +115,7 @@ namespace auction_central
             //check if numOfItems and additionalComments are on auctioninfo table
             int numOfItems = Int32.Parse(this.numOfItems.Text);
             string additionalComments = this.additionalComments.Text;
+
 
 
         }
